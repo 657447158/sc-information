@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-
+    <P>{{$t('index-page-title')}}</P>
     <Footer />
   </div>
 </template>

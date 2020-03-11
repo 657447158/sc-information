@@ -6,11 +6,11 @@
       </a>
 			<ul class="nav-list">
 				<li :class="code === 'destination' && 'active'">
-					<a href="destination.html?code=destination">Destination</a>
+					<a href="destination.html?code=destination">{{$t('nav[0]')}}</a>
 				</li>
 				<li :class="code === 'next' && 'active'">
 					<a href="next.html?code=next">
-            <span>Theme ravel</span>
+            <span>{{$t('nav[1]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
 					<div class="nav-down">
@@ -21,7 +21,7 @@
 				</li>
 				<li :class="code === 'info' && 'active'">
 					<a href="info.html?code=info">
-            <span>Practical information</span>
+            <span>{{$t('nav[2]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
 					<div class="nav-down">
@@ -33,7 +33,7 @@
 				<!-- 搜索 -->
 				<li class="nav-search">
           <div class="nav-search-box">
-            <input type="text" placeholder="Search">
+            <input type="text" :placeholder="$t('nav[3]')">
             <span class="daq-icon">&#xe673;</span>
           </div>
         </li>
