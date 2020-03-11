@@ -1,0 +1,11 @@
+$themeColor: #d3a180;
+$themeColorOpa: rgba(211, 161, 168, .8);
+
+
+@mixin ellipsis () {
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
