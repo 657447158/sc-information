@@ -17,6 +17,7 @@ module.exports = {
     'index': 'src/pages/index/main.js',
     'list': 'src/pages/list/main.js',
     'destination-detail': 'src/pages/destination-detail/main.js',
+    'article-detail':'src/pages/article-detail/main.js',
     // destination
   }
 }
