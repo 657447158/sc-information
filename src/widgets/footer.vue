@@ -50,16 +50,21 @@
     align-items: center;
   }
   ul {
+    padding-left: 70px;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
     li {
       display: flex;
       flex-direction: column;
       align-items: center;
       font-size: 18px;
       color: #333;
+      &:nth-child(2) { margin-left: 100px; }
+      &:nth-child(3) { margin-left: 80px; }
+      &:nth-child(4) { margin-left: 46px; }
+      &:nth-child(5) { margin-left: 60px; }
+      &:nth-child(6) { margin-left: 60px; }
     }
     .daq-icon {
       margin-bottom: 26px;

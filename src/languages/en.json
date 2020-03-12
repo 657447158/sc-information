@@ -9,9 +9,28 @@
             "title": "I TRAVEL FOR",
             "placeholder": "You might be interested"
         },
+        "more": "MORE",
         "time": {
             "title": "Carefree good times",
-            "slogan": "\"Come on ~ to drink GaiWanCha ~\""
+            "slogan": "\"Come on ~ to drink GaiWanCha ~\"",
+            "theme": "Sichuan leisure time",
+            "theme-slogan": "Show you how to play the sichuan province"
+        },
+        "art": {
+            "title": "Slow life of literature and art",
+            "slogan": "Who is not a literacy er?"
+        },
+        "food": {
+            "title": "Version treasure map",
+            "slogan": "Let's eat some hot pot and skewers ~",
+            "theme": "Food treasure map",
+            "theme-slogan": "You can eat all over Sichuan, I will lose!"
+        },
+        "story": {
+            "title": "Streets story remit",
+            "slogan": "Come on ~, chatted with together",
+            "theme": "Streets and alleys in Sichuan",
+            "theme-slogan": "Feel the well life in Sichuan"
         }
     }
 }

@@ -78,14 +78,15 @@ export default {
         height:432px;
         // background: red;
         overflow: hidden;
+        &:hover img {
+          transform: scale(1.1);
+        }
         img {
           width: 100%;
           height: 100%;
+          transition: all .3s linear;
         }
       }
-      .img-box:hover img {
-          transform: scale(1.1);
-        }
 
       h3 {
         line-height: 72px;
