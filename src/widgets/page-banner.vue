@@ -43,7 +43,7 @@
   }
   p {
     position: absolute;
-    bottom: 60px;
+    bottom: 210px;
     left: 0;
     width: 100%;
     font-size: 52px;
