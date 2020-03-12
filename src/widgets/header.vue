@@ -5,35 +5,74 @@
         <img class="nav-logo" src="@/assets/images/logo.png" alt="四川省文化和旅游局" />
       </a>
 			<ul class="nav-list">
+        <!-- 目的地 -->
 				<li :class="code === 'destination' && 'active'">
-					<a href="destination.html?code=destination">{{$t('nav[0]')}}</a>
+					<a href="destination.html?code=destination">{{$t('header.nav[0]')}}</a>
 				</li>
+        <!-- 主题旅游 -->
 				<li :class="code === 'next' && 'active'">
 					<a href="next.html?code=next">
-            <span>{{$t('nav[1]')}}</span>
+            <span>{{$t('header.nav[1]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
 					<div class="nav-down">
 						<div class="main">
-							
+							<ul class="nav-down-theme">
+                <li
+                  class="nav-down-theme-item"
+                  v-for="item in themeTravelList"
+                  :key="item.id"
+                >
+                  <span class="img-box">
+                    <img src="" alt="">
+                  </span>
+                  <p>{{item.name}}</p>
+                </li>
+              </ul>
 						</div>
 					</div>
 				</li>
+        <!-- 适用信息 -->
 				<li :class="code === 'info' && 'active'">
 					<a href="info.html?code=info">
-            <span>{{$t('nav[2]')}}</span>
+            <span>{{$t('header.nav[2]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
 					<div class="nav-down">
 						<div class="main">
-							
+							<ul class="nav-down-info">
+                <li class="nav-down-info-item">
+                  <span class="daq-icon">&#xe666;</span>
+                  <span>{{$t('header.info[0]')}}</span>
+                </li>
+                <li class="nav-down-info-item">
+                  <span class="daq-icon">&#xe66f;</span>
+                  <span>{{$t('header.info[1]')}}</span>
+                </li>
+                <li class="nav-down-info-item">
+                  <span class="daq-icon">&#xe66c;</span>
+                  <span>{{$t('header.info[2]')}}</span>
+                </li>
+                <li class="nav-down-info-item">
+                  <span class="daq-icon">&#xe675;</span>
+                  <span>{{$t('header.info[3]')}}</span>
+                </li>
+                <li class="nav-down-info-item">
+                  <span class="daq-icon">&#xe672;</span>
+                  <span>{{$t('header.info[3]')}}</span>
+                </li>
+                <li class="nav-down-info-item">
+                  <span class="daq-icon">&#xe668;</span>
+                  <span>{{$t('header.info[4]')}}</span>
+                </li>
+              </ul>
 						</div>
 					</div>
 				</li>
 				<!-- 搜索 -->
 				<li class="nav-search">
           <div class="nav-search-box">
-            <input type="text" :placeholder="$t('nav[3]')">
+            <input type="text" :placeholder="$t('header.nav[3]')">
             <span class="daq-icon">&#xe673;</span>
           </div>
         </li>
@@ -107,6 +146,7 @@
 	</div>
 </template>
 <script>
+  import Ajax from '@/service'
   export default {
     data () {
       return {
@@ -115,6 +155,7 @@
         scrollFlag: false,
         ticking: false,
         showTopBtn: false,
+        themeTravelList: []
       }
     },
     created () {
@@ -126,6 +167,7 @@
       }
     },
     mounted () {
+      this.getChannelCodeByThemeTravel()
       // 低于1366 跳转移动端
       if (screen.width <= 1366) {
         window.location.href = 'http://test.tsichuan.com/zxw/mobile/#/index'
@@ -142,6 +184,16 @@
       })
     },
     methods: {
+      // 获取主题旅游栏目下的子栏目
+      getChannelCodeByThemeTravel () {
+        Ajax.getChannelList({
+          channelCode: 'ztlytj'
+        }).then(res => {
+          if (res.code === 0) {
+            this.themeTravelList = res.datas
+          }
+        })
+      },
       onScroll () {
         if(!this.ticking) {
           requestAnimationFrame(this.scrollHandle)
@@ -385,5 +437,48 @@
 }
 .daq-nav.active .nav-down {
   top: 60px;
+}
+.nav-down-theme {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-around;
+  &-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: #666;
+    .img-box {
+      margin-bottom: 20px;
+      display: block;
+      width: 200px;
+      height: 120px;
+      overflow: hidden;
+      background: #999;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+.nav-down-info {
+  margin-top: 98px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    color: #666;
+  }
+  .daq-icon {
+    margin: 0 0 30px 0;
+    color: #333;
+    font-size: 50px;
+    text-align: center;
+  }
 }
 </style>

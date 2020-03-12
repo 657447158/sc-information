@@ -1,6 +1,17 @@
 {
-    "nav": ["Destination", "Theme ravel", "Practical information", "Search"],
+    "header": {
+        "nav": ["Destination", "Theme ravel", "Practical information", "Search"],
+        "info": ["Tourist VISA", "City traffic", "Hotel accomodation", "Travel agency inquiry", "Caring service", "Health and life safety"]
+    },
     "index": {
-        "pageTit": "Welcome to Sichuan"
+        "pageTit": "Welcome to Sichuan",
+        "secTheme": {
+            "title": "I TRAVEL FOR",
+            "placeholder": "You might be interested"
+        },
+        "time": {
+            "title": "Carefree good times",
+            "slogan": "\"Come on ~ to drink GaiWanCha ~\""
+        }
     }
 }
