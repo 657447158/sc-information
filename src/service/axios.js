@@ -1,8 +1,9 @@
 import axios from 'axios'
+console.log(process.env.NODE_ENV)
 // 默认参数
 let defaultParams = {
 	siteCode: 'scszxw',
-	lang: 'cn'
+	lang: process.env.NODE_ENV
 }
 // const baseUrl = 'http://ptisp.test.daqsoft.com/govapi/api/'
 const baseUrl = 'http://test.tsichuan.com/govapi/api/'

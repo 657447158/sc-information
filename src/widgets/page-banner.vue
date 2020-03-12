@@ -1,28 +1,56 @@
 <template>
   <div class="page-banner">
-    <p class="page-title">{{title}}</p>
+    <img v-if="detail.navImage" :src="detail.navImage" />
+    <p>{{title || detail.name}}</p>
   </div>
 </template>
 <script>
+  import Ajax from '@/service'
   export default {
     props: {
+      channelCode: String,
       title: String
+    },
+    data () {
+      return {
+        detail: {}
+      }
+    },
+    mounted () {
+      Ajax.getChannelDetail({
+        channelCode: this.channelCode
+      }).then(res => {
+        if (res.code === 0) {
+          this.detail = res.data
+        }
+      })
     }
   }
 </script>
+
 <style lang="scss" scoped>
-  .page-banner {
-    position: relative;
+.page-banner {
+  position: relative;
+  padding-top: 170px;
+  width: 100%;
+  height: 560px;
+  overflow: hidden;
+  img {
+    margin: 0 auto;
+    display: block;
     width: 100%;
-    height: 800px;
+    height: 100%;
   }
-  .page-title {
+  p {
     position: absolute;
     bottom: 60px;
-    left: 50%;
+    left: 0;
+    width: 100%;
+    font-size: 52px;
     color: #fff;
-    font-size: 46px;
     font-weight: bold;
-    transform: translateX(-50%);
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 0, 0, .2);
   }
+}
 </style>

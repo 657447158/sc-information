@@ -2,7 +2,8 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-    <P>{{$t('index-page-title')}}</P>
+    <!-- 顶部banner -->
+    <page-banner channelCode="sy" :title="$t('index.pageTit')" />
     <Footer />
   </div>
 </template>
@@ -11,10 +12,12 @@
 import scrollAnimate from '@/mixins/scroll_animate'
 import Header from '@/widgets/header'
 import Footer from '@/widgets/footer'
+import PageBanner from '@/widgets/page-banner.vue'
 export default {
   components: {
     Header,
-    Footer
+    Footer,
+    PageBanner
   },
   mixins: [scrollAnimate]
 }

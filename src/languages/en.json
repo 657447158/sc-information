@@ -1,3 +1,6 @@
 {
-    "nav": ["Destination", "Theme ravel", "Practical information", "Search"]
+    "nav": ["Destination", "Theme ravel", "Practical information", "Search"],
+    "index": {
+        "pageTit": "Welcome to Sichuan"
+    }
 }

@@ -6,13 +6,10 @@ import '@/assets/styles/layout.scss'
 Vue.use(VueI18n)
 Vue.config.productionTip = false
 
-console.log(process.env.NODE_ENV)
-
 const i18n = new VueI18n({
   locale: process.env.NODE_ENV,
   messages: {
-    'ZH': require('@/languages/zh.json'),
-    'EN': require('@/languages/en.json')
+    'en': require('@/languages/en.json')
   }
 })
 new Vue({

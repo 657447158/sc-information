@@ -3,34 +3,34 @@
 		<div class="main">
       <ul>
         <li>
-          <span class="daq-icon"></span>
+          <span class="daq-icon">&#xe666;</span>
           <span>Tourist VISA</span>
         </li>
         <li>
-          <span class="daq-icon"></span>
+          <span class="daq-icon">&#xe66f;</span>
           <span>City traffic</span>
         </li>
         <li>
-          <span class="daq-icon"></span>
+          <span class="daq-icon">&#xe66c;</span>
           <span>Hotel accomodation</span>
         </li>
         <li>
-          <span class="daq-icon"></span>
+          <span class="daq-icon">&#xe675;</span>
           <span>Travel agency inquiry</span>
         </li>
         <li>
-          <span class="daq-icon"></span>
+          <span class="daq-icon">&#xe672;</span>
           <span>Caring service</span>
         </li>
         <li>
-          <span class="daq-icon"></span>
+          <span class="daq-icon">&#xe668;</span>
           <span>Health and life safety</span>
         </li>
       </ul>
       <div class="link-box">
-        <span class="daq-icon"></span>
-        <span class="daq-icon"></span>
-        <span class="daq-icon"></span>
+        <span class="daq-icon">&#xe709;</span>
+        <span class="daq-icon">&#xe67a;</span>
+        <span class="daq-icon">&#xe69b;</span>
       </div>
       <p class="copy-right">Copyright © 2019 Chengdu Tourism Bureau All Rights Reserved</p>
     </div>
@@ -65,6 +65,10 @@
       margin-bottom: 26px;
       width: 120px;
       height: 120px;
+      color: #333;
+      font-size: 50px;
+      text-align: center;
+      line-height: 120px;
       border: 1px solid #999;
     }
   }
@@ -74,6 +78,9 @@
     span {
       width: 50px;
       height: 50px;
+      font-size: 20px;
+      line-height: 50px;
+      text-align: center;
       border: 1px solid #c6c6c6;
       &:not(:last-child) {
         border-right: none;
