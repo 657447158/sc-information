@@ -14,6 +14,7 @@ module.exports = {
     }
   },
   pages: {
-    'index': 'src/pages/index/main.js'
+    'index': 'src/pages/index/main.js',
+    'list': 'src/pages/list/main.js',
   }
 }
