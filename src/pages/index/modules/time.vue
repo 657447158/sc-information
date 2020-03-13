@@ -96,15 +96,6 @@ export default {
       height: 220px;
       color: #fff;
       background-color: #d3a180;
-      &-title {
-        margin-bottom: 16px;
-        font-size: 46px;
-        font-weight: bold;
-      }
-      &-slogan {
-        margin-bottom: 16px;
-        font-size: 24px;
-      }
     }
   }
 </style>

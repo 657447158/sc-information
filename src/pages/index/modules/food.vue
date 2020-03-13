@@ -7,9 +7,9 @@
     <div class="food-list">
       <ul>
         <li>
-          <p>{{$t('index.food.theme')}}</p>
-          <p>{{$t('index.food.theme-slogan')}}</p>
-          <p>{{$t('index.more')}}</p>
+          <p class="theme-box-title">{{$t('index.food.theme')}}</p>
+          <p class="theme-box-slogan">{{$t('index.food.theme-slogan')}}</p>
+          <a class="theme-box-more" href="">{{$t('index.more')}}</a>
         </li>
         <li></li>
         <li></li>

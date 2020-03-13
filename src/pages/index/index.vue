@@ -12,6 +12,8 @@
     <Food />
     <!-- 街巷故事汇 -->
     <Story />
+    <!-- 好耍夜生活 -->
+    <Night />
     <Footer />
   </div>
 </template>
@@ -25,6 +27,7 @@ import Time from './modules/time'
 import Art from './modules/art'
 import Food from './modules/food'
 import Story from './modules/story'
+import Night from './modules/night'
 export default {
   components: {
     Header,
@@ -33,7 +36,8 @@ export default {
     Time,
     Art,
     Food,
-    Story
+    Story,
+    Night
   },
   mixins: [scrollAnimate]
 }
@@ -68,5 +72,16 @@ export default {
     &:hover {
       background: #fff;
     }
+  }
+  /deep/ .theme-box-title {
+    margin-bottom: 16px;
+    font-size: 46px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 8);
+  }
+  /deep/ .theme-box-slogan {
+    margin-bottom: 16px;
+    font-size: 24px;
+    color: #fff;
   }
 </style>

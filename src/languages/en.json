@@ -31,6 +31,12 @@
             "slogan": "Come on ~, chatted with together",
             "theme": "Streets and alleys in Sichuan",
             "theme-slogan": "Feel the well life in Sichuan"
+        },
+        "night": {
+            "title": "More nightlife",
+            "slogan": "Come with me and a di!",
+            "theme": "SICHUAN",
+            "theme-slogan": "Nightlife"
         }
     }
 }

@@ -10,9 +10,9 @@
       </li>
       <li></li>
       <li>
-        <p class="title">{{$t('index.story.theme')}}</p>
-        <p class="slogan">{{$t('index.story.theme-slogan')}}</p>
-        <a href="" class="theme-box-more">{{$t('index.more')}}</a>
+        <p class="theme-box-title">{{$t('index.story.theme')}}</p>
+        <p class="theme-box-slogan">{{$t('index.story.theme-slogan')}}</p>
+        <a class="theme-box-more" href="">{{$t('index.more')}}</a>
       </li>
       <li></li>
       <li></li>
@@ -50,15 +50,6 @@ export default {
         height: 270px;
         color: #fff;
         background: #d3a180;
-        .title {
-          font-size: 46px;
-          font-weight: bold;
-          color: rgba(255, 255, 255, .8);
-        }
-        .slogan {
-          margin: 10px 0 16px;
-          font-size: 24px;
-        }
       }
       &:nth-child(4) {
         position: absolute;
