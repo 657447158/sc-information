@@ -1,3 +1,6 @@
+const msg = require('./src/languages')
+const title = msg[process.env.NODE_ENV].webTit
+
 module.exports = {
   publicPath: './',
   css: {
@@ -14,11 +17,26 @@ module.exports = {
     }
   },
   pages: {
-    'index': 'src/pages/index/main.js',
-    'list': 'src/pages/list/main.js',
-    'destination': 'src/pages/destination/main.js',
-    'article-detail':'src/pages/article-detail/main.js',
-    'service':'src/pages/service/main.js',
+    'index': {
+      title,
+      entry: 'src/pages/index/main.js'
+    },
+    'list': {
+      title,
+      entry: 'src/pages/list/main.js'
+    },
+    'destination': {
+      title,
+      entry: 'src/pages/destination/main.js'
+    },
+    'article-detail': {
+      title,
+      entry: 'src/pages/article-detail/main.js'
+    },
+    'service': {
+      title,
+      entry: 'src/pages/service/main.js'
+    },
     // service
   }
 }

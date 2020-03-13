@@ -34,7 +34,7 @@
 				</li>
         <!-- 适用信息 -->
 				<li :class="code === 'info' && 'active'">
-					<a href="info.html?code=info">
+					<a href="service.html?code=info">
             <span>{{$t('header.nav[2]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
