@@ -16,7 +16,9 @@ module.exports = {
   pages: {
     'index': 'src/pages/index/main.js',
     'list': 'src/pages/list/main.js',
-    'destination-detail': 'src/pages/destination-detail/main.js',
-    // destination
+    'destination': 'src/pages/destination/main.js',
+    'article-detail':'src/pages/article-detail/main.js',
+    'service':'src/pages/service/main.js',
+    // service
   }
 }
