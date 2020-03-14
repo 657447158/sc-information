@@ -30,7 +30,7 @@
              </ul>
           </div>
       </div>
-      <div class="menu-item">
+      <div class="menu-item noborder">
         <div class="item-box">
              <div class="title"><span>Wine</span></div>
           </div>
@@ -107,9 +107,11 @@ export default {
     height: 100%;
     box-sizing: border-box;
     .item-box{
+      position:absolute;
+      z-index: 9999;
       width: 200px;
       margin-top: 22px;
-       border: 1px solid transparent;
+      border: 1px solid transparent;
       box-sizing: border-box;
       &.dropdown:hover{
         height: 220px;
