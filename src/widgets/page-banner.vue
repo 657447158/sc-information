@@ -31,7 +31,7 @@
 <style lang="scss" scoped>
 .page-banner {
   position: relative;
-  padding-top: 170px;
+  padding-top: 100px;
   width: 100%;
   height: 560px;
   overflow: hidden;

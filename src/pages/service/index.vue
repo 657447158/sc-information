@@ -2,7 +2,6 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-    <!-- <P>{{$t('index-page-title')}}</P> -->
     <page-banner channelCode="sy" :title="$t('index.pageTit')" />
     <div class="service-container">
       <ul class="service-wrapper" slot="list">

@@ -4,6 +4,15 @@ const api = {
   /**
    * [新闻资讯列表]
    */
+  getNewsListRecursion (params) {
+    return ajax({
+      url: 'news/listRecursion',
+      params: Object.assign({...params})
+    })
+  },
+  /**
+   * [新闻资讯列表]
+   */
   getNewsList (params) {
     return ajax({
       url: 'news/list',

@@ -4,6 +4,8 @@
     <Header />
     <!-- 顶部banner -->
     <page-banner channelCode="sy" :title="$t('index.pageTit')" />
+    <!-- 搜索你所喜好 -->
+    <Favorite />
     <!-- 悠闲好光景 -->
     <Time />
     <!-- 文艺慢生活 -->
@@ -23,6 +25,7 @@ import scrollAnimate from '@/mixins/scroll_animate'
 import Header from '@/widgets/header'
 import Footer from '@/widgets/footer'
 import PageBanner from '@/widgets/page-banner'
+import Favorite from './modules/favorite'
 import Time from './modules/time'
 import Art from './modules/art'
 import Food from './modules/food'
@@ -33,6 +36,7 @@ export default {
     Header,
     Footer,
     PageBanner,
+    Favorite,
     Time,
     Art,
     Food,
@@ -83,5 +87,20 @@ export default {
     margin-bottom: 16px;
     font-size: 24px;
     color: #fff;
+  }
+  /deep/ .modal-box {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    color: #fff;
+    transition: all .3s linear;
+    background: url('../../assets/images/modal-h540.png') repeat-x;
   }
 </style>

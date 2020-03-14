@@ -5,37 +5,57 @@
       <span class="slogan">{{$t('index.time.slogan')}}</span>
     </div>
     <div class="list-box">
-      <ul>
-        <li class="list-box-item hover">
-          <img src="@/assets/upload/index-time-pic1.jpg" />
-          <span class="modal-box">Emeishan real-name ticket purchase system</span>
-        </li>
-        <li class="list-box-item hover">
-          <img src="@/assets/images/index-time-pc.png" />
+      <div class="list-box-list">
+        <div class="list-box-item">
+          <img class="pic" src="@/assets/images/index-time-pc.png" />
           <div class="theme-box">
             <p class="theme-box-title">{{$t('index.time.theme')}}</p>
             <p class="theme-box-slogan">{{$t('index.time.theme-slogan')}}</p>
             <a href="" class="theme-box-more">{{$t('index.more')}}</a>
           </div>
-        </li>
-        <li class="list-box-item">
-          <div class="box hover">
-            <img src="@/assets/upload/index-time-pic1.jpg" />
-            <span class="modal-box">Emeishan real-name ticket purchase system</span>
-          </div>
-          <div class="box hover">
-            <img src="@/assets/upload/index-time-pic1.jpg" />
-            <span class="modal-box">Emeishan real-name ticket purchase system</span>
-          </div>
-        </li>
-      </ul>
+        </div>
+        <a
+          :href="`article-detail.html?id=${item.id}`"
+          class="list-box-item"
+          v-for="(item, index) in list"
+          :key="item.id"
+        >
+          <span class="img-box">
+            <img :src="item.cover" v-if="index === 0" />
+            <img :src="item.coverTwoToOne" v-else />
+          </span>
+          <span class="modal-box">{{item.title}}</span>
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Ajax from '@/service'
 export default {
-
+  data () {
+    return {
+      list: []
+    }
+  },
+  mounted () {
+    this.getNewsListRecursion()
+  },
+  methods: {
+    getNewsListRecursion () {
+      Ajax.getNewsListRecursion({
+        channelCode: 'ztlytj',
+        limitPage: 3,
+        recommend: 0
+      }).then(res => {
+        if (res.code === 0) {
+          this.list = res.datas
+          console.log(this.list)
+        }
+      })
+    }
+  }
 }
 </script>
 
@@ -43,48 +63,56 @@ export default {
   .list-box {
     width: 100%;
     height: 540px;
-    ul {
+    &-list {
+      position: relative;
       height: 100%;
       display: flex;
     }
     &-item {
-      position: relative;
+      position: absolute;
+      display: block;
       width: 540px;
       height: 100%;
+      overflow: hidden;
+      background-position: center;
+      &:hover {
+        .modal-box {
+          opacity: 1;
+        }
+      }
+      &:nth-child(1) {
+        top: 0;
+        left: 540px;
+      }
       &:nth-child(2) {
-        width: 560px;
+        top: 0;
+        left: 0;
       }
       &:nth-child(3) {
-        height: 270px;
+        top: 0;
+        right: -260px;
+        height: 50%;
       }
-      img {
+      &:nth-child(4) {
+        bottom: 0;
+        right: -260px;
+        height: 50%;
+      }
+      .img-box {
         display: block;
-        font-size: 0;
-      }
-      .box {
-        position: relative;
+        width: 100%;
         height: 100%;
         overflow: hidden;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
-      .modal-box {
-        opacity: 0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        align-items: flex-end;
-        padding: 30px;
+      .pic {
+        display: block;
         width: 100%;
-        height: 540px;
-        font-size: 18px;
-        color: #fff;
-        transition: all .3s linear;
-        background: url('../../../assets/images/modal-h540.png') repeat-x;
-      }
-    }
-    .hover:hover {
-      .modal-box {
-        opacity: 1;
+        height: 320px;
       }
     }
     .theme-box {

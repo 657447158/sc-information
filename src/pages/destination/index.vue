@@ -102,10 +102,20 @@ export default {
     };
   },
   mounted() {
-    this.getDestinationInfo();
-    this.drawMap();
+    this.getDestinationlist()
+    // this.getDestinationInfo();
+    // this.drawMap();
   },
   methods: {
+    // 获取目的地列表
+    getDestinationlist () {
+      Ajax.getDestinationList({
+        region: this.region,
+        limitPage: 99
+      }).then(res => {
+        console.log(res)
+      })
+    },
     getDestinationInfo() {
       Ajax.getDestinationInfo({
         id: this.id

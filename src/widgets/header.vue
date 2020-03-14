@@ -278,7 +278,7 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, .2);
 }
 .nav-logo {
-  margin-top: 27px;
+  margin-top: 20px;
   float: left;
   transition: all .5s linear;
   transform-origin: 0 0;
@@ -433,7 +433,7 @@
   transform: scale(.6);
 }
 .daq-nav.active .nav-list {
-  padding-top: 18px;
+  padding-top: 14px;
 }
 .daq-nav.active .nav-down {
   top: 60px;

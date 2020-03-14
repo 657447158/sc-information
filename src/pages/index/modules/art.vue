@@ -11,13 +11,16 @@
             <img src="@/assets/images/index-art-pic.png" />
           </li>
           <li>
-            <img src="@/assets/upload/upload-pic1.png" />
-          </li>
-          <li>
-            <img src="@/assets/upload/upload-pic1.png" />
-          </li>
-          <li>
-            <img src="@/assets/upload/upload-pic1.png" />
+            <a 
+              :href="`article-detail.html?id=${item.id}`"
+              v-for="item in list"
+              :key="item.id"
+            >
+              <span class="img-box">
+                <img :src="item.coverTwoToThree" />
+              </span>
+              <span class="modal-box">{{item.title}}</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -26,8 +29,29 @@
 </template>
 
 <script>
+import Ajax from '@/service'
 export default {
-
+  data () {
+    return {
+      list: []
+    }
+  },
+  mounted () {
+    this.getNewsListRecursion()
+  },
+  methods: {
+    getNewsListRecursion () {
+      Ajax.getNewsListRecursion({
+        channelCode: 'wymsh',
+        limitPage: 3,
+        recommend: 0
+      }).then(res => {
+        if (res.code === 0) {
+          this.list = res.datas
+        }
+      })
+    }
+  }
 }
 </script>
 
@@ -56,6 +80,7 @@ export default {
     }
     li {
       width: 325px;
+      background-position: center;
       &:not(:first-child) {
         margin-left: 20px;
       }
@@ -74,6 +99,26 @@ export default {
           width: 325px;
           height: 450px;
           background: #e1bea7;
+        }
+      }
+      &:hover {
+        .modal-box { opacity: 1;}
+      }
+      a {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .img-box {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
         }
       }
     }

@@ -9,16 +9,13 @@
         <div class="night-left">
           <div class="night-left-top">
             <img src="@/assets/images/index-night-bg1.png" />
-            <div class="box">
-              <p>Good night life</p>
-              <p>Come and dance with me</p>
-            </div>
+            <div class="box" v-html="detail.summary"></div>
           </div>
-          <div class="night-left-bottom">
-            <p>Famous night owl gathering place</p>
+          <div class="night-left-bottom" v-html="detail.content">
+            <!-- <p>Famous night owl gathering place</p>
             <p>Work is too depressive during the day, go to the bar for drinks and drinks at night</p>
             <p>It has become a must check-in place for many people living in Sichuan to relieve stress and</p>
-            <p>release themselves.</p>
+            <p>release themselves.</p> -->
           </div>
         </div>
         <div class="night-center">
@@ -35,8 +32,22 @@
 </template>
 
 <script>
+import Ajax from '@/service'
 export default {
-
+  data () {
+    return {
+      detail: {}
+    }
+  },
+  mounted () {
+    Ajax.getChannelDetail({
+      channelCode: 'hsysh'
+    }).then(res => {
+      if (res.code === 0) {
+        this.detail = res.data
+      }
+    })
+  }
 }
 </script>
 
@@ -101,7 +112,7 @@ export default {
       height: 100%;
       background: #d3a180;
       font-size: 120px;
-      color: #fff;
+      color: rgba(255, 255, 255, .8);
       font-weight: bold;
       overflow: hidden;
       p {
