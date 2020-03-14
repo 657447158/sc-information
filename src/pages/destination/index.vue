@@ -4,7 +4,7 @@
     <Header />
     <!-- <P>{{$t('index-page-title')}}</P> -->
     <page-banner channelCode="sy" :title="$t('index.pageTit')" />
-    <div class="list-container">
+    <div class="list-container main">
       <div class="detail">
         <div class="detail-top">
           <div class="desc">
@@ -245,8 +245,6 @@ export default {
   margin-top: 40px;
 }
 .list-container {
-  width: 100%;
-  min-width: 1360px;
   display: flex;
   justify-content: center;
   background: #ffffff;

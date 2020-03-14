@@ -1,4 +1,5 @@
 const msg = require('./src/languages')
+console.log(JSON.stringify(msg))
 const title = msg[process.env.NODE_ENV].webTit
 
 module.exports = {
@@ -37,6 +38,13 @@ module.exports = {
       title,
       entry: 'src/pages/service/main.js'
     },
-    // service
+    'recommend':{
+      title,
+      entry: 'src/pages/recommend/main.js'
+    },
+    'list-menu':{
+      title,
+      entry: 'src/pages/list-menu/main.js'
+    }
   }
 }
