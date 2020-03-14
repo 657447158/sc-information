@@ -2,6 +2,7 @@ import axios from 'axios'
 // 默认参数
 let defaultParams = {
 	siteCode: 'scszxw',
+	// lang: 'cn'
 	lang: process.env.NODE_ENV
 }
 // const baseUrl = 'http://ptisp.test.daqsoft.com/govapi/api/'

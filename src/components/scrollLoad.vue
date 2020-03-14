@@ -215,7 +215,9 @@ export default {
         this.noMore = false;
         this.page = 1;
         this.parameter = value;
-        this.getList();
+        if (this.pFlag) {
+          this.getList();
+        }
       },
       deep: true
     },

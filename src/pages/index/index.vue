@@ -16,6 +16,34 @@
     <Story />
     <!-- 好耍夜生活 -->
     <Night />
+    <div class="index-footer">
+      <ul class="index-footer-link main">
+        <li>
+          <span class="daq-icon">&#xe666;</span>
+          <span>Tourist VISA</span>
+        </li>
+        <li>
+          <span class="daq-icon">&#xe66f;</span>
+          <span>City traffic</span>
+        </li>
+        <li>
+          <span class="daq-icon">&#xe66c;</span>
+          <span>Hotel accomodation</span>
+        </li>
+        <li>
+          <span class="daq-icon">&#xe675;</span>
+          <span>Travel agency inquiry</span>
+        </li>
+        <li>
+          <span class="daq-icon">&#xe672;</span>
+          <span>Caring service</span>
+        </li>
+        <li>
+          <span class="daq-icon">&#xe668;</span>
+          <span>Health and life safety</span>
+        </li>
+      </ul>
+    </div>
     <Footer />
   </div>
 </template>
@@ -102,5 +130,37 @@ export default {
     color: #fff;
     transition: all .3s linear;
     background: url('../../assets/images/modal-h540.png') repeat-x;
+  }
+  .index-footer {
+    width: 100%;
+    height: 250px;
+    background: #dfdfdf;
+  }
+  .index-footer-link {
+    padding: 90px 0 0 70px;
+    display: flex;
+    align-items: center;
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 18px;
+      color: #333;
+      &:nth-child(2) { margin-left: 100px; }
+      &:nth-child(3) { margin-left: 80px; }
+      &:nth-child(4) { margin-left: 46px; }
+      &:nth-child(5) { margin-left: 60px; }
+      &:nth-child(6) { margin-left: 60px; }
+    }
+    .daq-icon {
+      margin-bottom: 26px;
+      width: 120px;
+      height: 120px;
+      color: #333;
+      font-size: 50px;
+      text-align: center;
+      line-height: 120px;
+      border: 1px solid #999;
+    }
   }
 </style>

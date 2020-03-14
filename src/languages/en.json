@@ -38,5 +38,9 @@
             "theme": "SICHUAN",
             "theme-slogan": "Nightlife"
         }
+    },
+    "destination": {
+        "pageTit": "Destination",
+        "listTit": "Recommended tourist attractions"
     }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
 		<div class="main">
-      <ul>
+      <!-- <ul>
         <li>
           <span class="daq-icon">&#xe666;</span>
           <span>Tourist VISA</span>
@@ -26,7 +26,7 @@
           <span class="daq-icon">&#xe668;</span>
           <span>Health and life safety</span>
         </li>
-      </ul>
+      </ul> -->
       <div class="link-box">
         <span class="daq-icon">&#xe709;</span>
         <span class="daq-icon">&#xe67a;</span>
@@ -38,9 +38,9 @@
 </template>
 <style lang="scss" scoped>
 .footer {
-  padding: 90px 0;
+  padding: 65px 0;
   width: 100%;
-  height: 500px;
+  height: 220px;
   font-size: 16px;
   color: #666;
   background: #dfdfdf;
@@ -78,7 +78,7 @@
     }
   }
   .link-box {
-    margin-top: 60px;
+    // margin-top: 60px;
     display: flex;
     span {
       width: 50px;
