@@ -4,7 +4,7 @@
     <Header />
     <!-- <P>{{$t('index-page-title')}}</P> -->
     <page-banner channelCode="sy" :title="$t('index.pageTit')" />
-    <div class="list-container">
+    <div class="list-container main">
       <scroll-load>
         <ul class="list-wrapper" slot="list">
           <li>
@@ -59,8 +59,6 @@ export default {
 
 <style lang="scss" scoped>
 .list-container {
-  width: 100%;
-  min-width: 1360px;
   display: flex;
   justify-content: center;
   background: #ffffff;

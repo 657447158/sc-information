@@ -3,7 +3,7 @@
     <!-- 顶部导航 -->
     <Header />
     <page-banner channelCode="sy" :title="$t('index.pageTit')" />
-    <div class="service-container">
+    <div class="service-container main">
       <ul class="service-wrapper" slot="list">
         <li class="light">
           <span class="daq-icon">&#xe666;</span>
@@ -76,8 +76,7 @@ export default {
 
 <style lang="scss" scoped>
 .service-container {
-  width: 100%;
-  min-width: 1360px;
+  margin-top: 100px;
   margin-bottom: 100px;
   display: flex;
   justify-content: center;

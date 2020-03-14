@@ -232,8 +232,6 @@ export default {
   margin-top: 40px;
 }
 .list-container {
-  width: 100%;
-  min-width: 1360px;
   display: flex;
   justify-content: center;
   background: #ffffff;
