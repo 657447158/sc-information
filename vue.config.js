@@ -45,6 +45,14 @@ module.exports = {
     'list-menu':{
       title,
       entry: 'src/pages/list-menu/main.js'
+    },
+    'scenic-detail':{
+      title,
+      entry: 'src/pages/scenic-detail/main.js'
+    },
+    'search':{
+      title,
+      entry: 'src/pages/search/main.js'
     }
   }
 }

@@ -62,6 +62,7 @@ export default {
     width: 100%;
     background: #f5f5f5;
     &-title {
+      margin-bottom: 80px;
       font-size: 36px;
       font-weight: bold;
       color: #333;

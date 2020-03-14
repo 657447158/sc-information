@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-    <page-banner channelCode="sy" :title="$t('index.pageTit')" />
+    <page-banner channelCode="syxx" :title="$t('service.pageTit')" />
     <div class="service-container main">
       <ul class="service-wrapper" slot="list">
         <li class="light">

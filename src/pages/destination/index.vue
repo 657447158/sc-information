@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-    <page-banner channelCode="sy" :title="$t('destination.pageTit')" />
+    <page-banner channelCode="mdd" :title="$t('destination.pageTit')" />
     <div class="list-container">
       <div class="detail">
         <div class="detail-top">
@@ -29,7 +29,7 @@
                   v-for="item in sceneryList"
                   :key="item.id"
                 >
-                  <a href="">
+                  <a :href="`scenic-detail.html?id=${item.id}`">
                     <span class="img-box">
                       <img :src="item.pictureFourToThree" />
                     </span>

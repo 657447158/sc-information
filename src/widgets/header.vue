@@ -10,8 +10,8 @@
 					<a href="destination.html?code=destination">{{$t('header.nav[0]')}}</a>
 				</li>
         <!-- 主题旅游 -->
-				<li :class="code === 'next' && 'active'">
-					<a href="next.html?code=next">
+				<li :class="code === 'recommend' && 'active'">
+					<a href="recommend.html?code=recommend">
             <span>{{$t('header.nav[1]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
@@ -41,11 +41,15 @@
 					<div class="nav-down">
 						<div class="main">
 							<ul class="nav-down-info">
-                <li class="nav-down-info-item">
+                <li 
+                  class="nav-down-info-item"
+                  v-for="item in informationList"
+                  :key="item.id"
+                >
                   <span class="daq-icon">&#xe666;</span>
-                  <span>{{$t('header.info[0]')}}</span>
+                  <span>{{item.name}}</span>
                 </li>
-                <li class="nav-down-info-item">
+                <!-- <li class="nav-down-info-item">
                   <span class="daq-icon">&#xe66f;</span>
                   <span>{{$t('header.info[1]')}}</span>
                 </li>
@@ -64,7 +68,7 @@
                 <li class="nav-down-info-item">
                   <span class="daq-icon">&#xe668;</span>
                   <span>{{$t('header.info[4]')}}</span>
-                </li>
+                </li> -->
               </ul>
 						</div>
 					</div>
@@ -72,8 +76,8 @@
 				<!-- 搜索 -->
 				<li class="nav-search">
           <div class="nav-search-box">
-            <input type="text" :placeholder="$t('header.nav[3]')">
-            <span class="daq-icon">&#xe673;</span>
+            <input type="text" :placeholder="$t('header.nav[3]')" v-model="keywords">
+            <a class="daq-icon" :href="`search.html?keywords=${keywords}`">&#xe673;</a>
           </div>
         </li>
 				<!-- 语言选择 -->
@@ -155,7 +159,9 @@
         scrollFlag: false,
         ticking: false,
         showTopBtn: false,
-        themeTravelList: []
+        themeTravelList: [],
+        informationList: [],
+        keywords: ''
       }
     },
     created () {
@@ -168,6 +174,7 @@
     },
     mounted () {
       this.getChannelCodeByThemeTravel()
+      this.getChannelCodeByInformation()
       // 低于1366 跳转移动端
       if (screen.width <= 1366) {
         window.location.href = 'http://test.tsichuan.com/zxw/mobile/#/index'
@@ -191,6 +198,16 @@
         }).then(res => {
           if (res.code === 0) {
             this.themeTravelList = res.datas
+          }
+        })
+      },
+      // 获取实用信息下的子栏目
+      getChannelCodeByInformation () {
+        Ajax.getChannelList({
+          channelCode: 'syxx'
+        }).then(res => {
+          if (res.code === 0) {
+            this.informationList = res.datas
           }
         })
       },

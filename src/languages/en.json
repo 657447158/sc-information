@@ -42,5 +42,11 @@
     "destination": {
         "pageTit": "Destination",
         "listTit": "Recommended tourist attractions"
+    },
+    "recommand": {
+        "pageTit": "Easy journey"
+    },
+    "service": {
+        "pageTit": "Practical information"
     }
 }
