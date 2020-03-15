@@ -11,7 +11,7 @@
           <div class="theme-box">
             <p class="theme-box-title">{{$t('index.time.theme')}}</p>
             <p class="theme-box-slogan">{{$t('index.time.theme-slogan')}}</p>
-            <a href="" class="theme-box-more">{{$t('index.more')}}</a>
+            <a href="list-menu.html?code=yxhgj" class="theme-box-more">{{$t('index.more')}}</a>
           </div>
         </div>
         <a
@@ -45,7 +45,7 @@ export default {
   methods: {
     getNewsListRecursion () {
       Ajax.getNewsListRecursion({
-        channelCode: 'ztlytj',
+        channelCode: 'yxhgj',
         limitPage: 3,
         recommend: 0
       }).then(res => {

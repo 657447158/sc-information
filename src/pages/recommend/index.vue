@@ -4,10 +4,12 @@
     <Header />
     <page-banner channelCode="ztlytj" :title="$t('recommand.pageTit')" />
     <div class="swipper-box">
-      <swiper :options="swiperOption">
-        <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
-          <img :src="slide.pic" />
-           <p>{{slide.name}}</p>
+      <swiper :options="swiperOption" v-if="themeTravelList.length">
+        <swiper-slide v-for="(slide, index) in themeTravelList" :key="index">
+          <a :href="`channel-detail.html?code=${slide.channelCode}`">
+            <img :src="slide.navImage" v-if="slide.navImage" />
+            <p>{{slide.name}}</p>
+          </a>
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -24,31 +26,20 @@ import scrollAnimate from "@/mixins/scroll_animate";
 import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
 import PageBanner from "@/widgets/page-banner";
+import Ajax from '@/service'
 
 export default {
   data() {
     return {
       swiperOption: {
-        slidesPerView: "auto",
+        slidesPerView: 'auto',
         spaceBetween: 40,
-        autoplay: {
-          delay: 2000,
-          stopOnLastSlide: false,
-          disableOnInteraction: true
-        },
         pagination: {
           el: ".swiper-pagination"
         }
       },
-      swiperSlides: [
-       {pic:"http://localhost:8081/img/index-journey-pic4.4815c9b4.jpg",name:"Hot Season"},
-       {pic:"http://localhost:8081/img/index-journey-pic4.4815c9b4.jpg",name:"Panda"},
-       {pic:"http://localhost:8081/img/index-journey-pic4.4815c9b4.jpg",name:"Food exploration"},
-       {pic:"http://localhost:8081/img/index-journey-pic4.4815c9b4.jpg",name:"Art cluture"},
-       {pic:"http://localhost:8081/img/index-journey-pic4.4815c9b4.jpg",name:"Hot Season"},
-
-      ]
-    };
+      themeTravelList: []
+    }
   },
   components: {
     Header,
@@ -59,7 +50,27 @@ export default {
     swiper,
     swiperSlide
   },
-  mixins: [scrollAnimate]
+  mixins: [scrollAnimate],
+  mounted () {
+    if (!sessionStorage.getItem('themeTravelList')) {
+      this.getChannelCodeByThemeTravel()
+    } else {
+      this.themeTravelList = JSON.parse(sessionStorage.getItem('themeTravelList'))
+      console.log(this.themeTravelList)
+    }
+  },
+  methods: {
+    // 获取主题旅游栏目下的子栏目
+    getChannelCodeByThemeTravel () {
+      Ajax.getChannelList({
+        channelCode: 'ztlytj'
+      }).then(res => {
+        if (res.code === 0) {
+          this.themeTravelList = res.datas
+        }
+      })
+    }
+  }
 };
 </script>
 
@@ -67,10 +78,6 @@ export default {
 .swipper-box {
   width: 100%;
   margin-top: 140px;
-  // padding-bottom: 180px;
-  // height: 520px;
-  // display: flex;
-  // background: red;
   /deep/ .swiper-container {
     padding-bottom: 180px;
     padding-left: 120px;
@@ -81,6 +88,9 @@ export default {
     width: 380px;
     overflow: hidden;
     position: relative;
+    a {
+      display: block;
+    }
     p{
       position: absolute;
       width: 100%;
@@ -89,12 +99,11 @@ export default {
       font-weight: bold;
       color: #ffffff;
       text-align: center;
-
     }
     img {
       width: 100%;
       height: 100%;
-       transition: all 0.3s linear;
+      transition: all 0.3s linear;
     }
     &:hover img {
       transform: scale(1.1);

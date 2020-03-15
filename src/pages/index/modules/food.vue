@@ -12,7 +12,7 @@
         <div class="food-box-item">
           <p class="theme-box-title">{{$t('index.food.theme')}}</p>
           <p class="theme-box-slogan">{{$t('index.food.theme-slogan')}}</p>
-          <a class="theme-box-more" href="">{{$t('index.more')}}</a>
+          <a class="theme-box-more" href="list-menu.html?code=chcbt">{{$t('index.more')}}</a>
         </div>
         <a 
           class="food-box-item"

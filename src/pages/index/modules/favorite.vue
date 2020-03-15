@@ -9,11 +9,11 @@
           <span class="icon" :class="{active: showDropDown}"></span>
         </div>
         <div class="drop-down" :class="{active: showDropDown}">
-          <a href="">{{$t('index.time.title')}}</a>
-          <a href="">{{$t('index.art.title')}}</a>
-          <a href="">{{$t('index.food.title')}}</a>
-          <a href="">{{$t('index.story.title')}}</a>
-          <a href="">{{$t('index.night.title')}}</a>
+          <a href="list-menu.html?code=yxhgj">{{$t('index.time.title')}}</a>
+          <a href="list-menu.html?code=wymsh">{{$t('index.art.title')}}</a>
+          <a href="list-menu.html?code=chcbt">{{$t('index.food.title')}}</a>
+          <a href="list-menu.html?code=jxgsh">{{$t('index.story.title')}}</a>
+          <a href="list-menu.html?code=hsysh">{{$t('index.night.title')}}</a>
         </div>
       </li>
       <li

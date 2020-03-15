@@ -18,29 +18,14 @@
     <Night />
     <div class="index-footer">
       <ul class="index-footer-link main">
-        <li>
-          <span class="daq-icon">&#xe666;</span>
-          <span>Tourist VISA</span>
-        </li>
-        <li>
-          <span class="daq-icon">&#xe66f;</span>
-          <span>City traffic</span>
-        </li>
-        <li>
-          <span class="daq-icon">&#xe66c;</span>
-          <span>Hotel accomodation</span>
-        </li>
-        <li>
-          <span class="daq-icon">&#xe675;</span>
-          <span>Travel agency inquiry</span>
-        </li>
-        <li>
-          <span class="daq-icon">&#xe672;</span>
-          <span>Caring service</span>
-        </li>
-        <li>
-          <span class="daq-icon">&#xe668;</span>
-          <span>Health and life safety</span>
+        <li
+          v-for="item in informationList"
+          :key="item.id"
+        >
+          <a :href="`channel-detail.html?code=${item.channelCode}`">
+            <span class="daq-icon" v-html="item.metaDescription"></span>
+            <span>{{item.name}}</span>
+          </a>
         </li>
       </ul>
     </div>
@@ -49,6 +34,7 @@
 </template>
 
 <script>
+import Ajax from '@/service'
 import scrollAnimate from '@/mixins/scroll_animate'
 import Header from '@/widgets/header'
 import Footer from '@/widgets/footer'
@@ -71,7 +57,31 @@ export default {
     Story,
     Night
   },
-  mixins: [scrollAnimate]
+  mixins: [scrollAnimate],
+  data () {
+    return {
+      informationList: []
+    }
+  },
+  mounted () {
+    if (!sessionStorage.getItem('informationList')) {
+      this.getChannelCodeByInformation()
+    } else {
+      this.informationList = JSON.parse(sessionStorage.getItem('informationList'))
+    }
+  },
+  methods: {
+    // 获取实用信息下的子栏目
+    getChannelCodeByInformation () {
+      Ajax.getChannelList({
+        channelCode: 'syxx'
+      }).then(res => {
+        if (res.code === 0) {
+          this.informationList = res.datas
+        }
+      })
+    }
+  },
 }
 </script>
 
@@ -86,7 +96,7 @@ export default {
       font-weight: bold;
     }
     .slogan {
-      margin-left: 18px;
+      margin: 0 0 6px 18px;
       font-size: 18px;
       color: #666;
     }
@@ -140,17 +150,15 @@ export default {
     padding: 90px 0 0 70px;
     display: flex;
     align-items: center;
+    justify-content: space-around;
     li {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 18px;
-      color: #333;
-      &:nth-child(2) { margin-left: 100px; }
-      &:nth-child(3) { margin-left: 80px; }
-      &:nth-child(4) { margin-left: 46px; }
-      &:nth-child(5) { margin-left: 60px; }
-      &:nth-child(6) { margin-left: 60px; }
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 18px;
+        color: #333;
+      }
     }
     .daq-icon {
       margin-bottom: 26px;

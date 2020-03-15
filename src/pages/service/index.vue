@@ -5,53 +5,14 @@
     <page-banner channelCode="syxx" :title="$t('service.pageTit')" />
     <div class="service-container main">
       <ul class="service-wrapper" slot="list">
-        <li class="light">
-          <span class="daq-icon">&#xe666;</span>
-          <div class="desc">Tourist VISA</div>
-          <p class="detail">
-            Seda, a pure paradise of wonderful prairie,
-            where you can forget all your worries.
-          </p>
-        </li>
-        <li class="dark">
-          <span class="daq-icon">&#xe66f;</span>
-          <div class="desc">City traffic</div>
-          <p class="detail">
-            Seda, a pure paradise of wonderful prairie,
-            where you can forget all your worries.
-          </p>
-        </li>
-        <li class="light">
-          <span class="daq-icon">&#xe66c;</span>
-          <div class="desc">Hotel accomodation</div>
-          <p class="detail">
-            Seda, a pure paradise of wonderful prairie,
-            where you can forget all your worries.
-          </p>
-        </li>
-        <li class="dark">
-          <span class="daq-icon">&#xe675;</span>
-          <div class="desc">Travel agency inquiry</div>
-          <p class="detail">
-            Seda, a pure paradise of wonderful prairie,
-            where you can forget all your worries.
-          </p>
-        </li>
-        <li class="light">
-          <span class="daq-icon">&#xe672;</span>
-          <div class="desc">Caring service</div>
-          <p class="detail">
-            Seda, a pure paradise of wonderful prairie,
-            where you can forget all your worries.
-          </p>
-        </li>
-        <li class="dark">
-          <span class="daq-icon">&#xe668;</span>
-          <div class="desc">Health and life safety</div>
-          <p class="detail">
-            Seda, a pure paradise of wonderful prairie,
-            where you can forget all your worries.
-          </p>
+        <li 
+          class="light"
+          v-for="item in list"
+          :key="item.id"
+        >
+          <span class="daq-icon" v-html="item.metaDescription"></span>
+          <div class="desc">{{item.name}}</div>
+          <p class="detail">{{item.summary}}</p>
         </li>
       </ul>
     </div>
@@ -64,26 +25,39 @@ import scrollAnimate from "@/mixins/scroll_animate";
 import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
 import PageBanner from "@/widgets/page-banner";
+import Ajax from '@/service'
 export default {
   components: {
     Header,
     Footer,
     PageBanner
   },
-  mixins: [scrollAnimate]
+  mixins: [scrollAnimate],
+  data () {
+    return {
+      list: []
+    }
+  },
+  mounted () {
+    Ajax.getChannelList({
+      channelCode: 'syxx'
+    }).then(res => {
+      if (res.code === 0) {
+        this.list = res.datas
+      }
+    })
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .service-container {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin: 100px auto;
   display: flex;
   justify-content: center;
   background: #ffffff;
   .service-wrapper {
     width: 1360px;
-
     display: flex;
     flex-wrap: wrap;
     li {
@@ -91,11 +65,9 @@ export default {
       box-sizing: border-box;
       width: 452px;
       height: 300px;
-      margin-top: 2px;
-      margin-left: 2px;
-      padding-top: 60px;
-      padding-left: 60px;
-      padding-right: 40px;
+      margin: 2px 0 0 2px;
+      padding: 60px 40px 0 60px;
+      background: #f5f5f5;
       .daq-icon {
         font-size: 52px;
         text-align: center;
@@ -112,16 +84,13 @@ export default {
         line-height: 21px;
         color: #666666;
       }
-      &.light {
-        background: #f5f5f5;
-      }
-      &.dark {
+      &:nth-child(even) {
         background: #e7e7e7;
       }
+      &:nth-child(3n+1) {
+        margin-left: 0;
+      }
     }
-     li:nth-child(3n+1) {
-            margin-left: 0;
-          }
   }
 }
 </style>

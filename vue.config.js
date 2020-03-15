@@ -34,6 +34,10 @@ module.exports = {
       title,
       entry: 'src/pages/article-detail/main.js'
     },
+    'channel-detail': {
+      title,
+      entry: 'src/pages/channel-detail/main.js'
+    },
     'service': {
       title,
       entry: 'src/pages/service/main.js'

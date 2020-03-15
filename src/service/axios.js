@@ -1,7 +1,7 @@
 import axios from 'axios'
 // 默认参数
 let defaultParams = {
-	siteCode: 'scszxw',
+	siteCode: 'scsen',
 	lang: process.env.NODE_ENV
 }
 const baseUrl = 'http://test.tsichuan.com/govapi/api/'

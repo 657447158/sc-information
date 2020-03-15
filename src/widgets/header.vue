@@ -23,10 +23,12 @@
                   v-for="item in themeTravelList"
                   :key="item.id"
                 >
-                  <span class="img-box">
-                    <img src="" alt="">
-                  </span>
-                  <p>{{item.name}}</p>
+                  <a :href="`list-menu.html?code=${item.channelCode}`">
+                    <span class="img-box">
+                      <img :src="item.channelImage" />
+                    </span>
+                    <p>{{item.name}}</p>
+                  </a>
                 </li>
               </ul>
 						</div>
@@ -46,29 +48,11 @@
                   v-for="item in informationList"
                   :key="item.id"
                 >
-                  <span class="daq-icon">&#xe666;</span>
-                  <span>{{item.name}}</span>
+                  <a :href="`channel-detail.html?code=${item.channelCode}`">
+                    <span class="daq-icon" v-html="item.metaDescription"></span>
+                    <span>{{item.name}}</span>
+                  </a>
                 </li>
-                <!-- <li class="nav-down-info-item">
-                  <span class="daq-icon">&#xe66f;</span>
-                  <span>{{$t('header.info[1]')}}</span>
-                </li>
-                <li class="nav-down-info-item">
-                  <span class="daq-icon">&#xe66c;</span>
-                  <span>{{$t('header.info[2]')}}</span>
-                </li>
-                <li class="nav-down-info-item">
-                  <span class="daq-icon">&#xe675;</span>
-                  <span>{{$t('header.info[3]')}}</span>
-                </li>
-                <li class="nav-down-info-item">
-                  <span class="daq-icon">&#xe672;</span>
-                  <span>{{$t('header.info[3]')}}</span>
-                </li>
-                <li class="nav-down-info-item">
-                  <span class="daq-icon">&#xe668;</span>
-                  <span>{{$t('header.info[4]')}}</span>
-                </li> -->
               </ul>
 						</div>
 					</div>
@@ -76,7 +60,7 @@
 				<!-- 搜索 -->
 				<li class="nav-search">
           <div class="nav-search-box">
-            <input type="text" :placeholder="$t('header.nav[3]')" v-model="keywords">
+            <input type="text" :placeholder="$t('header.nav[3]')" v-model="keywords" @keyup.enter="search">
             <a class="daq-icon" :href="`search.html?keywords=${keywords}`">&#xe673;</a>
           </div>
         </li>
@@ -173,8 +157,16 @@
       }
     },
     mounted () {
-      this.getChannelCodeByThemeTravel()
-      this.getChannelCodeByInformation()
+      if (!sessionStorage.getItem('themeTravelList')) {
+        this.getChannelCodeByThemeTravel()
+      } else {
+        this.themeTravelList = JSON.parse(sessionStorage.getItem('themeTravelList'))
+      }
+      if (!sessionStorage.getItem('informationList')) {
+        this.getChannelCodeByInformation()
+      } else {
+        this.informationList = JSON.parse(sessionStorage.getItem('informationList'))
+      }
       // 低于1366 跳转移动端
       if (screen.width <= 1366) {
         window.location.href = 'http://test.tsichuan.com/zxw/mobile/#/index'
@@ -198,6 +190,7 @@
         }).then(res => {
           if (res.code === 0) {
             this.themeTravelList = res.datas
+            sessionStorage.setItem('themeTravelList', JSON.stringify(res.datas))
           }
         })
       },
@@ -208,6 +201,7 @@
         }).then(res => {
           if (res.code === 0) {
             this.informationList = res.datas
+            sessionStorage.setItem('informationList', JSON.stringify(res.datas))
           }
         })
       },
@@ -238,6 +232,9 @@
       },
       goTop () {
         window.requestAnimationFrame(this.step)
+      },
+      search () {
+        window.location.href = `search.html?keywords=${this.keywords}`
       }
     }
   }
@@ -460,17 +457,18 @@
   display: flex;
   justify-content: space-around;
   &-item {
-    display: flex;
-    flex-direction: column;
     font-size: 16px;
-    color: #666;
+    a {
+      display: flex;
+      flex-direction: column;
+      color: #666;
+    }
     .img-box {
       margin-bottom: 20px;
       display: block;
       width: 200px;
       height: 120px;
       overflow: hidden;
-      background: #999;
       img {
         width: 100%;
         height: 100%;
@@ -484,12 +482,14 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 16px;
-    color: #666;
+  &-item {
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 16px;
+      color: #666;
+    }
   }
   .daq-icon {
     margin: 0 0 30px 0;

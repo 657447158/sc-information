@@ -128,6 +128,15 @@ const api = {
     })
   },
   /**
+   * [递归获取栏目列表]
+   */
+  getTreeListByChannelCode (params) {
+    return ajax({
+      url: 'gov/app/siteChannel/getTreeListByChannelCode',
+      params: Object.assign({...params})
+    })
+  },
+  /**
    * [获取栏目详情]
    */
   getChannelDetail (params) {

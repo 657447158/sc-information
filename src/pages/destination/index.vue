@@ -104,7 +104,7 @@ export default {
       }).then(res => {
         if (res.code === 0) {
           this.list = res.datas
-          this.id = this.id || res.datas[0].id
+          this.id = this.id || (res.datas[0] && res.datas[0].id)
           this.params.destinationId = this.id
           this.requestState = true
         }

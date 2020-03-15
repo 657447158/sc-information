@@ -11,7 +11,7 @@
       <li>
         <p class="theme-box-title">{{$t('index.story.theme')}}</p>
         <p class="theme-box-slogan">{{$t('index.story.theme-slogan')}}</p>
-        <a class="theme-box-more" href="">{{$t('index.more')}}</a>
+        <a class="theme-box-more" href="list-menu.html?code=jxgsh">{{$t('index.more')}}</a>
       </li>
       <li>
         <a 

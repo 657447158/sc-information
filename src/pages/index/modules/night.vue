@@ -21,7 +21,7 @@
         <div class="night-center">
           <p>{{$t('index.night.theme')}}</p>
           <p>{{$t('index.night.theme-slogan')}}</p>
-          <a class="theme-box-more" href="">{{$t('index.more')}}</a>
+          <a class="theme-box-more" href="list-menu.html?code=hsysh">{{$t('index.more')}}</a>
         </div>
         <div class="night-right">
           <img src="@/assets/images/index-night-pic2.png" />

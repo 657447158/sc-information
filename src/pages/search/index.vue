@@ -27,13 +27,13 @@
       >{{item.name}}</span>
     </div>
     <!-- 搜索导航条 e -->
-    <p class="search-tips">以下是为您找到“{{keyword}}”相关结果<span v-if="tabIndex !== 0">{{total}}条</span></p>
+    <p class="search-tips">Here are the results for you to find "{{keyword}}"<span v-if="tabIndex !== 0">{{total}}条</span></p>
     <div class="search-result" v-if="!noData">
       <!-- 新闻资讯 -->
       <div class="search-result-item" v-if="newsList.length"> 
         <div class="search-result-top">
-          <span>新闻资讯</span>
-          <a href="news-list.html">查看更多新闻 >></a>
+          <span>News</span>
+          <!-- <a href="news-list.html">More >></a> -->
         </div>
         <ul class="search-result-list">
           <li
@@ -41,24 +41,7 @@
             v-for="item in newsList"
             :key="item.id"
           >
-            <a class="title" :href="`news-detail.html?id=${item.id}`">{{item.title}}</a>
-            <p class="summary" :title="item.summary">{{item.summary | ellipsisSummary}}</p>
-          </li>
-        </ul>
-      </div>
-      <!-- 热门活动 -->
-      <div class="search-result-item" v-if="activityList.length"> 
-        <div class="search-result-top">
-          <span>热门活动</span>
-          <a href="hot-activity.html?code=activity">查看更多热门活动 >></a>
-        </div>
-        <ul class="search-result-list">
-          <li
-            class="search-result-list-item item1"
-            v-for="item in activityList"
-            :key="item.id"
-          >
-            <a class="title" :href="item.externalChain" target="_blank">{{item.title}}</a>
+            <a class="title" :href="`article-detail.html?id=${item.id}`">{{item.title}}</a>
             <p class="summary" :title="item.summary">{{item.summary | ellipsisSummary}}</p>
           </li>
         </ul>
@@ -66,8 +49,8 @@
       <!-- 目的地 -->
       <div class="search-result-item" v-if="destinationList.length">
         <div class="search-result-top">
-          <span>目的地</span>
-          <a href="destination.html?code=destination">查看更多目的地 >></a>
+          <span>Destination</span>
+          <a href="destination.html?code=destination">More >></a>
         </div>
         <ul class="search-result-list">
           <li
@@ -77,130 +60,6 @@
           >
             <a class="title" :href="`destination-detail.html?code=destination&id=${item.id}`">{{item.regionName}}</a>
             <p class="summary" :title="item.introduction">{{item.introduction | ellipsisSummary}}</p>
-          </li>
-        </ul>
-      </div>
-      <!-- 景区 -->
-      <div class="search-result-item" v-if="sceneryList.length">
-        <div class="search-result-top">
-          <span>景区</span>
-          <a href="scenery-list.html?code=destination">查看更多景区 >></a>
-        </div>
-        <ul class="search-result-list list1">
-          <li
-            class="search-result-list-item"
-            v-for="item in sceneryList"
-            :key="item.id"
-          >
-            <span class="img-box">
-              <img v-if="item.pictureFourToThree" :src="item.pictureFourToThree" />
-            </span>
-            <div class="word-box">
-              <a class="title" :href="`scenery-detail.html?code=destination&id=${item.id}`">{{item.name}}</a>
-              <div class="item">
-                <span class="daq-icon">&#xe66d;</span>
-                <span class="ct">{{item.phone}}</span>
-              </div>
-              <div class="item">
-                <span class="daq-icon">&#xe667;</span>
-                <span class="ct">{{item.address}}</span>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- 酒店 -->
-      <div class="search-result-item" v-if="hotelList.length">
-        <div class="search-result-top">
-          <span>酒店</span>
-          <a href="hotel-list.html?code=destination">查看更多酒店 >></a>
-        </div>
-        <ul class="search-result-list list1">
-          <li
-            class="search-result-list-item"
-            v-for="item in hotelList"
-            :key="item.id"
-          >
-            <span class="img-box">
-              <img v-if="item.pictureFourToThree" :src="item.pictureFourToThree" />
-            </span>
-            <div class="word-box">
-              <a class="title1" :href="`http://api.map.baidu.com/marker?location=${item.latitude},${item.longitude}&title=我的位置&content=${item.name}&output=html`" target="_blank">{{item.name}}</a>
-              <div class="item">
-                <span class="daq-icon">&#xe66d;</span>
-                <span class="ct">{{item.phone}}</span>
-              </div>
-              <div class="item">
-                <span class="daq-icon">&#xe667;</span>
-                <span class="ct">{{item.address}}</span>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- 美食 -->
-      <div class="search-result-item" v-if="foodList.length">
-        <div class="search-result-top">
-          <span>美食</span>
-          <a href="food-list.html?code=destination">查看更多美食 >></a>
-        </div>
-        <ul class="search-result-list list1">
-          <li
-            class="search-result-list-item"
-            v-for="item in foodList"
-            :key="item.id"
-          >
-            <span class="img-box">
-              <img v-if="item.coverFourToThree" :src="item.coverFourToThree" />
-            </span>
-            <div class="word-box">
-              <a class="title" :href="`food-detail.html?code=destination&id=${item.id}`">{{item.name}}</a>
-              <p class="summary" :title="item.summary ">{{item.summary | ellipsisSummary1}}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- 旅行社 -->
-      <div class="search-result-item" v-if="travelList.length"> 
-        <div class="search-result-top">
-          <span>旅行社</span>
-          <a href="travel-agency.html?code=info">查看更多旅行社 >></a>
-        </div>
-        <ul class="search-result-list list1">
-          <li
-            class="search-result-list-item item2"
-            v-for="item in travelList"
-            :key="item.id"
-          >
-            <p class="title1">{{item.name}}</p>
-            <div class="info-item">经营许可证：{{item.licenseno}}</div>
-            <div class="info-item">旅行社类型：{{item.resourceLevel}}</div>
-            <div class="info-item">旅行社电话：{{item.phone}}</div>
-            <div class="info-item">旅行社地址：{{item.address}}</div>
-          </li>
-        </ul>
-      </div>
-      <!-- 导游 -->
-      <div class="search-result-item" v-if="guideList.length"> 
-        <div class="search-result-top">
-          <span>导游</span>
-          <a href="guide-list.html?code=info">查看更多导游 >></a>
-        </div>
-        <ul class="search-result-list list1">
-          <li
-            class="search-result-list-item item2"
-            v-for="item in guideList"
-            :key="item.id"
-          >
-            <p class="title1">
-              <span>{{item.name}}</span>
-              <span class="daq-icon icon1" v-if="item.sex === '男性'">&#xe636;</span>
-              <span class="daq-icon icon2" v-if="item.sex === '女性'">&#xe637;</span>
-            </p>
-            <div class="info-item">导游等级：{{item.level}}</div>
-            <div class="info-item">导游证号：{{item.identification}}</div>
-            <div class="info-item">语言种类：{{item.language}}</div>
-            <div class="info-item">所属公司：{{item.company}}</div>
           </li>
         </ul>
       </div>
@@ -231,39 +90,19 @@ export default {
       tabIndex: 0,
       tabList: [
         {
-          name: '全部',
+          name: 'Home',
           type: ''
         }, 
         {
-          name: '目的地',
+          name: 'Destination',
           type: 'destination'
         },
         {
-          name: '景区',
-          type: 'sourceType_1'
-        },
-        {
-          name: '酒店',
-          type: 'sourceType_2'
-        },
-        {
-          name: '旅行社',
-          type: 'sourceType_3'
-        },
-        {
-          name: '导游',
-          type: 'type_guide'
-        },
-        {
-          name: '美食',
-          type: 'sourceType_8'
-        },
-        {
-          name: '新闻',
+          name: 'Theme ravel',
           type: 'type_news'
         },
         {
-          name: '热门活动',
+          name: 'Practical information',
           type: 'type_news'
         }
       ],
@@ -317,7 +156,7 @@ export default {
         if (res.code === 0) {
           this.detail = res.data
           this.valuationList(res.data)
-          if (this.detail.destination.length || this.detail.sourceType_1.length || this.detail.sourceType_2.length || this.detail.sourceType_3.length || this.detail.sourceType_8.length || this.detail.type_news.length || this.detail.type_guide.length) {
+          if (this.detail.destination.length || this.detail.type_news.length) {
             this.noData = false
           } else {
             this.empty = true
@@ -328,36 +167,15 @@ export default {
     initList () {
       this.total = 0
       this.destinationList = []
-      this.sceneryList = []
-      this.hotelList = []
-      this.travelList = []
-      this.guideList = []
-      this.foodList = []
       this.newsList = []
-      this.activityList = []
     },
     valuationList (data) {
-      this.total = data.destination.length + data.sourceType_1.length + data.sourceType_2.length + data.sourceType_3.length + data.sourceType_8.length + data.type_news.length + data.type_guide.length
+      this.total = data.destination.length + data.type_news.length
       if (!this.total) {
         this.empty = true
       }
       this.destinationList = data.destination
-      this.sceneryList = data.sourceType_1
-      this.hotelList = data.sourceType_2
-      this.travelList = data.sourceType_3
-      this.guideList = data.type_guide
-      this.foodList = data.sourceType_8
-      let activityList = []
-      let newsList = []
-      data.type_news.map(item => {
-        if (item.channelCode === 'rmhd') {
-          activityList.push(item)
-        } else {
-          newsList.push(item)
-        }
-      })
-      this.newsList = newsList
-      this.activityList = activityList
+      this.newsList = data.type_news
     },
     getSearchByType () {
       this.noData = true
@@ -370,52 +188,15 @@ export default {
           limitPage: 15
         }).then(res => {
           this.noData = false
-          let newsList = []
-          let activityList = []
           switch (this.type) {
             case 'destination':
               this.destinationList = res.datas
               break
-            case 'sourceType_1':
-              this.sceneryList = res.datas
-              break
-            case 'sourceType_2':
-              this.hotelList = res.datas
-              break
-            case 'sourceType_3':
-              this.travelList = res.datas
-              break
-            case 'type_guide':
-              this.guideList = res.datas
-              break
-            case 'sourceType_8':
-              this.foodList = res.datas
-              break
             case 'type_news':
-              res.datas.map(item => {
-                if (item.channelCode === 'rmhd') {
-                  activityList.push(item)
-                } else {
-                  newsList.push(item)
-                }
-              })
-              if (this.tabIndex === 7) {
-                // 新闻
-                this.newsList = newsList
-              } else {
-                this.activityList = activityList
-              }
+              this.newsList = res.datas
               break
           }
-          if (this.type === 'type_news') {
-            if (this.tabIndex === 7) {
-              this.total = this.newsList.length
-            } else {
-              this.total = this.activityList.length
-            }
-          } else {
-            this.total = res.datas.length
-          }
+          this.total = res.datas.length
           if (!this.total) {
             this.empty = true
           }
@@ -490,13 +271,13 @@ export default {
       background: #f5f5f5;
       &-item {
         position: relative;
-        width: 56px;
+        // width: 56px;
         line-height: 52px;
         color: #666;
         text-align: center;
         cursor: pointer;
         &~& {
-          margin-left: 10px;
+          margin-left: 20px;
         }
         &.active {
           color: $themeColor;
