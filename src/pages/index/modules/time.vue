@@ -51,7 +51,6 @@ export default {
       }).then(res => {
         if (res.code === 0) {
           this.list = res.datas
-          console.log(this.list)
         }
       })
     }

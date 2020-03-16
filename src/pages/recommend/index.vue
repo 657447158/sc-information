@@ -6,7 +6,7 @@
     <div class="swipper-box">
       <swiper :options="swiperOption" v-if="themeTravelList.length">
         <swiper-slide v-for="(slide, index) in themeTravelList" :key="index">
-          <a :href="`channel-detail.html?code=${slide.channelCode}`">
+          <a :href="`list-menu.html?code=${slide.channelCode}`">
             <img :src="slide.navImage" v-if="slide.navImage" />
             <p>{{slide.name}}</p>
           </a>
@@ -56,7 +56,6 @@ export default {
       this.getChannelCodeByThemeTravel()
     } else {
       this.themeTravelList = JSON.parse(sessionStorage.getItem('themeTravelList'))
-      console.log(this.themeTravelList)
     }
   },
   methods: {

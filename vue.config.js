@@ -1,5 +1,4 @@
 const msg = require('./src/languages')
-console.log(JSON.stringify(msg))
 const title = msg[process.env.NODE_ENV].webTit
 
 module.exports = {

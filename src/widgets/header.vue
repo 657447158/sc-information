@@ -234,7 +234,7 @@
         window.requestAnimationFrame(this.step)
       },
       search () {
-        window.location.href = `search.html?keywords=${this.keywords}`
+        window.location.href = `search.html?keyword=${encodeURI(this.keywords)}`
       }
     }
   }

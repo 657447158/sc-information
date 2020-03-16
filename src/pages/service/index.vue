@@ -10,9 +10,11 @@
           v-for="item in list"
           :key="item.id"
         >
-          <span class="daq-icon" v-html="item.metaDescription"></span>
-          <div class="desc">{{item.name}}</div>
-          <p class="detail">{{item.summary}}</p>
+          <a :href="`channel-detail.html?code=${item.channelCode}`">
+            <span class="daq-icon" v-html="item.metaDescription"></span>
+            <div class="desc">{{item.name}}</div>
+            <p class="detail">{{item.summary}}</p>
+          </a>
         </li>
       </ul>
     </div>
@@ -68,6 +70,11 @@ export default {
       margin: 2px 0 0 2px;
       padding: 60px 40px 0 60px;
       background: #f5f5f5;
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
       .daq-icon {
         font-size: 52px;
         text-align: center;

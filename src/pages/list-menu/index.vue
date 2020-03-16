@@ -46,7 +46,7 @@
               <span class="img-box">
                 <img :src="item.coverFourToThree" />
               </span>
-              <h3>{{item.title}}</h3>
+              <h3 :title="item.title">{{item.title}}</h3>
               <p>{{item.summary}}</p>
             </a>
           </li>

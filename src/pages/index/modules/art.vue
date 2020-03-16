@@ -10,12 +10,11 @@
           <li>
             <img src="@/assets/images/index-art-pic.png" />
           </li>
-          <li>
-            <a 
-              :href="`article-detail.html?id=${item.id}`"
-              v-for="item in list"
-              :key="item.id"
-            >
+          <li
+            v-for="item in list"
+            :key="item.id"
+          >
+            <a :href="`article-detail.html?id=${item.id}`">
               <span class="img-box">
                 <img :src="item.coverTwoToThree" />
               </span>
@@ -80,7 +79,6 @@ export default {
     }
     li {
       width: 325px;
-      background-position: center;
       &:not(:first-child) {
         margin-left: 20px;
       }

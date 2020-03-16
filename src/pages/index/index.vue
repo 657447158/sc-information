@@ -147,11 +147,12 @@ export default {
     background: #dfdfdf;
   }
   .index-footer-link {
-    padding: 90px 0 0 70px;
+    padding: 90px 0 0 0;
     display: flex;
     align-items: center;
     justify-content: space-around;
     li {
+      width: calc(100% / 6);
       a {
         display: flex;
         flex-direction: column;
