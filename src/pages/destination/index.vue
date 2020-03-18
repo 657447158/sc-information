@@ -7,7 +7,7 @@
       <div class="detail">
         <div class="detail-top">
           <div class="desc">
-            <h3 class="title">{{detail.regionName}}</h3>
+            <h3 class="title">{{detail.name}}</h3>
             <p>{{detail.summary}}</p>
           </div>
           <div class="map-wrapper">
@@ -18,7 +18,7 @@
           <div class="article-wrapper">
             <h3>{{$t('destination.listTit')}}</h3>
             <scroll-load
-              requestName="getDestinationScenerys"
+              requestName="getNewsList"
               :params="params"
               :limit="6"
               :pFlag="requestState"
@@ -29,11 +29,11 @@
                   v-for="item in sceneryList"
                   :key="item.id"
                 >
-                  <a :href="`scenic-detail.html?id=${item.id}`">
+                  <a :href="`article-detail.html?id=${item.id}`">
                     <span class="img-box">
-                      <img :src="item.pictureFourToThree" />
+                      <img :src="item.coverFourToThree" />
                     </span>
-                    <h4>{{item.name}}</h4>
+                    <h4>{{item.title}}</h4>
                   </a>
                 </li>
               </ul>
@@ -56,6 +56,8 @@ import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
 import PageBanner from "@/widgets/page-banner";
 import ScrollLoad from '@/components/scrollLoad'
+import lang from '@/languages'
+const NODE_ENV = process.env.NODE_ENV
 export default {
   components: {
     Header,
@@ -67,82 +69,73 @@ export default {
     return {
       region: 510000,
       city: '',
-      id: Tools.getUrlParams("id"),
+      // id: Tools.getUrlParams("id"),
+      channelCode: Tools.getUrlParams("channelCode"),
       detail: {},
       list: [],
       sceneryList: [],
       params: {
-        destinationId: ''
+        channelCode: ''
       },
-      requestState: false
+      requestState: false,
+      cities: lang[NODE_ENV].destination.cities
     };
   },
   mounted() {
     this.drawMap()
-    this.getDestinationlist()
+    this.getChannelList()
   },
   methods: {
     getList (list) {
+      if (!list) return
       this.sceneryList = this.sceneryList.concat(list)
+      console.log(this.sceneryList)
     },
-    // 获取目的地推荐景区
-    getDestinationScenerys () {
-      Ajax.getDestinationScenerys({
-        destinationId: this.id,
-        limitPage: 6
-      }).then(res => {
-        if (res.code === 0) {
-          this.sceneryList = res.datas
-        }
-      })
-    },
-    // 获取目的地列表
-    getDestinationlist () {
-      Ajax.getDestinationList({
-        region: this.region,
+    // 获取目的地列表(栏目)
+    getChannelList () {
+      Ajax.getChannelList({
+        channelCode: 'mdd',
         limitPage: 99
       }).then(res => {
         if (res.code === 0) {
           this.list = res.datas
-          this.id = this.id || (res.datas[0] && res.datas[0].id)
-          this.params.destinationId = this.id
+          this.channelCode = this.channelCode || (res.datas[0] && res.datas[0].channelCode)
+          this.getChannelDetail()
+          this.params.channelCode = this.channelCode
           this.requestState = true
         }
       })
     },
     // 获取目的地详情
-    getDestinationInfo(id) {
-      Ajax.getDestinationInfo({
-        id: id
+    getChannelDetail() {
+      Ajax.getChannelDetail({
+        channelCode: this.channelCode
       }).then(res => {
         if (res.code === 0) {
           this.detail = res.data;
-          let data = [
-            [res.data.longitude, res.data.latitude, res.data.regionName]
-          ];
+          let data = {
+            channelCode: res.data.channelCode,
+            name: res.data.name
+          }
           this.drawMap(data);
         }
       });
     },
-    drawMap(list) {
+    drawMap(scatterData) {
       const myChart = echarts.init(document.getElementById("desMap"));
       axios
         .get(
           `http://filealiyun.geeker.com.cn/ued/map/regionJson/${this.region}.json`
         )
         .then(data => {
-          let arr = []
-          for (let i = 0; i < this.list.length; i++) {
-            for (let j = 0; j < data.data.features.length; j++) {
-              if (this.list[i].regionName === data.data.features[j].properties.name) {
-                arr.push({
-                  id: this.list[i].id,
-                  name: this.list[i].regionName
-                })
-              }
-            }
-          }
+          let list = []
           echarts.registerMap(this.region, data.data);
+          if (!scatterData) return
+          data.data.features.map(item => {
+            if (item.properties.name.includes(scatterData.name)) {
+              list.push(item.properties.cp)
+            }
+          })
           myChart.setOption({
             height: "100%",
             geo: {
@@ -189,9 +182,6 @@ export default {
                 label: {
                   normal: {
                     show: false
-                  },
-                  emphasis: {
-                    show: true
                   }
                 },
                 itemStyle: {
@@ -205,19 +195,22 @@ export default {
                       color: '#f77800',
                       textStyle: {
                         color: '#f77800'
+                      },
+                      formatter: function (params) {
+                        return params.data ? params.data.foreignName : ''
                       }
                     },
                     borderColor: '#f77800',
                     areaColor: '#fff'
                   }
                 },
-                data: arr
+                data: this.cities
               }
             ]
           });
           myChart.on('click', function (params) {
             if (params.data) {
-              window.location.href = `destination.html?code=destination&id=${params.data.id}`
+              window.location.href = `destination.html?code=destination&channelCode=${params.data.channelCode}`
             }
           })
         });
