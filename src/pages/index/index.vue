@@ -3,7 +3,22 @@
     <!-- 顶部导航 -->
     <Header />
     <!-- 顶部banner -->
-    <page-banner channelCode="sy" :title="$t('index.pageTit')" />
+    <div class="index-video">
+      <swiper :options="swiperOption">
+        <swiper-slide>
+          <video ref="video1" src="@/assets/videos/video.mp4" autoplay loop muted></video>
+        </swiper-slide>
+        <swiper-slide>
+          <video ref="video2" src="@/assets/videos/video2.mp4" loop muted></video>
+        </swiper-slide>
+        <swiper-slide>
+          <video ref="video3" src="@/assets/videos/video3.mp4" loop muted></video>
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
+      <div class="swiper-pagination"></div>
+      <p class="word">{{$t('index.pageTit')}}</p>
+    </div>
     <!-- 搜索你所喜好 -->
     <Favorite />
     <!-- 悠闲好光景 -->
@@ -34,22 +49,24 @@
 </template>
 
 <script>
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 import Ajax from '@/service'
 import scrollAnimate from '@/mixins/scroll_animate'
 import Header from '@/widgets/header'
 import Footer from '@/widgets/footer'
-import PageBanner from '@/widgets/page-banner'
 import Favorite from './modules/favorite'
 import Time from './modules/time'
 import Art from './modules/art'
 import Food from './modules/food'
 import Story from './modules/story'
 import Night from './modules/night'
+import "swiper/dist/css/swiper.css";
 export default {
   components: {
+    swiper,
+    swiperSlide,
     Header,
     Footer,
-    PageBanner,
     Favorite,
     Time,
     Art,
@@ -59,8 +76,22 @@ export default {
   },
   mixins: [scrollAnimate],
   data () {
+    let _this = this
     return {
-      informationList: []
+      informationList: [],
+      swiperOption: {
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
+        on: {
+          slideChangeTransitionEnd: function(){
+            _this.stopVideo()
+            _this.$refs[`video${this.activeIndex + 1}`].currentTime = 0
+            _this.$refs[`video${this.activeIndex + 1}`].play()
+          },
+        },
+      }
     }
   },
   mounted () {
@@ -80,6 +111,12 @@ export default {
           this.informationList = res.datas
         }
       })
+    },
+    // 停止所有视频
+    stopVideo () {
+      this.$refs.video1.pause()
+      this.$refs.video2.pause()
+      this.$refs.video3.pause()
     }
   },
 }
@@ -140,6 +177,42 @@ export default {
     color: #fff;
     transition: all .3s linear;
     background: url('../../assets/images/modal-h540.png') repeat-x;
+  }
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-pagination {
+    bottom: 40px;
+  }
+  /deep/ .swiper-pagination-bullet {
+    width: 40px;
+    height: 5px;
+    border-radius: 0;
+    background: $themeColor;
+    cursor: pointer;
+  }
+  .index-video {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+    .word {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 9;
+      font-size: 52px;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(0, 0, 0, .2);
+      transform: translate(-50%, -50%);
+    }
   }
   .index-footer {
     width: 100%;

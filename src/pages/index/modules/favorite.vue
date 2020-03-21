@@ -22,8 +22,8 @@
       >
         <a :href="`article-detail.html?id=${item.id}`">
           <span class="img-box">
-            <img :src="item.cover" v-if="index === 0 || index === 2 || index === 3 || index === 4" />
-            <img :src="item.coverTwoToThree" v-if="index === 1 || index === 5" />
+            <img :src="item.cover" v-if="index === 0 || index === 2 || index === 3 || index === 5" />
+            <img :src="item.coverTwoToThree" v-if="index === 1 || index === 4" />
           </span>
           <p class="title">{{item.title}}</p>
         </a>
