@@ -123,10 +123,11 @@ export default {
         line-height: 1;
         width: 550px;
         &:first-child {
-          right: -570px;
+          right: -540px;
         }
         &:nth-child(2) {
-          right: -440px;
+          right: -400px;
+          font-size: 66px;
         }
       }
       .theme-box-more {
