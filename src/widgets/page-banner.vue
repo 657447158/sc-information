@@ -1,6 +1,7 @@
 <template>
   <div class="page-banner">
-    <img v-if="detail.navImage" :src="detail.navImage" />
+    <img v-if="imgName" :src="detail[imgName]" />
+    <img v-if="!imgName && detail.navImage" :src="detail.navImage" />
     <p>{{title || detail.name}}</p>
   </div>
 </template>
@@ -8,6 +9,7 @@
   import Ajax from '@/service'
   export default {
     props: {
+      imgName: String,
       channelCode: String,
       title: String
     },

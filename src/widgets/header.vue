@@ -177,7 +177,7 @@
       }
       // 低于1366 跳转移动端
       if (screen.width <= 1366) {
-        window.location.href = 'http://test.tsichuan.com/zxw/mobile/#/index'
+        window.location.href = 'http://test.tsichuan.com/zxw/mobile-en/#/index'
       }
       window.addEventListener('scroll', this.onScroll, false)
       let params = window.location.search

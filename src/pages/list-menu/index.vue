@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-    <page-banner :channelCode="channelCode" />
+    <page-banner :channelCode="channelCode" imgName="titleImage" />
     <div class="submenu" v-if="codeList.length">
       <div 
         class="menu-item"
