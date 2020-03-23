@@ -27,7 +27,7 @@
       >{{item.name}}</span>
     </div>
     <!-- 搜索导航条 e -->
-    <p class="search-tips">Here are the results for you to find "{{keyword}}"<span v-if="tabIndex !== 0">{{total}}条</span></p>
+    <p class="search-tips">Here are the results for you to find "{{keyword}}"<span v-if="tabIndex !== 0"> {{total}} item</span></p>
     <div class="search-result" v-if="!noData">
       <!-- 新闻资讯 -->
       <div class="search-result-item" v-if="newsList.length"> 

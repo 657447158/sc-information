@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-    <page-banner :channelCode="channelCode" />
+    <page-banner :channelCode="channelCode" imgName="titleImage" />
     <div class="submenu" v-if="codeList.length">
       <div 
         class="menu-item"
@@ -47,7 +47,7 @@
                 <img :src="item.coverFourToThree" />
               </span>
               <h3 :title="item.title">{{item.title}}</h3>
-              <p>{{item.summary}}</p>
+              <p>{{item.esummary}}</p>
             </a>
           </li>
         </ul>
@@ -91,6 +91,15 @@ export default {
   },
   methods: {
     getList (val) {
+      if (val && val.length) {
+        val.map(item => {
+          if (item.summary.length > 120) {
+            item.esummary = item.summary.slice(0, 120) + '...'
+          } else {
+            item.esummary = item.summary
+          }
+        })
+      }
       this.list = this.list.concat(val)
     },
     chooseItem (code, index) {

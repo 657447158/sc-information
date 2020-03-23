@@ -2,9 +2,9 @@
   <div class="footer">
 		<div class="main">
       <div class="link-box">
-        <span class="daq-icon">&#xe709;</span>
-        <span class="daq-icon">&#xe67a;</span>
-        <span class="daq-icon">&#xe69b;</span>
+        <a class="daq-icon" href="https://www.facebook.com/tsichuan/" target="_blank">&#xe709;</a>
+        <a class="daq-icon" href="https://twitter.com/Amazingsichuan" target="_blank">&#xe67a;</a>
+        <a class="daq-icon" href="https://www.instagram.com/visit_sichuan/" target="_blank">&#xe69b;</a>
       </div>
       <p class="copy-right">Copyright © 2019 Chengdu Tourism Bureau All Rights Reserved</p>
     </div>
@@ -25,7 +25,7 @@
   }
   .link-box {
     display: flex;
-    span {
+    a {
       width: 50px;
       height: 50px;
       font-size: 20px;

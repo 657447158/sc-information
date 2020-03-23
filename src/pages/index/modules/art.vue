@@ -9,12 +9,13 @@
         <ul>
           <li>
             <img src="@/assets/images/index-art-pic.png" />
+            <a class="theme-box-more" href="list-menu.html?code=wymsh">{{$t('index.more')}}</a>
           </li>
           <li
             v-for="item in list"
             :key="item.id"
           >
-            <a :href="`article-detail.html?id=${item.id}`">
+            <a class="item" :href="`article-detail.html?id=${item.id}`">
               <span class="img-box">
                 <img :src="item.coverTwoToThree" />
               </span>
@@ -78,6 +79,7 @@ export default {
       height: 480px;
     }
     li {
+      position: relative;
       width: 325px;
       &:not(:first-child) {
         margin-left: 20px;
@@ -102,7 +104,15 @@ export default {
       &:hover {
         .modal-box { opacity: 1;}
       }
-      a {
+      .theme-box-more {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        z-index: 10;
+        color: #fff;
+        background: $themeColor;
+      }
+      .item {
         position: relative;
         display: block;
         width: 100%;

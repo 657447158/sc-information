@@ -8,7 +8,7 @@
         <div class="detail-top">
           <div class="desc">
             <h3 class="title">{{detail.name}}</h3>
-            <p>{{detail.summary}}</p>
+            <div v-html="detail.content"></div>
           </div>
           <div class="map-wrapper">
             <div class="map" id="desMap"></div>
@@ -246,6 +246,7 @@ export default {
       .desc {
         width: 680px;
         .title {
+          margin-bottom: 32px;
           position: relative;
           font-size: 46px;
           padding-top: 112px;
@@ -262,11 +263,11 @@ export default {
             background: #999999;
           }
         }
-        p {
-          font-size: 16px;
-          line-height: 24px;
-          color: #666666;
-        }
+        // p {
+        //   font-size: 16px;
+        //   line-height: 24px;
+        //   color: #666666;
+        // }
       }
       .map-wrapper {
         width: 660px;

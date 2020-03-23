@@ -120,11 +120,14 @@ export default {
         top: -20px;
         transform: rotate(90deg);
         transform-origin: 0 0;
+        line-height: 1;
+        width: 550px;
         &:first-child {
-          right: -580px;
+          right: -540px;
         }
         &:nth-child(2) {
-          right: -380px;
+          right: -400px;
+          font-size: 66px;
         }
       }
       .theme-box-more {

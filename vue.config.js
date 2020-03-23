@@ -56,6 +56,10 @@ module.exports = {
     'search':{
       title,
       entry: 'src/pages/search/main.js'
+    },
+    'travel-agency':{
+      title,
+      entry: 'src/pages/travel-agency/main.js'
     }
   }
 }

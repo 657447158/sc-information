@@ -1,42 +1,43 @@
 {
     "webTit": "四川省文化和旅游资讯网",
     "header": {
-        "nav": ["Destination", "Theme ravel", "Practical information", "Search"],
+        "nav": ["Tourist Destinations", "Theme Tourism", "Practical Information", "Search"],
         "info": ["Tourist VISA", "City traffic", "Hotel accomodation", "Travel agency inquiry", "Caring service", "Health and life safety"]
     },
+    "noMore": "No more",
     "index": {
         "pageTit": "Welcome to Sichuan",
         "secTheme": {
-            "placeholder": "You might be interested"
+            "placeholder": "You May Like"
         },
         "more": "MORE",
         "time": {
-            "title": "Carefree good times",
-            "slogan": "\"Come on ~ to drink GaiWanCha ~\"",
+            "title": "Leisure Time",
+            "slogan": "Come and Have a Cup of Covered-Bowl Tea",
             "theme": "Sichuan leisure time",
             "theme-slogan": "Show you how to play the sichuan province"
         },
         "art": {
-            "title": "Slow life of literature and art",
-            "slogan": "Who is not a literacy er?"
+            "title": "Slow Life in Culture and Art",
+            "slogan": "To Be a Person of Culture"
         },
         "food": {
-            "title": "Version treasure map",
-            "slogan": "Let's eat some hot pot and skewers ~",
-            "theme": "Food treasure map",
-            "theme-slogan": "You can eat all over Sichuan, I will lose!"
+            "title": "Guide for Foodies",
+            "slogan": "Tasting Hot Pot and Chuanchuanxiang",
+            "theme": "Food Treasure Map",
+            "theme-slogan": "Dining in Sichuan, Countless Choices"
         },
         "story": {
-            "title": "Streets story remit",
-            "slogan": "Come on ~, chatted with together",
-            "theme": "Streets and alleys in Sichuan",
-            "theme-slogan": "Feel the well life in Sichuan"
+            "title": "Streets and Lanes in Sichuan",
+            "slogan": "Interesting Stories",
+            "theme": "Wandering on Ancient Streets,",
+            "theme-slogan": "Sharing Anecdotes"
         },
         "night": {
-            "title": "More nightlife",
-            "slogan": "Come with me and a di!",
+            "title": "Midnight Snacks",
+            "slogan": "Let’s Spend the Night Together for a Disco",
             "theme": "SICHUAN",
-            "theme-slogan": "Nightlife"
+            "theme-slogan": "Midnight Snacks"
         }
     },
     "recommand": {

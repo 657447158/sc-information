@@ -48,7 +48,15 @@
                   v-for="item in informationList"
                   :key="item.id"
                 >
-                  <a :href="`channel-detail.html?code=${item.channelCode}`">
+                  <a :href="`list-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'zs'">
+                    <span class="daq-icon" v-html="item.metaDescription"></span>
+                    <span>{{item.name}}</span>
+                  </a>
+                  <a :href="`travel-agency.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'jkhrsaq'">
+                    <span class="daq-icon" v-html="item.metaDescription"></span>
+                    <span>{{item.name}}</span>
+                  </a>
+                  <a :href="`channel-detail.html?code=${item.channelCode}`" v-else>
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
@@ -169,7 +177,7 @@
       }
       // 低于1366 跳转移动端
       if (screen.width <= 1366) {
-        window.location.href = 'http://test.tsichuan.com/zxw/mobile/#/index'
+        window.location.href = 'http://test.tsichuan.com/zxw/mobile-en/#/index'
       }
       window.addEventListener('scroll', this.onScroll, false)
       let params = window.location.search
