@@ -67,7 +67,7 @@ export default {
       font-weight: bold;
       color: #333;
     }
-    img{
+    /deep/ img{
       max-width: 100%;
     }
   }

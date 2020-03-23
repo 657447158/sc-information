@@ -12,6 +12,9 @@
           </div>
           <div class="map-wrapper">
             <div class="map" id="desMap"></div>
+            <span class="compass">
+             <img src="@/assets/images/cpmpass@3x.png" />
+            </span>
           </div>
         </div>
         <div class="detail-bottom">
@@ -269,6 +272,18 @@ export default {
         width: 660px;
         display: flex;
         align-items: center;
+        position: relative;
+        .compass{
+          position: absolute;
+          right: 0;
+          bottom: 60px;
+          width: 84px;
+          height: 84px;
+          img{
+            width: 100%;
+            height: 100%;
+          }
+        }
         .map {
           width: 610px;
           height: 520px;
