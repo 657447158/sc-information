@@ -111,23 +111,26 @@ export default {
       width: 280px;
       height: 100%;
       background: #d3a180;
-      font-size: 120px;
+      font-size: 100px;
       color: rgba(255, 255, 255, .8);
       font-weight: bold;
       overflow: hidden;
       p {
         position: absolute;
-        top: -20px;
+        // top: -20px;
         transform: rotate(90deg);
         transform-origin: 0 0;
         line-height: 1;
         width: 550px;
         &:first-child {
-          right: -540px;
+          left: 306px;
+          top: -20px;
         }
         &:nth-child(2) {
-          right: -400px;
-          font-size: 66px;
+          top: -10px;
+          left: 160px;
+          width: 570px;
+          font-size: 60px;
         }
       }
       .theme-box-more {
