@@ -47,7 +47,7 @@
                 <img :src="item.coverFourToThree" />
               </span>
               <h3 :title="item.title">{{item.title}}</h3>
-              <p>{{item.esummary}}</p>
+              <p :title="item.summary">{{item.esummary}}</p>
             </a>
           </li>
         </ul>
@@ -94,7 +94,7 @@ export default {
       if (val && val.length) {
         val.map(item => {
           if (item.summary.length > 120) {
-            item.esummary = item.summary.slice(0, 120) + '...'
+            item.esummary = item.summary.slice(0, 150) + '...'
           } else {
             item.esummary = item.summary
           }
@@ -103,7 +103,7 @@ export default {
       this.list = this.list.concat(val)
     },
     chooseItem (code, index) {
-      if (!code) return
+      if (!code || this.params.channelCode === code) return
       this.list = []
       this.code = code
       this.params.channelCode = code

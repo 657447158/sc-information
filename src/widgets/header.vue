@@ -99,7 +99,7 @@
 							</ul>
 							<ul class="nav-down-lang-list">
 								<li>
-									<a href="">
+									<a href="http://test.tsichuan.com/zxw/pc/index.html" target="_blank">
 										<img src="@/assets/images/nav-lang-coutry-china.jpg" />
 										<span>China - 简体中文</span>
 									</a>

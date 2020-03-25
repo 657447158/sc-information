@@ -6,7 +6,7 @@
         <a class="daq-icon" href="https://twitter.com/Amazingsichuan" target="_blank">&#xe67a;</a>
         <a class="daq-icon" href="https://www.instagram.com/visit_sichuan/" target="_blank">&#xe69b;</a>
       </div>
-      <p class="copy-right">Copyright © 2019 Chengdu Tourism Bureau All Rights Reserved</p>
+      <p class="copy-right">Copyright © 2019 Sichuan Tourism Information Center All Rights Reserved</p>
     </div>
 	</div>
 </template>

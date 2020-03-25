@@ -40,11 +40,11 @@ export default {
     }
   },
   mounted () {
-    this.getNewsList()
+    this.getNewsListRecursion()
   },
   methods: {
-    getNewsList () {
-      Ajax.getNewsList({
+    getNewsListRecursion () {
+      Ajax.getNewsListRecursion({
         channelCode: 'chcbt',
         limitPage: 4,
         recommend: 0

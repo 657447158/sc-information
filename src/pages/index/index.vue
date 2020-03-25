@@ -37,7 +37,15 @@
           v-for="item in informationList"
           :key="item.id"
         >
-          <a :href="`channel-detail.html?code=${item.channelCode}`">
+          <a :href="`list-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'zs' || item.channelCode ==='jkhrsaq'">
+            <span class="daq-icon" v-html="item.metaDescription"></span>
+            <span>{{item.name}}</span>
+          </a>
+          <a :href="`travel-agency.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'lxs'">
+            <span class="daq-icon" v-html="item.metaDescription"></span>
+            <span>{{item.name}}</span>
+          </a>
+          <a :href="`channel-detail.html?code=${item.channelCode}`" v-else>
             <span class="daq-icon" v-html="item.metaDescription"></span>
             <span>{{item.name}}</span>
           </a>

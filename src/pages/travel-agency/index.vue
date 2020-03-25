@@ -2,7 +2,7 @@
   <div>
     <Header />
     <!-- 栏目banner -->
-    <PageBanner channelCode="jkhrsaq" />
+    <PageBanner channelCode="lxs" />
     <div class="daq-list-wrap">
       <div class="main">
         <scroll-load
