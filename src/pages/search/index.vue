@@ -58,7 +58,7 @@
             v-for="item in destinationList"
             :key="item.id"
           >
-            <a class="title" :href="`destination-detail.html?code=destination&id=${item.id}`">{{item.regionName}}</a>
+            <a class="title" :href="`destination.html?code=destination&id=${item.id}`">{{item.regionName}}</a>
             <p class="summary" :title="item.introduction">{{item.introduction | ellipsisSummary}}</p>
           </li>
         </ul>
@@ -345,6 +345,7 @@ export default {
           display: block;
           margin: 0 0 24px;
           font-size: 16px;
+          line-height: 20px;
           color: #444;
           width: 100%;
           @include ellipsis();

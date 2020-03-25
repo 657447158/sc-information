@@ -365,6 +365,7 @@
     border: none;
     outline: none;
     font-size: 16px;
+    line-height: 20px;
     transition: all .2s linear;
     &:hover {
       width: 200px;
