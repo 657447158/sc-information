@@ -165,6 +165,10 @@
       }
     },
     mounted () {
+       this.keywords =" "
+      setTimeout(() => {
+        this.keywords =""
+      }, 1000);
       if (!sessionStorage.getItem('themeTravelList')) {
         this.getChannelCodeByThemeTravel()
       } else {
