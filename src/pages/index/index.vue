@@ -18,6 +18,19 @@
       </swiper>
       <div class="swiper-pagination"></div>
       <p class="word">{{$t('index.pageTit')}}</p>
+      <!-- 视频、图片按钮 -->
+      <!-- <div class="menu-list">
+        <div class="menu-item">
+          <a class="daq-icon" href="media-list.html?code=video">&#xe68a;</a>
+          <p>{{$t('video')}}</p>
+        </div>
+        <div class="menu-item">
+          <a class="daq-icon" href="media-list.html?code=picture">&#xe681;</a>
+          <p>{{$t('gallery')}}</p>
+        </div>
+      </div> -->
+      <!-- 音量开关 -->
+      <span class="daq-icon voice" @click="voiceHandle" v-html="muted ? '&#xe685;' : '&#xe67f;'"></span>
     </div>
     <!-- 搜索你所喜好 -->
     <Favorite />
@@ -37,7 +50,11 @@
           v-for="item in informationList"
           :key="item.id"
         >
-          <a :href="`list-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'zs' || item.channelCode ==='jkhrsaq'">
+          <a :href="`sub-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'qz'">
+            <span class="daq-icon" v-html="item.metaDescription"></span>
+            <span>{{item.name}}</span>
+          </a>
+          <a :href="`list-menu.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'zs' || item.channelCode ==='jkhrsaq'">
             <span class="daq-icon" v-html="item.metaDescription"></span>
             <span>{{item.name}}</span>
           </a>
@@ -86,6 +103,8 @@ export default {
   data () {
     let _this = this
     return {
+      videoActive: 0,
+      muted: true,
       informationList: [],
       swiperOption: {
         pagination: {
@@ -95,6 +114,7 @@ export default {
         on: {
           slideChangeTransitionEnd: function(){
             _this.stopVideo()
+            _this.videoActive = this.activeIndex
             _this.$refs[`video${this.activeIndex + 1}`].currentTime = 0
             _this.$refs[`video${this.activeIndex + 1}`].play()
           },
@@ -108,6 +128,7 @@ export default {
     } else {
       this.informationList = JSON.parse(sessionStorage.getItem('informationList'))
     }
+    document.querySelector('.index-video').style.height = document.documentElement.clientHeight  + 'px'
   },
   methods: {
     // 获取实用信息下的子栏目
@@ -125,6 +146,14 @@ export default {
       this.$refs.video1.pause()
       this.$refs.video2.pause()
       this.$refs.video3.pause()
+    },
+    // 开关声音
+    voiceHandle () {
+      const muted = this.$refs[`video${this.videoActive + 1}`].muted
+      this.muted = !muted
+      this.$refs.video1.muted = !muted
+      this.$refs.video2.muted = !muted
+      this.$refs.video3.muted = !muted
     }
   },
 }
@@ -220,6 +249,65 @@ export default {
       text-align: center;
       text-shadow: 0 0 10px rgba(0, 0, 0, .2);
       transform: translate(-50%, -50%);
+    }
+    .menu-list {
+      position: absolute;
+      left: 0;
+      bottom: 80px;
+      z-index: 9;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      .menu-item {
+        display: inline-block;
+        font-size: 16px;
+        &:first-child {
+          margin-right: 20px;
+        }
+        &:hover {
+          p {
+            opacity: 1;
+          }
+          .daq-icon {
+            background: #f0780d;
+          }
+        }
+      }
+      p {
+        opacity: 0;
+        transition: all .3s linear;
+      }
+      .daq-icon {
+        margin-bottom: 6px;
+        display: inline-block;
+        width: 72px;
+        height: 72px;
+        font-size: 40px;
+        color: #fff;
+        line-height: 72px;
+        text-align: center;
+        background: rgba(0, 0, 0, .5);
+        transition: all .3s linear;
+      }
+    }
+    .voice {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9;
+      width: 54px;
+      height: 54px;
+      color: #fff;
+      text-align: center;
+      line-height: 54px;
+      font-size: 30px;
+      background: rgba(0, 0, 0, .5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all .3s linear;
+      &:hover {
+        background: #f0780d;
+      }
     }
   }
   .index-footer {

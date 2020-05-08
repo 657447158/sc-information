@@ -2,7 +2,6 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-    <page-banner channelCode="ztlytj" :title="$t('recommand.pageTit')" />
     <div class="swipper-box">
       <swiper :options="swiperOption" v-if="themeTravelList.length">
         <swiper-slide v-for="(slide, index) in themeTravelList" :key="index">
@@ -25,7 +24,6 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 import scrollAnimate from "@/mixins/scroll_animate";
 import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
-import PageBanner from "@/widgets/page-banner";
 import Ajax from '@/service'
 
 export default {
@@ -44,7 +42,6 @@ export default {
   components: {
     Header,
     Footer,
-    PageBanner,
     // Loading,
     // ScrollLoad,
     swiper,
@@ -76,7 +73,7 @@ export default {
 <style lang="scss" scoped>
 .swipper-box {
   width: 100%;
-  margin-top: 140px;
+  margin-top: 240px;
   /deep/ .swiper-container {
     padding-bottom: 180px;
     padding-left: 120px;

@@ -4,7 +4,7 @@ let defaultParams = {
 	siteCode: 'scsen',
 	lang: process.env.NODE_ENV
 }
-const baseUrl = 'http://test.tsichuan.com/govapi/api/'
+const baseUrl = 'http://www.tsichuan.com/govapi/api/'
 
 export default function ajax(p) {
 	let c = Object.assign({

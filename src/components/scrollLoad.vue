@@ -231,6 +231,11 @@ export default {
     },
     pFlag(val) {
       if (val) this.getList();
+    },
+    requestName () {
+      if (this.pFlag) {
+        this.getList();
+      }
     }
   },
   destroyed() {

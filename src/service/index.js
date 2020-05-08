@@ -235,6 +235,33 @@ const api = {
       params: Object.assign({...params})
     })
   },
+  /**
+   * [视频分类]
+   */
+  getTagsByType (params) {
+    return ajax({
+      url: 'sitepicture/getMediaTypeThree',
+      params: Object.assign({...params})
+    })
+  },
+  /**
+   * [视频列表]
+   */
+  getVideoList (params) {
+    return ajax({
+      url: 'sitevideo/list',
+      params: Object.assign({...params})
+    })
+  },
+  /**
+   * [图片列表]
+   */
+  getPicList (params) {
+    return ajax({
+      url: 'sitepicture/list',
+      params: Object.assign({...params})
+    })
+  },
 }
 
 export default api

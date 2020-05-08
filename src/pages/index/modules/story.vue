@@ -2,7 +2,6 @@
   <div class="main">
     <div class="sec-title">
       <span class="title">{{$t('index.story.title')}}</span>
-      <span class="slogan">{{$t('index.story.slogan')}}</span>
     </div>
     <ul class="story-list">
       <li>
@@ -10,7 +9,6 @@
       </li>
       <li>
         <p class="theme-box-title">{{$t('index.story.theme')}}</p>
-        <p class="theme-box-slogan">{{$t('index.story.theme-slogan')}}</p>
         <a class="theme-box-more" href="list-menu.html?code=jxgsh">{{$t('index.more')}}</a>
       </li>
       <li>

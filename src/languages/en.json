@@ -13,31 +13,23 @@
         "more": "MORE",
         "time": {
             "title": "Leisure Time",
-            "slogan": "Come and Have a Cup of Covered-Bowl Tea",
-            "theme": "Sichuan leisure time",
-            "theme-slogan": "Show you how to play the sichuan province"
+            "theme": "Sichuan leisure time"
         },
         "art": {
-            "title": "Slow Life in Culture and Art",
-            "slogan": "To Be a Person of Culture"
+            "title": "Slow Life in Culture and Art"
         },
         "food": {
             "title": "Guide for Foodies",
-            "slogan": "Tasting Hot Pot and Chuanchuanxiang",
-            "theme": "Food Treasure Map",
-            "theme-slogan": "Dining in Sichuan, Countless Choices"
+            "theme": "Food Treasure Map"
         },
         "story": {
             "title": "Streets and Lanes in Sichuan",
-            "slogan": "Interesting Stories",
-            "theme": "Wandering on Ancient Streets,",
-            "theme-slogan": "Sharing Anecdotes"
+            "theme": "Wandering on Ancient Streets"
         },
         "night": {
-            "title": "Midnight Snacks",
-            "slogan": "Let’s Spend the Night Together for a Disco",
+            "title": "More nightlife",
             "theme": "SICHUAN",
-            "theme-slogan": "Midnight Snacks"
+            "theme-slogan": "Nightlife"
         }
     },
     "recommand": {
@@ -48,7 +40,7 @@
     },
     "destination": {
         "pageTit": "Destination",
-        "listTit": "Recommended tourist attractions",
+        "listTit": "21 cities and prefectures",
         "cities": [
             {
                 "name": "甘孜藏族自治州",
@@ -156,5 +148,12 @@
                 "foreignName": "Zigong"
             }
         ]
+    },
+    "video": "Video",
+    "gallery": "Gallery",
+    "travel": {
+        "licenseno": "licenseno",
+        "type": "type",
+        "address": "address"
     }
 }

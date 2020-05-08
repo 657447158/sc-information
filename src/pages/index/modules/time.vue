@@ -2,7 +2,6 @@
   <div class="main">
     <div class="sec-title">
       <span class="title">{{$t('index.time.title')}}</span>
-      <span class="slogan">{{$t('index.time.slogan')}}</span>
     </div>
     <div class="list-box">
       <div class="list-box-list">
@@ -10,7 +9,6 @@
           <img class="pic" src="@/assets/images/index-time-pc.png" />
           <div class="theme-box">
             <p class="theme-box-title">{{$t('index.time.theme')}}</p>
-            <p class="theme-box-slogan">{{$t('index.time.theme-slogan')}}</p>
             <a href="list-menu.html?code=yxhgj" class="theme-box-more">{{$t('index.more')}}</a>
           </div>
         </div>
@@ -21,7 +19,7 @@
           :key="item.id"
         >
           <span class="img-box">
-            <img :src="item.cover" v-if="index === 0" />
+            <img :src="item.coverOneToOne" v-if="index === 0" />
             <img :src="item.coverTwoToOne" v-else />
           </span>
           <span class="modal-box">{{item.title}}</span>

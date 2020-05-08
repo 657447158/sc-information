@@ -10,7 +10,12 @@
           v-for="item in list"
           :key="item.id"
         >
-          <a :href="`list-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'zs'|| item.channelCode ==='jkhrsaq'">
+          <a :href="`sub-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'qz'">
+            <span class="daq-icon" v-html="item.metaDescription"></span>
+            <div class="desc">{{item.name}}</div>
+            <p class="detail">{{item.summary}}</p>
+          </a>
+          <a :href="`list-menu.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'zs'|| item.channelCode ==='jkhrsaq'">
             <span class="daq-icon" v-html="item.metaDescription"></span>
             <div class="desc">{{item.name}}</div>
             <p class="detail">{{item.summary}}</p>

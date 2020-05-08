@@ -3,7 +3,6 @@
     <div class="main">
       <div class="sec-title">
         <span class="title">{{$t('index.art.title')}}</span>
-        <span class="slogan">{{$t('index.art.slogan')}}</span>
       </div>
       <div class="art-list">
         <ul>

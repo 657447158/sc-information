@@ -48,7 +48,11 @@
                   v-for="item in informationList"
                   :key="item.id"
                 >
-                  <a :href="`list-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'zs' || item.channelCode ==='jkhrsaq'">
+                  <a :href="`sub-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'qz'">
+                    <span class="daq-icon" v-html="item.metaDescription"></span>
+                    <span>{{item.name}}</span>
+                  </a>
+                  <a :href="`list-menu.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'zs' || item.channelCode ==='jkhrsaq'">
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
@@ -138,7 +142,11 @@
       </div>
     </transition>
     <!-- top按钮 -->
-    <div class="go-top" :class="showTopBtn && 'active'" @click="goTop"></div>
+    <div class="side-bar" :class="showTopBtn && 'active'">
+      <a href="media-list.html?code=video" class="video-btn daq-icon">&#xe68a;</a>
+      <a href="media-list.html?code=picture" class="video-btn daq-icon">&#xe681;</a>
+      <div class="go-top" @click="goTop"></div>
+    </div>
 	</div>
 </template>
 <script>
@@ -252,21 +260,38 @@
   }
 </script>
 <style lang="scss" scoped>
-.go-top {
+.side-bar {
   position: fixed;
   bottom: 60px;
   right: -52px;
   z-index: 99;
+  transition: all .3s linear;
+  &.active {
+    right: 60px;
+  }
+}
+.video-btn {
+  margin-bottom: 6px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  background: #b2b2b2;
+  &:hover {
+    background: #f77800;
+  }
+}
+.go-top {
   width: 50px;
   height: 50px;
   background: #b2b2b2 url('../assets/images/go-top-btn.png') no-repeat center;
   cursor: pointer;
-  transition: all .3s linear;
   &:hover {
     background: #f77800 url('../assets/images/go-top-btn.png') no-repeat center;
-  }
-  &.active {
-    right: 60px;
   }
 }
 .page-load {

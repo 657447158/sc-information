@@ -60,6 +60,14 @@ module.exports = {
     'travel-agency':{
       title,
       entry: 'src/pages/travel-agency/main.js'
+    },
+    'media-list':{
+      title,
+      entry: 'src/pages/media/main.js'
+    },
+    'sub-menu':{
+      title,
+      entry: 'src/pages/sub-menu/main.js'
     }
   }
 }

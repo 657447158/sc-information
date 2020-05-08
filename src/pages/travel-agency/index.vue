@@ -19,10 +19,9 @@
             >
               <p class="name" :title="item.name">{{item.name}}</p>
               <div class="info">
-                <p>licenseno：{{item.licenseno}}</p>
-                <p>type：{{item.resourceLevel}}</p>
-                <!-- <p>旅行社电话：{{item.phone}}</p> -->
-                <p :title="item.address">address：{{item.address}}</p>
+                <p><span class="daq-icon">&#xe652;</span><span class="txt">{{$t('travel.licenseno')}}：{{item.licenseno}}</span></p>
+                <p><span class="daq-icon">&#xe677;</span><span class="txt">{{$t('travel.type')}}：{{item.resourceLevel}}</span></p>
+                <p :title="item.address"><span class="daq-icon">&#xe667;</span><span class="txt">{{$t('travel.address')}}：{{item.address}}</span></p>
               </div>
             </li>
           </ul>
@@ -96,8 +95,17 @@
   .info {
     padding: 20px 10px 0;
     color: #666;
+    .daq-icon {
+      margin-right: 6px;
+    }
     p {
+      display: flex;
+      align-items: center;
       margin-bottom: 10px;
+      
+    }
+    .txt {
+      flex: 1;
       @include ellipsis();
     }
   }

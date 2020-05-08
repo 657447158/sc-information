@@ -19,13 +19,23 @@
       }
     },
     mounted () {
-      Ajax.getChannelDetail({
-        channelCode: this.channelCode
-      }).then(res => {
-        if (res.code === 0) {
-          this.detail = res.data
-        }
-      })
+      this.getChannelDetail()
+    },
+    methods: {
+      getChannelDetail () {
+        Ajax.getChannelDetail({
+          channelCode: this.channelCode
+        }).then(res => {
+          if (res.code === 0) {
+            this.detail = res.data
+          }
+        })
+      }
+    },
+    watch: {
+      channelCode () {
+        this.getChannelDetail()
+      }
     }
   }
 </script>

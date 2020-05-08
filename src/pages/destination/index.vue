@@ -20,27 +20,27 @@
         <div class="detail-bottom">
           <div class="article-wrapper">
             <h3>{{$t('destination.listTit')}}</h3>
-            <scroll-load
+            <!-- <scroll-load
               requestName="getNewsList"
               :params="params"
               :limit="6"
               :pFlag="requestState"
               @list="getList"
-            >
+            > -->
               <ul slot="list">
                 <li 
-                  v-for="item in sceneryList"
+                  v-for="item in list"
                   :key="item.id"
                 >
-                  <a :href="`article-detail.html?id=${item.id}`">
+                  <a :href="`list.html?code=${item.channelCode}`">
                     <span class="img-box">
-                      <img :src="item.coverFourToThree" />
+                      <img v-if="item.channelImage" :src="item.channelImage" />
                     </span>
-                    <h4>{{item.title}}</h4>
+                    <h4>{{item.name}}</h4>
                   </a>
                 </li>
               </ul>
-            </scroll-load>
+            <!-- </scroll-load> -->
           </div>
         </div>
       </div>
@@ -58,7 +58,6 @@ import scrollAnimate from "@/mixins/scroll_animate";
 import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
 import PageBanner from "@/widgets/page-banner";
-import ScrollLoad from '@/components/scrollLoad'
 import lang from '@/languages'
 const NODE_ENV = process.env.NODE_ENV
 export default {
@@ -66,17 +65,14 @@ export default {
     Header,
     Footer,
     PageBanner,
-    ScrollLoad
   },
   data() {
     return {
       region: 510000,
       city: '',
-      // id: Tools.getUrlParams("id"),
       channelCode: Tools.getUrlParams("channelCode"),
       detail: {},
       list: [],
-      sceneryList: [],
       params: {
         channelCode: ''
       },
@@ -89,11 +85,6 @@ export default {
     this.getChannelList()
   },
   methods: {
-    getList (list) {
-      if (!list) return
-      this.sceneryList = this.sceneryList.concat(list)
-      console.log(this.sceneryList)
-    },
     // 获取目的地列表(栏目)
     getChannelList () {
       Ajax.getChannelList({
@@ -195,16 +186,16 @@ export default {
                   emphasis: {
                     label: {
                       show: true,
-                      color: '#f77800',
+                      color: '#fff',
                       textStyle: {
-                        color: '#f77800'
+                        color: '#fff'
                       },
                       formatter: function (params) {
                         return params.data ? params.data.foreignName : ''
                       }
                     },
                     borderColor: '#f77800',
-                    areaColor: '#fff'
+                    areaColor: '#f77800'
                   }
                 },
                 data: this.cities

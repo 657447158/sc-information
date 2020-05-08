@@ -95,7 +95,7 @@ export default {
           top: 170px;
           width: 100%;
           text-align: center;
-          font-size: 46px;
+          font-size: 36px;
           color: #fff;
           font-weight: bold;
         }
@@ -190,9 +190,14 @@ export default {
       justify-content: space-between;
       width: 520px;
       height: 60px;
-      font-size: 26px;
-      color: #666;
-      background: #fff;
+      font-size: 20px;
+      color: #999;
+      background: rgba(255, 255, 255, .8);
+      transition: all .3s linear;
+      cursor: pointer;
+      &:hover {
+        background: rgba(255, 255, 255, 1);
+      }
       .icon {
         width: 20px;
         height: 10px;
