@@ -68,6 +68,10 @@ module.exports = {
     'sub-menu':{
       title,
       entry: 'src/pages/sub-menu/main.js'
+    },
+    'hotel-list':{
+      title,
+      entry: 'src/pages/hotel-list/main.js'
     }
   }
 }

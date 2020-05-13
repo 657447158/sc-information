@@ -1,7 +1,7 @@
 {
     "webTit": "Sichuan Tourism",
     "header": {
-        "nav": ["Tourist Destinations", "Theme Tourism", "Practical Information", "Search"],
+        "nav": ["Places to go", "Discover Sichuan", "Useful Imformation", "Search"],
         "info": ["Tourist VISA", "City traffic", "Hotel accomodation", "Travel agency inquiry", "Caring service", "Health and life safety"]
     },
     "noMore": "No more",
@@ -27,9 +27,8 @@
             "theme": "Wandering on Ancient Streets"
         },
         "night": {
-            "title": "More nightlife",
-            "theme": "SICHUAN",
-            "theme-slogan": "Nightlife"
+            "title": "Image of sichuan",
+            "theme": "Discover the beauty of Sichuan"
         }
     },
     "recommand": {
@@ -41,6 +40,7 @@
     "destination": {
         "pageTit": "Destination",
         "listTit": "21 cities and prefectures",
+        "listTit2": "Recommended Top Attractions",
         "cities": [
             {
                 "name": "甘孜藏族自治州",
@@ -154,6 +154,10 @@
     "travel": {
         "licenseno": "licenseno",
         "type": "type",
+        "address": "address"
+    },
+    "hotel": {
+        "phone": "phone",
         "address": "address"
     }
 }

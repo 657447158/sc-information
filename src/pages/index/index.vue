@@ -19,18 +19,21 @@
       <div class="swiper-pagination"></div>
       <p class="word">{{$t('index.pageTit')}}</p>
       <!-- 视频、图片按钮 -->
-      <!-- <div class="menu-list">
+      <div class="menu-list">
         <div class="menu-item">
-          <a class="daq-icon" href="media-list.html?code=video">&#xe68a;</a>
           <p>{{$t('video')}}</p>
+          <a class="daq-icon" href="media-list.html?code=video">&#xe68a;</a>
         </div>
         <div class="menu-item">
-          <a class="daq-icon" href="media-list.html?code=picture">&#xe681;</a>
           <p>{{$t('gallery')}}</p>
+          <a class="daq-icon" href="media-list.html?code=picture">&#xe681;</a>
         </div>
-      </div> -->
-      <!-- 音量开关 -->
-      <span class="daq-icon voice" @click="voiceHandle" v-html="muted ? '&#xe685;' : '&#xe67f;'"></span>
+        <div class="menu-item">
+          <a class="daq-icon voice" href="javascript:;" @click="voiceHandle" v-html="muted ? '&#xe685;' : '&#xe67f;'"></a>
+        </div>
+        <!-- 音量开关 -->
+        <!-- <span class="daq-icon voice" @click="voiceHandle" v-html="muted ? '&#xe685;' : '&#xe67f;'"></span> -->
+      </div>
     </div>
     <!-- 搜索你所喜好 -->
     <Favorite />
@@ -252,17 +255,19 @@ export default {
     }
     .menu-list {
       position: absolute;
-      left: 0;
-      bottom: 80px;
+      right: 20px;
+      bottom: 20px;
       z-index: 9;
-      width: 100%;
+      // width: 100%;
       text-align: center;
       color: #fff;
       .menu-item {
-        display: inline-block;
-        font-size: 16px;
-        &:first-child {
-          margin-right: 20px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 200px;
+        &~.menu-item {
+          margin-top: 20px;
         }
         &:hover {
           p {
@@ -274,27 +279,29 @@ export default {
         }
       }
       p {
+        margin-right: 12px;
+        // display: inline-block;
         opacity: 0;
         transition: all .3s linear;
       }
       .daq-icon {
-        margin-bottom: 6px;
         display: inline-block;
-        width: 72px;
-        height: 72px;
-        font-size: 40px;
+        width: 54px;
+        height: 54px;
+        font-size: 30px;
         color: #fff;
-        line-height: 72px;
+        line-height: 54px;
         text-align: center;
         background: rgba(0, 0, 0, .5);
         transition: all .3s linear;
+        border-radius: 50%;
       }
     }
     .voice {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      z-index: 9;
+      // position: absolute;
+      // bottom: 20px;
+      // right: 20px;
+      // z-index: 9;
       width: 54px;
       height: 54px;
       color: #fff;

@@ -6,33 +6,33 @@
       <div class="menu-item">
         <div class="item-box" :class="codeList.length && 'dropdown'">
           <div class="title" :class="channelCode === 'video' && 'active'">
-            <span>{{$t('video')}}</span>
-            <span class="daq-icon" v-if="codeList.length">&#xe6af;</span>
+            <span @click="chooseTab(0)">{{$t('video')}}</span>
+            <!-- <span class="daq-icon" v-if="codeList.length">&#xe6af;</span> -->
           </div>
-          <ul v-if="codeList.length">
+          <!-- <ul v-if="codeList.length">
             <li
               :class="item.active && 'active'"
               v-for="(item, i) in codeList"
               :key="item.id"
               @click="chooseVideoItem(item, i)"
             >{{item.name}}</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
       <div class="menu-item">
         <div class="item-box" :class="codeList.length && 'dropdown'">
           <div class="title" :class="channelCode === 'picture' && 'active'">
-            <span>{{$t('gallery')}}</span>
-            <span class="daq-icon" v-if="codeList.length">&#xe6af;</span>
+            <span @click="chooseTab(1)">{{$t('gallery')}}</span>
+            <!-- <span class="daq-icon" v-if="codeList.length">&#xe6af;</span> -->
           </div>
-          <ul v-if="picCodeList.length">
+          <!-- <ul v-if="picCodeList.length">
             <li
               :class="item.active && 'active'"
               v-for="(item, i) in picCodeList"
               :key="item.id"
               @click="choosePicItem(item, i)"
             >{{item.name}}</li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </div>
@@ -135,11 +135,13 @@ export default {
       picCodeList: [],
       videoFlag: false,
       picFlag: false,
+      tabIndex: 0,
       params: {
         typeCode: ""
       },
       picParams: {
-        tag: ''
+        tag: '',
+        datatype: 'sourceType_1'
       },
       list: [],
       picList: [],
@@ -204,6 +206,14 @@ export default {
     },
     getPicList (val) {
       this.picList = this.picList.concat(val);
+    },
+    chooseTab (index) {
+      this.tabIndex = index
+      if (index === 0) {
+        this.channelCode = 'video'
+      } else {
+        this.channelCode = 'picture'
+      }
     },
     chooseVideoItem(item, index) {
       if (!item || this.params.typeCode === item.id) return;

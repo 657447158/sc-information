@@ -5,50 +5,30 @@
         <span class="title">{{$t('index.night.title')}}</span>
       </div>
       <div class="night-box">
-        <div class="night-left">
-          <div class="night-left-top">
-            <img src="@/assets/images/index-night-bg1.png" />
-            <div class="box">
-              <span :class="index === 0 && 'active'" @click="chooseTab(0)">{{$t('video')}}</span>
-              <span :class="index === 1 && 'active'" @click="chooseTab(1)">{{$t('gallery')}}</span>
+        <ul>
+          <li
+            v-for="(item, index) in picList"
+            :key="item.id"
+            @click="picShowHandle(item, index)"
+          >
+            <img :src="item.url" />
+          </li>
+          <li>
+            <p class="night-box-title">{{$t('index.night.theme')}}</p>
+            <a class="theme-box-more" href="media-list.html?code=video">{{$t('index.more')}}</a>
+          </li>
+          <li
+            v-for="(item, index) in videoList"
+            :key="item.id"
+          >
+            <div class="img-box" @mouseover="videoOverHandle(index)" @mouseleave="videoLeaveHandle(index)">
+              <img :src="item.coverpicture" :ref="`pic${index}`" />
+              <video :src="item.upload" muted loop :ref="`nightVideo${index}`"></video>
+              <span class="daq-icon">&#xe62c;</span>
             </div>
-          </div>
-          <div class="night-left-bottom">
-            <ul v-show="index === 0">
-              <li
-                v-for="(item, index) in videoList"
-                :key="item.id"
-              >
-                <div class="img-box" @mouseover="videoOverHandle(index)" @mouseleave="videoLeaveHandle(index)">
-                  <img :src="item.coverpicture" :ref="`pic${index}`" />
-                  <video :src="item.upload" muted loop :ref="`nightVideo${index}`"></video>
-                  <span class="daq-icon">&#xe62c;</span>
-                </div>
-                <p>{{item.title}}</p>
-              </li>
-            </ul>
-            <ul v-show="index === 1">
-              <li
-                v-for="(item, index) in picList"
-                :key="item.id"
-                @click="picShowHandle(item, index)"
-              >
-                <div class="img-box">
-                  <img :src="item.url" />
-                </div>
-                <p>{{item.title}}</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="night-center">
-          <p>{{$t('index.night.theme')}}</p>
-          <p>{{$t('index.night.theme-slogan')}}</p>
-          <a class="theme-box-more" href="list-menu.html?code=hsysh">{{$t('index.more')}}</a>
-        </div>
-        <div class="night-right">
-          <img src="@/assets/images/index-night-pic2.png" />
-        </div>
+            <p>{{item.title}}</p>
+          </li>
+        </ul>
       </div>
     </div>
     <!-- 图片弹框 -->
@@ -93,7 +73,7 @@ export default {
     },
     getVideoList () {
       Ajax.getVideoList({
-        limitPage: 3
+        limitPage: 4
       }).then(res => {
         if (res.code === 0) {
           this.videoList = res.datas
@@ -123,7 +103,8 @@ export default {
     },
     getPicList () {
       Ajax.getPicList({
-        limitPage: 3
+        limitPage: 2,
+        datatype: 'sourceType_1'
       }).then(res => {
         if (res.code === 0) {
           this.picList = res.datas
@@ -145,174 +126,107 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .night {
+.night {
+  position: relative;
+  width: 100%;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
     width: 100%;
-    &-box {
-      position: relative;
-      display: flex;
-      height: 640px;
-    }
-    &-left {
-      width: 860px;
-      height: 100%;
-      &-top {
-        position: relative;
-        width: 100%;
-        height: 360px;
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          right: 98px;
-          display: block;
-          width: 298px;
-          height: 305px;
-          background: url('../../../assets/images/index-night-logo.png') no-repeat;
-        }
-        img {
-          position: absolute;
-          top: 0;
-          right: 0;
-          display: block;
-          font-size: 0;
-        }
-        .box {
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          padding: 0 24px;
-          display: flex;
-          align-items: flex-end;
-          width: 100%;
-          height: 180px;
-          color: #333;
-          font-size: 26px;
-          line-height: 80px;
-          background: #fff;
-          span {
-            position: relative;
-            margin-right: 72px;
-            padding: 0 6px;
-            cursor: pointer;
-            &.active {
-              color: $themeColor;
-              &::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                display: block;
-                height: 2px;
-                background: $themeColor;
-              }
-            }
-          }
-        }
-      }
-      &-bottom {
-        padding: 76px 0 0 30px;
-        width: 100%;
-        height: 280px;
-        color: #666;
-        font-size: 18px;
-        line-height: 24px;
-        background: #f5f5f5;
-        ul {
-          display: flex;
-        }
-        li {
-          width: 240px;
-          cursor: pointer;
-          &~li {
-            margin-left: 30px;
-          }
-        }
-        .img-box {
-          position: relative;
-          width: 100%;
-          height: 135px;
-          overflow: hidden;
-          object-fit: contain;
-        }
-        img {
-          position: relative;
-          z-index: 9;
-          display: block;
-          width: 100%;
-          height: 100%;
-          transition: all .3s linear;
-        }
-        // .img {
-        //   height: 135px;
-        // }
-        video {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
-        .daq-icon {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          z-index: 10;
-          color: #fff;
-          font-size: 42px;
-          transform: translate(-50%, -50%);
-          transition: all .3s linear;
-        }
-        p {
-          margin-top: 24px;
-          color: #666;
-          font-size: 18px;
-          @include ellipsis();
-        }
-      }
-    }
-    &-center {
-      position: relative;
-      width: 280px;
-      height: 100%;
-      background: #d3a180;
-      font-size: 100px;
-      color: rgba(255, 255, 255, .8);
+    height: 360px;
+    background: #f5f5f5;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 46px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 157px;
+    background: url('../../../assets/images/index-night-bg.png') no-repeat center;
+    background-size: 100% 157px;
+  }
+  &-box {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    height: 624px;
+    &-title {
+      font-size: 38px;
       font-weight: bold;
+      color: #fff;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: space-between;
+      height: 508px;
+    }
+    li {
+      width: 325px;
+      height: 244px;
+      cursor: pointer;
       overflow: hidden;
-      p {
-        position: absolute;
-        // top: -20px;
-        transform: rotate(90deg);
-        transform-origin: 0 0;
-        line-height: 1;
-        width: 550px;
-        &:first-child {
-          left: 306px;
-          top: -20px;
-        }
-        &:nth-child(2) {
-          top: -10px;
-          left: 160px;
-          width: 570px;
-          font-size: 60px;
-        }
+      &~li {
+        margin-left: 20px;
       }
-      .theme-box-more {
-        position: absolute;
-        bottom: 60px;
-        left: 60px;
+      &:nth-child(4) {
+        margin-left: 0;
+      }
+      &:nth-child(3) {
+        padding: 80px 0 0 40px;
+        width: 670px;
+        background: $themeColor;
+      }
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
       }
     }
-    &-right {
+    .img-box {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      object-fit: contain;
+    }
+    img {
+      position: relative;
+      z-index: 9;
+      display: block;
+      width: 100%;
+      height: 100%;
+      transition: all .3s linear;
+    }
+    video {
       position: absolute;
       top: 0;
-      right: -280px;
-      width: 500px;
-      height: 360px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+    .daq-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 10;
+      color: #fff;
+      font-size: 42px;
+      transform: translate(-50%, -50%);
+      transition: all .3s linear;
+    }
+    .theme-box-more {
+      margin-top: 20px;
     }
   }
-  .media-popup {
+}
+.media-popup {
   width: 100%;
   height: 100%;
   position: fixed;

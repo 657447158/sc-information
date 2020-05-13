@@ -2,12 +2,12 @@
   <div id="app">
     <!-- 顶部导航 -->
     <Header />
-    <page-banner channelCode="mdd" :title="$t('destination.pageTit')" />
     <div class="list-container">
       <div class="detail">
         <div class="detail-top">
           <div class="desc">
-            <h3 class="title">{{detail.name}}</h3>
+            <!-- <h3 class="title" v-if="fisrtFlag">{{detail.metaTitle}}</h3> -->
+            <h3 class="title">{{detail.metaTitle || detail.name}}</h3>
             <div v-html="detail.content"></div>
           </div>
           <div class="map-wrapper">
@@ -17,30 +17,49 @@
             </span>
           </div>
         </div>
-        <div class="detail-bottom">
+        <div class="detail-bottom" v-if="fisrtFlag">
           <div class="article-wrapper">
             <h3>{{$t('destination.listTit')}}</h3>
-            <!-- <scroll-load
+            <ul>
+              <li 
+                v-for="item in list"
+                :key="item.id"
+              >
+                <a :href="`list.html?code=${item.channelCode}`">
+                  <span class="img-box">
+                    <img v-if="item.channelImage" :src="item.channelImage" />
+                  </span>
+                  <h4>{{item.name}}</h4>
+                </a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+        <div class="detail-bottom" v-else>
+          <div class="article-wrapper">
+            <h3>{{$t('destination.listTit2')}}</h3>
+            <scroll-load
               requestName="getNewsList"
               :params="params"
               :limit="6"
               :pFlag="requestState"
               @list="getList"
-            > -->
+            >
               <ul slot="list">
                 <li 
-                  v-for="item in list"
+                  v-for="item in slist"
                   :key="item.id"
                 >
-                  <a :href="`list.html?code=${item.channelCode}`">
+                  <a :href="`article-detail.html?id=${item.id}`">
                     <span class="img-box">
-                      <img v-if="item.channelImage" :src="item.channelImage" />
+                      <img v-if="item.cover" :src="item.cover" />
                     </span>
-                    <h4>{{item.name}}</h4>
+                    <h4>{{item.title}}</h4>
                   </a>
                 </li>
               </ul>
-            <!-- </scroll-load> -->
+            </scroll-load>
           </div>
         </div>
       </div>
@@ -55,16 +74,16 @@ import axios from "axios";
 import Ajax from "@/service";
 import Tools from "@/utils/tools.js";
 import scrollAnimate from "@/mixins/scroll_animate";
+import ScrollLoad from "@/components/scrollLoad";
 import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
-import PageBanner from "@/widgets/page-banner";
 import lang from '@/languages'
 const NODE_ENV = process.env.NODE_ENV
 export default {
   components: {
     Header,
     Footer,
-    PageBanner,
+    ScrollLoad
   },
   data() {
     return {
@@ -73,11 +92,14 @@ export default {
       channelCode: Tools.getUrlParams("channelCode"),
       detail: {},
       list: [],
+      slist: [],
       params: {
         channelCode: ''
       },
       requestState: false,
-      cities: lang[NODE_ENV].destination.cities
+      cities: lang[NODE_ENV].destination.cities,
+      // 第一次进入
+      fisrtFlag: true
     };
   },
   mounted() {
@@ -85,6 +107,9 @@ export default {
     this.getChannelList()
   },
   methods: {
+    getList (val) {
+      this.slist = this.slist.concat(val)
+    },
     // 获取目的地列表(栏目)
     getChannelList () {
       Ajax.getChannelList({
@@ -93,17 +118,17 @@ export default {
       }).then(res => {
         if (res.code === 0) {
           this.list = res.datas
-          this.channelCode = this.channelCode || (res.datas[0] && res.datas[0].channelCode)
-          this.getChannelDetail()
-          this.params.channelCode = this.channelCode
-          this.requestState = true
+          this.getChannelDetail('mdd')
+          // this.channelCode = this.channelCode || (res.datas[0] && res.datas[0].channelCode)
+          // this.params.channelCode = this.channelCode
+          // this.requestState = true
         }
       })
     },
     // 获取目的地详情
-    getChannelDetail() {
+    getChannelDetail(channelCode) {
       Ajax.getChannelDetail({
-        channelCode: this.channelCode
+        channelCode
       }).then(res => {
         if (res.code === 0) {
           this.detail = res.data;
@@ -116,6 +141,7 @@ export default {
       });
     },
     drawMap(scatterData) {
+      const _this = this
       const myChart = echarts.init(document.getElementById("desMap"));
       axios
         .get(
@@ -204,7 +230,12 @@ export default {
           });
           myChart.on('click', function (params) {
             if (params.data) {
-              window.location.href = `destination.html?code=destination&channelCode=${params.data.channelCode}`
+              _this.fisrtFlag = false
+              _this.requestState = true
+              _this.channelCode = params.data.channelCode
+              _this.params.channelCode = _this.channelCode
+              _this.getChannelDetail(_this.channelCode)
+              // window.location.href = `destination.html?code=destination&channelCode=${params.data.channelCode}`
             }
           })
         });
@@ -219,6 +250,7 @@ export default {
   margin-top: 40px;
 }
 .list-container {
+  padding-top: 100px;
   display: flex;
   justify-content: center;
   background: #ffffff;

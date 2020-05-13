@@ -173,6 +173,15 @@ const api = {
     })
   },
   /**
+   * [宾馆酒店列表]
+   */
+  getHotelDetail (params) {
+    return ajax({
+      url: 'hotel/detail',
+      params: Object.assign({...params})
+    })
+  },
+  /**
    * [旅行社列表]
    */
   getTravelList (params) {

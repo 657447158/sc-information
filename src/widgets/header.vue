@@ -52,7 +52,11 @@
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
-                  <a :href="`list-menu.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'zs' || item.channelCode ==='jkhrsaq'">
+                  <a :href="`hotel-list.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'zs'">
+                    <span class="daq-icon" v-html="item.metaDescription"></span>
+                    <span>{{item.name}}</span>
+                  </a>
+                  <a :href="`list-menu.html?code=${item.channelCode}`" v-else-if="item.channelCode ==='jkhrsaq'">
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
@@ -143,8 +147,8 @@
     </transition>
     <!-- top按钮 -->
     <div class="side-bar" :class="showTopBtn && 'active'">
-      <a href="media-list.html?code=video" class="video-btn daq-icon">&#xe68a;</a>
-      <a href="media-list.html?code=picture" class="video-btn daq-icon">&#xe681;</a>
+      <!-- <a href="media-list.html?code=video" class="video-btn daq-icon">&#xe68a;</a> -->
+      <!-- <a href="media-list.html?code=picture" class="video-btn daq-icon">&#xe681;</a> -->
       <div class="go-top" @click="goTop"></div>
     </div>
 	</div>
