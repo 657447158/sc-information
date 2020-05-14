@@ -79,20 +79,25 @@ export default {
       this.fDistance = 0
       this.QDom = document.getElementById(id)
       this.fDistance = this.QDom.offsetTop - 100
-      console.log('this.fDistance', this.fDistance);
       window.requestAnimationFrame(this.step)
     },
     step () {
       const distance = this.QDom.offsetTop
       const v = distance / 10
       this.originD = this.originD + v
-      console.log('this.originD', this.originD);
       if (this.originD > this.fDistance) {
         document.documentElement.scrollTop = this.fDistance
       } else {
         document.documentElement.scrollTop = this.originD
       }
-      if (distance - document.documentElement.scrollTop > 100 && document.documentElement.scrollTop < document.body.scrollHeight) {
+      const clientHeight = document.documentElement.scrollTop === 0 ? document.body.clientHeight : document.documentElement.clientHeight;
+      const scrollTop = document.documentElement.scrollTop === 0 ? document.body.scrollTop : document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollTop === 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;
+      let isEnd = false
+      if (scrollTop != 0 && clientHeight + scrollTop == scrollHeight) {
+        isEnd = true
+      }
+      if ((distance - document.documentElement.scrollTop > 100 && document.documentElement.scrollTop < document.body.scrollHeight) && !isEnd) {
         window.requestAnimationFrame(this.step)
       }
     },
@@ -119,7 +124,8 @@ export default {
       this.qList = []
       this.loading = true
       Ajax.getNewsList({
-        channelCode
+        channelCode,
+        limitPage: 99
       }).then(res => {
         this.loading = false
         if (res.code === 0) {

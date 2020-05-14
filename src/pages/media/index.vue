@@ -36,6 +36,7 @@
         </div>
       </div>
     </div>
+    <!-- 视频 -->
     <div class="list-container main" v-if="channelCode === 'video'">
       <scroll-load 
         requestName="getVideoList" 
@@ -55,18 +56,19 @@
         </ul>
       </scroll-load>
     </div>
+    <!-- 图集 -->
     <div class="list-container main" v-else>
       <scroll-load 
-        requestName="getPicList" 
+        requestName="getNewsList" 
         :limit="9" 
         :params="picParams"
         @list="getPicList"
       >
         <ul class="list-wrapper" slot="list">
-          <li v-for="(item, index) in picList" :key="item.id" @click="playPic(item, index)">
-            <a href="javascript:;">
+          <li v-for="(item) in picList" :key="item.id">
+            <a :href="item.externalChain">
               <span class="img-box">
-                <img v-if="item.url" :src="item.url" />
+                <img v-if="item.cover" :src="item.cover" />
               </span>
               <h3 :title="item.title">{{item.title}}</h3>
             </a>
@@ -95,20 +97,6 @@
             <!--<p style="padding: 50px;color:#fff;text-align: center">您的浏览器不支持 HTML5 video 标签。</p>-->
           </video>
         </div>
-      </div>
-    </div>
-    <!-- 图片弹框 -->
-    <div class="media-popup" @click.self="closePic" v-show="picShow">
-      <div class="media-hd media-close" @click="closePic">
-        <a></a>
-      </div>
-      <div class="dialog-bd">
-        <img :src="picUrl" />
-        <p>{{picTitle}}</p>
-      </div>
-      <div class="dialog-ft">
-        <a href="javascript:;" class="prev daq-icon opacity" @click="lastImg"></a >
-        <a href="javascript:;" class="next daq-icon opacity" @click="nextImg"></a >
       </div>
     </div>
   </div>
@@ -140,8 +128,7 @@ export default {
         typeCode: ""
       },
       picParams: {
-        tag: '',
-        datatype: 'sourceType_1'
+        channelCode: 'Gallery',
       },
       list: [],
       picList: [],
@@ -150,34 +137,13 @@ export default {
       videoParams: {
         mediaUrl: "",
         mediaImg: ""
-      },
-      picUrl: '',
-      picTitle: '',
-      picIndex: 0
+      }
     };
   },
   mounted() {
     // this.getTagsByType();
   },
   methods: {
-    playPic (item, index) {
-      this.picUrl = item.url
-      this.picTitle = item.title
-      this.picIndex = index
-      this.picShow = true
-    },
-    lastImg () {
-      if (this.picIndex < 1) return
-      this.picIndex--
-      this.picUrl = this.picList[this.picIndex].url
-      this.picTitle = this.picList[this.picIndex].title
-    },
-    nextImg () {
-      if (this.picIndex === this.picList.length - 1) return
-      this.picIndex++
-      this.picUrl = this.picList[this.picIndex].url
-      this.picTitle = this.picList[this.picIndex].title
-    },
     playVideo(item) {
       this.videoParams = {
         mediaImg: item.coverpictureFourToThree,
@@ -229,23 +195,6 @@ export default {
         }
       })
       this.picCodeList.map(item => {
-        item.active = false
-      })
-    },
-    choosePicItem(item, index) {
-      if (!item || this.picParams.tag === item.id) return;
-      this.picList = [];
-      this.picFlag = true
-      this.channelCode = 'picture'
-      this.params.typeCode = ''
-      this.picParams.tag = item.id;
-      this.picCodeList.map((item, i) => {
-        item.active = false
-        if (i === index) {
-          item.active = true
-        }
-      })
-      this.codeList.map(item => {
         item.active = false
       })
     },

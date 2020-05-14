@@ -6,7 +6,7 @@
         <a class="daq-icon" href="https://twitter.com/Amazingsichuan" target="_blank">&#xe67a;</a>
         <a class="daq-icon" href="https://www.instagram.com/visit_sichuan/" target="_blank">&#xe69b;</a>
       </div>
-      <p class="copy-right">Copyright &copy;2019 Sichuan Culture and Tourism information Center All Rights Reserved</p>
+      <p class="copy-right">{{$t('copy')}}</p>
     </div>
 	</div>
 </template>

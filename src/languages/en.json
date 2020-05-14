@@ -27,7 +27,7 @@
             "theme": "Wandering on Ancient Streets"
         },
         "night": {
-            "title": "Image of sichuan",
+            "title": "Image of Sichuan",
             "theme": "Discover the beauty of Sichuan"
         }
     },
@@ -159,5 +159,6 @@
     "hotel": {
         "phone": "phone",
         "address": "address"
-    }
+    },
+    "copy": "Copyright &copy;2019 Sichuan Culture and Tourism Information Center All Rights Reserved"
 }

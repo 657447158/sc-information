@@ -16,8 +16,13 @@
               </span>
               <h3 :title="item.title">{{item.name}}</h3>
               <div class="info">
-                <p><span class="daq-icon">&#xe66d;</span><span class="txt">{{$t('hotel.phone')}}：{{item.phone}}</span></p>
-                <p :title="item.address"><span class="daq-icon">&#xe667;</span><span class="txt">{{$t('hotel.address')}}：{{item.address}}</span></p>
+                <p>
+                  <span class="daq-icon">&#xe66d;</span>
+                  <span class="txt">{{$t('hotel.phone')}}：{{item.phone}}</span>
+                </p>
+                <p :title="item.address">
+                  <span class="daq-icon">&#xe667;</span><span class="txt">{{$t('hotel.address')}}：{{item.address}}</span>
+                </p>
               </div>
             </li>
           </ul>
@@ -76,13 +81,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   li {
+    margin-left: 40px;
     width: 426px;
     margin-top: 60px;
     .img-box {
       display: block;
       width: 426px;
       height: 280px;
-      // background: red;
       overflow: hidden;
       &:hover img {
         transform: scale(1.1);
@@ -118,8 +123,8 @@ export default {
       }
     }
   }
-  li:nth-child(2n) {
-    margin-left: 40px;
+  li:nth-child(3n + 1) {
+    margin-left: 0;
   }
 }
 // .daq-list-item {

@@ -72,6 +72,10 @@ module.exports = {
     'hotel-list':{
       title,
       entry: 'src/pages/hotel-list/main.js'
+    },
+    'pic-list':{
+      title,
+      entry: 'src/pages/pic-list/main.js'
     }
   }
 }
