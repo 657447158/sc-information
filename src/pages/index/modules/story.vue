@@ -6,20 +6,18 @@
     <ul class="story-list">
       <li>
         <img src="@/assets/images/index-story-pic.png" />
-      </li>
-      <li>
-        <p class="theme-box-title">{{$t('index.story.theme')}}</p>
-        <a class="theme-box-more" href="list-menu.html?code=jxgsh">{{$t('index.more')}}</a>
+         <a class="theme-box-more" href="list-menu.html?code=jxgsh">{{$t('index.more')}}</a>
       </li>
       <li>
         <a 
           :href="`article-detail.html?id=${item.id}`"
           class="story-list-item"
-          v-for="item in list"
+          v-for="(item, index) in list"
           :key="item.id" 
         >
           <span class="img-box">
-            <img :src="item.coverOneToOne" alt="">
+            <img :src="item.coverTwoToOne" v-if="index === 1" />
+            <img :src="item.coverOneToOne" v-else />
           </span>
           <span class="modal-box">{{item.title}}</span>
         </a>
@@ -43,7 +41,7 @@ export default {
     getNewsList () {
       Ajax.getNewsList({
         channelCode: 'jxgsh',
-        limitPage: 3,
+        limitPage: 4,
         recommend: 0
       }).then(res => {
         if (res.code === 0) {
@@ -70,26 +68,31 @@ export default {
         top: 0;
         left: -280px;
       }
-      &:nth-child(2) {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 40px 40px 0;
-        width: 520px;
-        height: 270px;
-        color: #fff;
-        background: #d3a180;
-      }
-      &:nth-child(3) {
-        display: flex;
-        align-items: flex-end;
-        width: 1080px;
-      }
+      // &:nth-child(2) {
+      //   position: absolute;
+      //   top: 0;
+      //   right: 0;
+      //   padding: 40px 40px 0;
+      //   width: 520px;
+      //   height: 270px;
+      //   color: #fff;
+      //   background: #d3a180;
+      // }
+      // &:nth-child(3) {
+      //   display: flex;
+      //   align-items: flex-end;
+      //   width: 1080px;
+      // }
       img {
         display: block;
         width: 100%;
         height: 100%;
         font-size: 0;
+      }
+      .theme-box-more {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
       }
     }
     &-item {
@@ -99,9 +102,24 @@ export default {
         width: 540px;
         height: 100%;
       }
-      &:nth-child(2),
+      &:nth-child(2) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 520px;
+        height: 270px;
+      }
       &:nth-child(3) {
-        margin-left: 20px;
+        position: absolute;
+        bottom: 0;
+        right: 270px;
+        width: 250px;
+        height: 250px;
+      }
+      &:nth-child(4) {
+        position: absolute;
+        bottom: 0;
+        right: 0;
         width: 250px;
         height: 250px;
       }

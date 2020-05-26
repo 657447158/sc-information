@@ -369,7 +369,7 @@ export default {
               font-weight: normal;
               @include ellipsis();
               transition: all .3s linear;
-              line-height: 1.2;
+              // line-height: 1.2;
             }
           }
           li:nth-child(3n+1) {

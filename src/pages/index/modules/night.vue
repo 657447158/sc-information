@@ -17,18 +17,40 @@
             <p class="night-box-title">{{$t('index.night.theme')}}</p>
             <a class="theme-box-more" href="media-list.html?code=video">{{$t('index.more')}}</a>
           </li>
+          <!-- 视频 -->
           <li
             v-for="(item, index) in videoList"
             :key="item.id"
+            @click="playVideo(item)"
           >
             <div class="img-box" @mouseover="videoOverHandle(index)" @mouseleave="videoLeaveHandle(index)">
-              <img :src="item.coverpicture" :ref="`pic${index}`" />
+              <img :src="item.coverpictureFourToThree" :ref="`pic${index}`" />
               <video :src="item.upload" muted loop :ref="`nightVideo${index}`"></video>
               <span class="daq-icon">&#xe62c;</span>
             </div>
             <p>{{item.title}}</p>
           </li>
         </ul>
+      </div>
+    </div>
+     <!-- 视频弹框 -->
+    <div class="media-popup" @click.self="closeVideo" v-show="isShow">
+      <div class="media-hd media-close" @click="closeVideo">
+        <a></a>
+      </div>
+      <div class="media-content">
+        <div class="media-wrap" id="media-wrap">
+          <video
+            id="currVideo"
+            width="100%"
+            height="100%"
+            controls
+            loop
+            preload="auto"
+            :poster="videoParams.mediaImg"
+          >
+          </video>
+        </div>
       </div>
     </div>
     <!-- 图片弹框 -->
@@ -56,10 +78,15 @@ export default {
       index: 0,
       videoList: [],
       picList: [],
+      isShow: false,
       picShow: false,
       picUrl: '',
       picTitle: '',
-      picIndex: 0
+      picIndex: 0,
+      videoParams: {
+        mediaUrl: "",
+        mediaImg: ""
+      }
     }
   },
   mounted () {
@@ -67,6 +94,26 @@ export default {
     this.getPicList()
   },
   methods: {
+    playVideo(item) {
+      this.videoParams = {
+        mediaImg: item.coverpictureFourToThree,
+        mediaUrl: item.upload
+      };
+      let video = document.getElementById("currVideo");
+      video.pause();
+      video.setAttribute("src", this.videoParams.mediaUrl);
+      video.load();
+      video.play();
+      this.showVideo();
+    },
+    showVideo() {
+      this.isShow = !this.isShow;
+    },
+    closeVideo() {
+      let video = document.getElementById("currVideo");
+      video.pause();
+      this.isShow = !this.isShow;
+    },
     chooseTab (index) {
       if (this.index === index) return
       this.index = index

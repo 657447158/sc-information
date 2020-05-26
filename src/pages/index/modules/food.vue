@@ -6,12 +6,9 @@
     <div class="food-box">
       <div class="food-box-pic">
         <img src="@/assets/images/index-food-pic.png" />
+        <a class="theme-box-more" href="list-menu.html?code=chcbt">{{$t('index.more')}}</a>
       </div>
       <div class="food-box-list">
-        <div class="food-box-item">
-          <p class="theme-box-title">{{$t('index.food.theme')}}</p>
-          <a class="theme-box-more" href="list-menu.html?code=chcbt">{{$t('index.more')}}</a>
-        </div>
         <a 
           class="food-box-item"
           :href="`article-detail.html?id=${item.id}`"
@@ -19,7 +16,7 @@
           :key="item.id"
         >
           <span class="img-box">
-            <img :src="item.coverTwoToOne" v-if="index === 2" />
+            <img :src="item.coverTwoToOne" v-if="index === 0 || index === 3" />
             <img :src="item.coverOneToOne" v-else />
           </span>
           <span class="modal-box">{{item.title}}</span>
@@ -44,7 +41,7 @@ export default {
     getNewsListRecursion () {
       Ajax.getNewsListRecursion({
         channelCode: 'chcbt',
-        limitPage: 4,
+        limitPage: 5,
         recommend: 0
       }).then(res => {
         if (res.code === 0) {
@@ -75,6 +72,11 @@ export default {
         width: 100%;
         height: 100%;
       }
+      .theme-box-more {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+      }
     }
     &-item {
       position: absolute;
@@ -86,10 +88,10 @@ export default {
       &:first-child {
         top: 0;
         left: 0;
-        padding: 86px 0 0 60px;
+        // padding: 86px 0 0 60px;
         width: 700px;
-        color: #fff;
-        background: #d3a180;
+        // color: #fff;
+        // background: #d3a180;
       }
       &:nth-child(2) {
         top: 0;

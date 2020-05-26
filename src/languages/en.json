@@ -12,19 +12,16 @@
         },
         "more": "MORE",
         "time": {
-            "title": "Leisure Time",
-            "theme": "Sichuan leisure time"
+            "title": "Sichuan Tourist Attractions"
         },
         "art": {
-            "title": "Slow Life in Culture and Art"
+            "title": "Sichuan Culture & Art"
         },
         "food": {
-            "title": "Guide for Foodies",
-            "theme": "Food Treasure Map"
+            "title": "Sichuan Food & Drinks"
         },
         "story": {
-            "title": "Streets and Lanes in Sichuan",
-            "theme": "Wandering on Ancient Streets"
+            "title": "Sichuan Anecdotes"
         },
         "night": {
             "title": "Image of Sichuan",

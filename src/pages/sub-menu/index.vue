@@ -33,7 +33,7 @@
             :id="item.id"
             :key="item.id"
           >
-            <p class="answer-title">Q: {{item.title}}</p>
+            <!-- <p class="answer-title">Q: {{item.title}}</p> -->
             <div v-html="item.content"></div>
           </div>
         </div>

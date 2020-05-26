@@ -141,6 +141,11 @@ export default {
     };
   },
   mounted() {
+    if (this.channelCode === 'picture') {
+      this.tabIndex = 1
+    } else {
+      this.tabIndex = 0
+    }
     // this.getTagsByType();
   },
   methods: {
@@ -174,10 +179,13 @@ export default {
       this.picList = this.picList.concat(val);
     },
     chooseTab (index) {
+      if (this.tabIndex === index) return
       this.tabIndex = index
       if (index === 0) {
+        this.list = []
         this.channelCode = 'video'
       } else {
+        this.picList = []
         this.channelCode = 'picture'
       }
     },

@@ -183,13 +183,13 @@ export default {
     width: 120px;
     font-size: 32px;
     text-align: center;
-    background: rgba(255, 255, 255, .8);
+    background: rgba(211, 161, 128, .8);
     line-height: 36px;
     font-weight: bold;
-    color: #d3a180;
+    color: #fff;
     transition: all .3s linear;
     &:hover {
-      background: #fff;
+      background: #d3a180;
     }
   }
   /deep/ .theme-box-title {
