@@ -13,7 +13,7 @@
           <div class="map-wrapper">
             <div class="map" id="desMap"></div>
             <span class="compass">
-             <img src="@/assets/images/cpmpass@3x.png" />
+              <img src="@/assets/images/cpmpass@3x.png" />
             </span>
           </div>
         </div>
@@ -21,10 +21,7 @@
           <div class="article-wrapper">
             <h3>{{$t('destination.listTit')}}</h3>
             <ul>
-              <li 
-                v-for="item in list"
-                :key="item.id"
-              >
+              <li v-for="item in list" :key="item.id">
                 <a :href="`list.html?code=${item.channelCode}`">
                   <span class="img-box">
                     <img v-if="item.channelImage" :src="item.channelImage" />
@@ -46,10 +43,7 @@
               @list="getList"
             >
               <ul slot="list">
-                <li 
-                  v-for="item in slist"
-                  :key="item.id"
-                >
+                <li v-for="item in slist" :key="item.id">
                   <a :href="`article-detail.html?id=${item.id}`">
                     <span class="img-box">
                       <img v-if="item.cover" :src="item.cover" />
@@ -76,8 +70,9 @@ import scrollAnimate from "@/mixins/scroll_animate";
 import ScrollLoad from "@/components/scrollLoad";
 import Header from "@/widgets/header";
 import Footer from "@/widgets/footer";
-import lang from '@/languages'
-const NODE_ENV = process.env.NODE_ENV
+import lang from "@/languages";
+const NODE_ENV = process.env.NODE_ENV;
+const region = 510000
 export default {
   components: {
     Header,
@@ -86,43 +81,126 @@ export default {
   },
   data() {
     return {
-      region: 510000,
-      city: '',
+      region,
+      city: "",
       channelCode: Tools.getUrlParams("channelCode"),
       detail: {},
       list: [],
       slist: [],
       params: {
-        channelCode: ''
+        channelCode: ""
       },
       requestState: false,
       cities: lang[NODE_ENV].destination.cities,
       // 第一次进入
-      fisrtFlag: true
+      fisrtFlag: true,
+      timeInterval: null,
+      cityIndex: '',
+      myChart: null,
+      mapOptions: {
+        height: "100%",
+        geo: {
+          map: region,
+          label: {
+            normal: {
+              show: true,
+              textStyle: {
+                color: "rgba(0,0,0,0.0)"
+              }
+            }
+          },
+          itemStyle: {
+            normal: {
+              areaColor: "rgba(255, 255, 255, .6)",
+              borderColor: "#d8d8d8"
+            },
+            emphasis: {
+              areaColor: null,
+              shadowOffsetX: 0,
+              shadowOffsetY: 0,
+              shadowBlur: 20,
+              borderWidth: 0,
+              shadowColor: "rgba(0, 0, 0, 0.5)"
+            }
+          }
+        },
+        series: [
+          {
+            type: "map",
+            tooltip: {
+              show: false
+            },
+            mapType: region,
+            geoIndex: 1,
+            label: {
+              normal: {
+                show: false
+              }
+            },
+            itemStyle: {
+              normal: {
+                areaColor: "#fff",
+                borderColor: "#afafaf"
+              },
+              emphasis: {
+                label: {
+                  show: true,
+                  color: "#fff",
+                  textStyle: {
+                    color: "#fff"
+                  },
+                  formatter: function(params) {
+                    return params.data ? params.data.foreignName : "";
+                  }
+                },
+                borderColor: "#f77800",
+                areaColor: "#f77800"
+              }
+            },
+            data: lang[NODE_ENV].destination.cities
+          }
+        ]
+      }
     };
   },
   mounted() {
-    this.drawMap()
-    this.getChannelList()
+    this.drawMap();
+    this.getChannelList();
+    // this.setIntervalHandle();
   },
   methods: {
-    getList (val) {
-      this.slist = this.slist.concat(val)
+    setIntervalHandle () {
+      this.timeInterval = setInterval(() => {
+        if (this.cityIndex < this.cities.length) {
+          this.cityIndex++
+        }
+        if (this.cityIndex === this.cities.length) {
+          this.cityIndex = 0
+        }
+        this.cities.map((item, index) => {
+          item.selected = false
+          if (this.cityIndex === index) {
+            item.selected = true
+          }
+        })
+        this.mapOptions.series[0].data = this.cities
+        this.myChart.setOption(this.mapOptions)
+      }, 5000);
+    },
+    getList(val) {
+      this.slist = this.slist.concat(val);
     },
     // 获取目的地列表(栏目)
-    getChannelList () {
+    getChannelList() {
       Ajax.getChannelList({
-        channelCode: 'mdd',
+        channelCode: "mdd",
         limitPage: 99
       }).then(res => {
         if (res.code === 0) {
-          this.list = res.datas
-          this.getChannelDetail('mdd')
-          // this.channelCode = this.channelCode || (res.datas[0] && res.datas[0].channelCode)
-          // this.params.channelCode = this.channelCode
-          // this.requestState = true
+          this.list = res.datas;
+          this.getChannelDetail("mdd");
         }
-      })
+      });
     },
     // 获取目的地详情
     getChannelDetail(channelCode) {
@@ -131,112 +209,40 @@ export default {
       }).then(res => {
         if (res.code === 0) {
           this.detail = res.data;
-          let data = {
-            channelCode: res.data.channelCode,
-            name: res.data.name
-          }
-          this.drawMap(data);
         }
       });
     },
-    drawMap(scatterData) {
-      const _this = this
-      const myChart = echarts.init(document.getElementById("desMap"));
+    drawMap() {
+      const _this = this;
+      this.myChart = echarts.init(document.getElementById("desMap"));
       axios
         .get(
           `http://filealiyun.geeker.com.cn/ued/map/regionJson/${this.region}.json`
         )
         .then(data => {
-          let list = []
           echarts.registerMap(this.region, data.data);
-          if (!scatterData) return
-          data.data.features.map(item => {
-            if (item.properties.name.includes(scatterData.name)) {
-              list.push(item.properties.cp)
-            }
-          })
-          myChart.setOption({
-            height: "100%",
-            geo: {
-              map: this.region,
-              label: {
-                normal: {
-                  show: true,
-                  textStyle: {
-                    color: "rgba(0,0,0,0.0)"
-                  }
-                }
-              },
-              itemStyle: {
-                normal: {
-                  areaColor: "rgba(255, 255, 255, .6)",
-                  borderColor: "#d8d8d8"
-                },
-                emphasis: {
-                  areaColor: null,
-                  shadowOffsetX: 0,
-                  shadowOffsetY: 0,
-                  shadowBlur: 20,
-                  borderWidth: 0,
-                  shadowColor: "rgba(0, 0, 0, 0.5)"
-                }
-              }
-            },
-            series: [
-              {
-                type: "scatter",
-                coordinateSystem: "geo",
-                data: list,
-                symbolSize: [26, 32],
-                symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAgCAYAAAAMq2gFAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo4QTBGMjk2NDMyQUUxMUVBQkU0NUUxMjY1MTZBNzQxMCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo4QTBGMjk2NTMyQUUxMUVBQkU0NUUxMjY1MTZBNzQxMCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjhBMEYyOTYyMzJBRTExRUFCRTQ1RTEyNjUxNkE3NDEwIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjhBMEYyOTYzMzJBRTExRUFCRTQ1RTEyNjUxNkE3NDEwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+42qdKAAAAmVJREFUeNqslktIVFEYgO8dDatVpgxiEWURgi6qTQW26wVS4SajohAi3AnlKuwBQUJJQVCLFkEQLYISehAEBlGYLZqgIqRsiPIBgTa2UFNs+v44E8Nwz3/OdeaHj4F7/nu/Oef85xFOnAy0SMA2aIGtsA6Wm7Zx+AT9cB9eVfZks7YPhRZRCAfgDNQHfvEeziLr9RXVwC3YGSwsHkIbwvHCocmP9fC6CInEHhj42RnW2UQr4RmsCooPmcunyJKFojK4CyuC0sVauI0szBe1m6ryiQxMeubugEM5UQV0OV6YACmbWqiEZWaIT8Evx7vn6FWZiPaaSrPFR9gAl2Es7/l36IaNkHYM4faEqRJbTEGz+WhkUMZpkzOnVaKINisJ1+GrayKQDfJzU0nZIqI6JeFBjCp7pLStEVG5kjASQzSstC1JOEq1JoYoqVWtiFKOdeAbu5W2lIgeKwkdUO0ysE5kRzmupDyR3TtpxneRJemlWQIZS3uV7GuwydI+LQtdevTDUZpN8AZazS7yf4LhCLxVJBI3KP9M7jxaDYMFH7It4LQ5GGXFL3bkz8jyQTSW21RlUV7xmPCl0AgNHhKJbpEUnkfnfXaBGDEEF6MOPhmWYyWS/IGj9GbGdpT3waUSiHqQ9Gt3hsCcTakiJANR51uUaNZctSYXIJEDspXezPmIJD7DYcjGkMzDfiTfbDdRbds/HUN0AkmfduXV4gLc8ZBcQ3LVdbfWQoauDV4oOffM5hsUI8oVxz74ENH2HA7Sm/lSiP6dBLALvuQ9eyd/AMmszwfKY0z2qJHJJf63ufl4L4G/AgwAv/CVXyLfC0gAAAAASUVORK5CYII=',
-                symbolOffset: [0, "-30%"]
-              },
-              {
-                type: 'map',
-                tooltip: {
-                  show: false
-                },
-                mapType: this.region,
-                geoIndex: 1,
-                label: {
-                  normal: {
-                    show: false
-                  }
-                },
-                itemStyle: {
-                  normal: {
-                    areaColor: '#fff',
-                    borderColor: '#afafaf'
-                  },
-                  emphasis: {
-                    label: {
-                      show: true,
-                      color: '#fff',
-                      textStyle: {
-                        color: '#fff'
-                      },
-                      formatter: function (params) {
-                        return params.data ? params.data.foreignName : ''
-                      }
-                    },
-                    borderColor: '#f77800',
-                    areaColor: '#f77800'
-                  }
-                },
-                data: this.cities
-              }
-            ]
-          });
-          myChart.on('click', function (params) {
+          this.myChart.setOption(this.mapOptions);
+          this.myChart.on("click", function(params) {
             if (params.data) {
-              _this.fisrtFlag = false
-              _this.requestState = true
-              _this.channelCode = params.data.channelCode
-              _this.params.channelCode = _this.channelCode
-              _this.getChannelDetail(_this.channelCode)
+              _this.cities.map(item => {
+                item.selected = false
+                if (params.data.channelCode === item.channelCode) {
+                  item.selected = true
+                }
+              })
+              console.log('_this.cities', _this.cities);
+              // window.clearInterval(this.timeInterval)
+              _this.mapOptions.series[0].data = _this.cities
+              _this.myChart.setOption(_this.mapOptions)
+              // _this.setIntervalHandle()
+              _this.fisrtFlag = false;
+              _this.requestState = true;
+              _this.channelCode = params.data.channelCode;
+              _this.params.channelCode = _this.channelCode;
+              _this.getChannelDetail(_this.channelCode);
               // window.location.href = `destination.html?code=destination&channelCode=${params.data.channelCode}`
             }
-          })
+          });
         });
     }
   },
@@ -296,13 +302,13 @@ export default {
         display: flex;
         align-items: center;
         position: relative;
-        .compass{
+        .compass {
           position: absolute;
           right: 0;
           bottom: 60px;
           width: 84px;
           height: 84px;
-          img{
+          img {
             width: 100%;
             height: 100%;
           }
@@ -368,11 +374,11 @@ export default {
               color: #333333;
               font-weight: normal;
               @include ellipsis();
-              transition: all .3s linear;
+              transition: all 0.3s linear;
               // line-height: 1.2;
             }
           }
-          li:nth-child(3n+1) {
+          li:nth-child(3n + 1) {
             margin-left: 0;
           }
         }

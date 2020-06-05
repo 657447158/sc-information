@@ -85,7 +85,7 @@
 					<span class="daq-icon">&#xe677;</span>
 					<div class="nav-down">
 						<div class="main">
-							<ul class="nav-down-lang-list">
+							<!-- <ul class="nav-down-lang-list">
 								<li>
 									<a href="">
 										<img src="@/assets/images/nav-lang-coutry-france.jpg" />
@@ -104,15 +104,15 @@
 										<span>Spain - Español</span>
 									</a>
 								</li>
-							</ul>
+							</ul> -->
 							<ul class="nav-down-lang-list">
 								<li>
-									<a href="http://test.tsichuan.com/zxw/pc/index.html" target="_blank">
+									<a href="http://www.tsichuan.com/" target="_blank">
 										<img src="@/assets/images/nav-lang-coutry-china.jpg" />
 										<span>China - 简体中文</span>
 									</a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="">
 										<img src="@/assets/images/nav-lang-coutry-japan.jpg" />
 										<span>Japan - 日本語</span>
@@ -123,7 +123,7 @@
 										<img src="@/assets/images/nav-lang-coutry-korea.jpg" />
 										<span>South Korea - 대한민국</span>
 									</a>
-								</li>
+								</li> -->
 							</ul>
 							<ul class="nav-down-lang-list">
 								<li>

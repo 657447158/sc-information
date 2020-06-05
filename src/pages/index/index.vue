@@ -14,9 +14,9 @@
         <swiper-slide>
           <video ref="video3" src="@/assets/videos/video3.mp4" loop muted></video>
         </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
-      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
       <p class="word">{{$t('index.pageTit')}}</p>
       <!-- 视频、图片按钮 -->
       <div class="menu-list">
@@ -110,9 +110,13 @@ export default {
       muted: true,
       informationList: [],
       swiperOption: {
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
+        // pagination: {
+        //   el: ".swiper-pagination",
+        //   clickable: true
+        // },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
         on: {
           slideChangeTransitionEnd: function(){
@@ -222,15 +226,19 @@ export default {
     width: 100%;
     height: 100%;
   }
-  .swiper-pagination {
-    bottom: 40px;
+  /deep/ .swiper-button-prev {
+    left: 30px!important;
+    width: 31px!important;
+    height: 69px!important;
+    background-image: url('../../assets/images/index-video-left.png')!important;
+    background-size: 100% 100%!important;
   }
-  /deep/ .swiper-pagination-bullet {
-    width: 40px;
-    height: 5px;
-    border-radius: 0;
-    background: $themeColor;
-    cursor: pointer;
+  /deep/ .swiper-button-next {
+    right: 30px!important;
+    width: 31px!important;
+    height: 69px!important;
+    background-image: url('../../assets/images/index-video-right.png')!important;
+    background-size: 100% 100%!important;
   }
   .index-video {
     position: relative;
