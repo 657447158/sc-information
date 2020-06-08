@@ -19,7 +19,6 @@
             >
               <p class="name" :title="item.name">{{item.name}}</p>
               <div class="info">
-                <p><span class="daq-icon">&#xe652;</span><span class="txt">{{$t('travel.licenseno')}}：{{item.licenseno}}</span></p>
                 <p><span class="daq-icon">&#xe677;</span><span class="txt">{{$t('travel.type')}}：{{item.resourceLevel}}</span></p>
                 <p :title="item.address"><span class="daq-icon">&#xe667;</span><span class="txt">{{$t('travel.address')}}：{{item.address}}</span></p>
               </div>
@@ -80,7 +79,7 @@
   padding: 30px 10px;
   float: left;
   width: 426px;
-  height: 190px;
+  height: 170px;
   border: 1px solid #ececec;
   &~&:not(:nth-child(3n+1)) {
     margin-left: 41px;
