@@ -10,20 +10,17 @@
         </div>
         <div class="drop-down" :class="{active: showDropDown}">
           <a href="list-menu.html?code=yxhgj">{{$t('index.time.title')}}</a>
-          <a href="list-menu.html?code=wymsh">{{$t('index.art.title')}}</a>
-          <a href="list-menu.html?code=chcbt">{{$t('index.food.title')}}</a>
           <a href="list-menu.html?code=jxgsh">{{$t('index.story.title')}}</a>
           <a href="list-menu.html?code=hsysh">{{$t('index.night.title')}}</a>
         </div>
       </li>
       <li
-        v-for="(item, index) in list"
+        v-for="item in list"
         :key="item.id"
       >
         <a :href="`article-detail.html?id=${item.id}`">
           <span class="img-box">
-            <img :src="item.cover" v-if="index === 0 || index === 2 || index === 3 || index === 5" />
-            <img :src="item.coverTwoToThree" v-if="index === 1 || index === 4" />
+            <img :src="item.coverTwoToThree" />
           </span>
           <p class="title">{{item.title}}</p>
         </a>
@@ -52,20 +49,21 @@ export default {
     },
     getChannelDetail () {
       Ajax.getChannelDetail({
-        channelCode: 'zttj'
+        channelCode: 'tjyzx'
       }).then(res => {
         if (res.code === 0) {
-          this.detail = res.data
+          this.detail = res.data || {}
         }
       })
     },
     getNewsList () {
       Ajax.getNewsList({
-        channelCode: 'zttj',
-        limitPage: 6
+        channelCode: 'tjyzx',
+        limitPage: 2
       }).then(res => {
         if (res.code === 0) {
           this.list = res.datas
+          console.log('this', this.list);
         }
       })
     }
@@ -79,7 +77,7 @@ export default {
     margin-top: 60px;
     &-list {
       width: 100%;
-      height: 700px;
+      height: 420px;
       // overflow: hidden;
     }
     li {
@@ -108,37 +106,13 @@ export default {
         top: 0;
         left: 0;
         width: 280px;
-        height: 210px;
+        height: 420px;
       }
       &:nth-child(3) {
-        bottom: 0;
-        left: 0;
-        width: 280px;
-        height: 470px;
-      }
-      &:nth-child(4) {
-        bottom: 0;
-        left: 300px;
-        width: 370px;
-        height: 260px;
-      }
-      &:nth-child(5) {
-        bottom: 0;
-        left: 690px;
-        width: 370px;
-        height: 260px;
-      }
-      &:nth-child(6) {
-        bottom: 0;
-        right: 0;
-        width: 280px;
-        height: 470px;
-      }
-      &:nth-child(7) {
         top: 0;
         right: 0;
         width: 280px;
-        height: 210px;
+        height: 420px;
       }
       &:hover {
         .img-box img {

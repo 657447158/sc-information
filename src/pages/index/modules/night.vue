@@ -14,7 +14,7 @@
             <img :src="item.url" />
           </li>
           <li>
-            <p class="night-box-title">{{$t('index.night.theme')}}</p>
+            <img src="@/assets/images/index-night-pic.jpeg" />
             <a class="theme-box-more" href="media-list.html?code=video">{{$t('index.more')}}</a>
           </li>
           <!-- 视频 -->
@@ -77,7 +77,7 @@ export default {
     return {
       index: 0,
       videoList: [],
-      picList: [],
+      picList: [{}, {}],
       isShow: false,
       picShow: false,
       picUrl: '',
@@ -153,7 +153,7 @@ export default {
         limitPage: 2,
         datatype: 'sourceType_1'
       }).then(res => {
-        if (res.code === 0) {
+        if (res.code === 0 && res.datas.length) {
           this.picList = res.datas
         }
       })
@@ -225,9 +225,18 @@ export default {
         margin-left: 0;
       }
       &:nth-child(3) {
-        padding: 80px 0 0 40px;
+        position: relative;
         width: 670px;
-        background: $themeColor;
+        cursor: default;
+        img {
+          display: block;
+          font-size: 0;
+          width: 100%;
+          height: 100%;
+        }
+        &:hover img {
+          transform: scale(1);
+        }
       }
       &:hover {
         img {
@@ -269,7 +278,10 @@ export default {
       transition: all .3s linear;
     }
     .theme-box-more {
-      margin-top: 20px;
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      z-index: 9;
     }
   }
 }

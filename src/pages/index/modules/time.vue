@@ -7,11 +7,7 @@
       <div class="list-box-list">
         <div class="list-box-item">
           <img class="pic" src="@/assets/images/index-time-pc.png" />
-          <a href="list-menu.html?code=yxhgj" class="theme-box-more">{{$t('index.more')}}</a>
-          <!-- <div class="theme-box">
-            <p class="theme-box-title">{{$t('index.time.theme')}}</p>
-            <a href="list-menu.html?code=yxhgj" class="theme-box-more">{{$t('index.more')}}</a>
-          </div> -->
+          <a href="list-menu.html?code=scfj" class="theme-box-more">{{$t('index.more')}}</a>
         </div>
         <a
           :href="`article-detail.html?id=${item.id}`"
@@ -39,12 +35,12 @@ export default {
     }
   },
   mounted () {
-    this.getNewsListRecursion()
+    this.getNewsList()
   },
   methods: {
-    getNewsListRecursion () {
-      Ajax.getNewsListRecursion({
-        channelCode: 'yxhgj',
+    getNewsList () {
+      Ajax.getNewsList({
+        channelCode: 'scfj',
         limitPage: 4,
         recommend: 0
       }).then(res => {

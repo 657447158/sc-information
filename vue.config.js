@@ -21,14 +21,6 @@ module.exports = {
       title,
       entry: 'src/pages/index/main.js'
     },
-    'list': {
-      title,
-      entry: 'src/pages/list/main.js'
-    },
-    'destination': {
-      title,
-      entry: 'src/pages/destination/main.js'
-    },
     'article-detail': {
       title,
       entry: 'src/pages/article-detail/main.js'
@@ -37,21 +29,9 @@ module.exports = {
       title,
       entry: 'src/pages/channel-detail/main.js'
     },
-    'service': {
-      title,
-      entry: 'src/pages/service/main.js'
-    },
-    'recommend':{
-      title,
-      entry: 'src/pages/recommend/main.js'
-    },
     'list-menu':{
       title,
       entry: 'src/pages/list-menu/main.js'
-    },
-    'scenic-detail':{
-      title,
-      entry: 'src/pages/scenic-detail/main.js'
     },
     'search':{
       title,

@@ -1,0 +1,35 @@
+{
+    "webTit": "Sichuan Tourism",
+    "header": {
+        "nav": ["Présentation du sichuan", "Découvrez le Sichuan", "Informations utiles", "Search"]
+    },
+    "noMore": "No more",
+    "index": {
+        "pageTit": "Bienvenue au Sichuan",
+        "secTheme": {
+            "placeholder": "Ça vous plaît peut-être"
+        },
+        "more": "Plus",
+        "time": {
+            "title": "Paysages du Sichuan"
+        },
+        "story": {
+            "title": "Culture et art"
+        },
+        "night": {
+            "title": "Image du Sichuan"
+        }
+    },
+    "video": "vidéo",
+    "gallery": "Galerie",
+    "travel": {
+        "type": "type",
+        "address": "address"
+    },
+    "hotel": {
+        "phone": "phone",
+        "address": "address"
+    },
+    "copy": "Copyright &copy;2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
+    "loading": "Chargement"
+}

@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve:en": "vue-cli-service serve --mode en",
-    "build:en": "vue-cli-service build --mode en",
+    "serve:fr": "vue-cli-service serve --mode fr",
+    "serve:ko": "vue-cli-service serve --mode ko",
+    "build:fr": "vue-cli-service build --mode fr",
+    "build:ko": "vue-cli-service build --mode ko",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

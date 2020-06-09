@@ -1,7 +1,9 @@
-const en = require('./en.json')
+const ko = require('./ko.json')
+const fr = require('./fr.json')
 
 const msg = {
-  en
+  ko,
+  fr
 }
 
 module.exports = msg

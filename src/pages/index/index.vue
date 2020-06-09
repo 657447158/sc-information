@@ -14,8 +14,9 @@
         <swiper-slide>
           <video ref="video3" src="@/assets/videos/video3.mp4" loop muted></video>
         </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
       <div class="swiper-pagination"></div>
       <p class="word">{{$t('index.pageTit')}}</p>
       <!-- 视频、图片按钮 -->
@@ -39,10 +40,6 @@
     <Favorite />
     <!-- 悠闲好光景 -->
     <Time />
-    <!-- 文艺慢生活 -->
-    <Art />
-    <!-- 吃货藏宝图 -->
-    <Food />
     <!-- 街巷故事汇 -->
     <Story />
     <!-- 好耍夜生活 -->
@@ -84,8 +81,6 @@ import Header from '@/widgets/header'
 import Footer from '@/widgets/footer'
 import Favorite from './modules/favorite'
 import Time from './modules/time'
-import Art from './modules/art'
-import Food from './modules/food'
 import Story from './modules/story'
 import Night from './modules/night'
 import "swiper/dist/css/swiper.css";
@@ -97,8 +92,6 @@ export default {
     Footer,
     Favorite,
     Time,
-    Art,
-    Food,
     Story,
     Night
   },
@@ -110,9 +103,9 @@ export default {
       muted: true,
       informationList: [],
       swiperOption: {
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
         on: {
           slideChangeTransitionEnd: function(){
@@ -225,12 +218,19 @@ export default {
   .swiper-pagination {
     bottom: 40px;
   }
-  /deep/ .swiper-pagination-bullet {
-    width: 40px;
-    height: 5px;
-    border-radius: 0;
-    background: $themeColor;
-    cursor: pointer;
+  /deep/ .swiper-button-prev {
+    left: 30px!important;
+    width: 31px!important;
+    height: 69px!important;
+    background-image: url('../../assets/images/index-video-left.png')!important;
+    background-size: 100% 100%!important;
+  }
+  /deep/ .swiper-button-next {
+    right: 30px!important;
+    width: 31px!important;
+    height: 69px!important;
+    background-image: url('../../assets/images/index-video-right.png')!important;
+    background-size: 100% 100%!important;
   }
   .index-video {
     position: relative;

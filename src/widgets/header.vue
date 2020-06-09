@@ -5,13 +5,13 @@
         <img class="nav-logo" src="@/assets/images/logo.png" alt="四川省文化和旅游局" />
       </a>
 			<ul class="nav-list">
-        <!-- 目的地 -->
-				<li :class="code === 'destination' && 'active'">
-					<a href="destination.html?code=destination">{{$t('header.nav[0]')}}</a>
+        <!-- 四川简介 -->
+				<li :class="code === 'scjj' && 'active'">
+					<a href="sub-menu.html?code=scjj">{{$t('header.nav[0]')}}</a>
 				</li>
-        <!-- 主题旅游 -->
+        <!-- 发现四川 -->
 				<li :class="code === 'recommend' && 'active'">
-					<a href="recommend.html?code=recommend">
+					<a href="javascript:;">
             <span>{{$t('header.nav[1]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
@@ -24,9 +24,10 @@
                   :key="item.id"
                 >
                   <a :href="`list-menu.html?code=${item.channelCode}`">
-                    <span class="img-box">
+                    <!-- <span class="img-box">
                       <img :src="item.channelImage" />
-                    </span>
+                    </span> -->
+                    <span class="daq-icon" v-html="item.metaDescription"></span>
                     <p>{{item.name}}</p>
                   </a>
                 </li>
@@ -36,7 +37,7 @@
 				</li>
         <!-- 适用信息 -->
 				<li :class="code === 'info' && 'active'">
-					<a href="service.html?code=info">
+					<a href="javascript:;">
             <span>{{$t('header.nav[2]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
@@ -48,11 +49,11 @@
                   v-for="item in informationList"
                   :key="item.id"
                 >
-                  <a :href="`sub-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'qz'">
+                  <a :href="`sub-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'zgyxx'">
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
-                  <a :href="`hotel-list.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'zs'">
+                  <a :href="`hotel-list.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'jdzs'">
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
@@ -92,7 +93,7 @@
 										<span>France - Français</span>
 									</a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="">
 										<img src="@/assets/images/nav-lang-coutry-germany.jpg" />
 										<span>Germany - Deutsch</span>
@@ -103,7 +104,7 @@
 										<img src="@/assets/images/nav-lang-coutry-spain.jpg" />
 										<span>Spain - Español</span>
 									</a>
-								</li>
+								</li> -->
 							</ul>
 							<ul class="nav-down-lang-list">
 								<li>
@@ -112,7 +113,7 @@
 										<span>China - 简体中文</span>
 									</a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="">
 										<img src="@/assets/images/nav-lang-coutry-japan.jpg" />
 										<span>Japan - 日本語</span>
@@ -123,7 +124,7 @@
 										<img src="@/assets/images/nav-lang-coutry-korea.jpg" />
 										<span>South Korea - 대한민국</span>
 									</a>
-								</li>
+								</li> -->
 							</ul>
 							<ul class="nav-down-lang-list">
 								<li>
@@ -142,7 +143,7 @@
     <transition name="fade">
       <div class="page-load" v-if="initPage">
         <img src="@/assets/images/page-load-logo.gif" />
-        <p class="loading">LOADING...</p>
+        <p class="loading">{{$t('loading')}}...</p>
       </div>
     </transition>
     <!-- top按钮 -->
@@ -210,7 +211,7 @@
       // 获取主题旅游栏目下的子栏目
       getChannelCodeByThemeTravel () {
         Ajax.getChannelList({
-          channelCode: 'ztlytj'
+          channelCode: 'fxsc'
         }).then(res => {
           if (res.code === 0) {
             this.themeTravelList = res.datas
@@ -497,24 +498,20 @@
 .nav-down-theme {
   margin-top: 60px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   &-item {
     font-size: 16px;
     a {
+      margin: 0 110px;
       display: flex;
       flex-direction: column;
       color: #666;
     }
-    .img-box {
-      margin-bottom: 20px;
-      display: block;
-      width: 200px;
-      height: 120px;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-      }
+    .daq-icon {
+      margin: 0 0 30px 0;
+      color: #333;
+      font-size: 50px;
+      text-align: center;
     }
   }
 }

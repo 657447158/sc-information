@@ -1,0 +1,35 @@
+{
+    "webTit": "Sichuan Tourism",
+    "header": {
+        "nav": ["사천 소개", "쓰촨을 이해하다", "실 용 정보", "Search"]
+    },
+    "noMore": "No more",
+    "index": {
+        "pageTit": "쓰촨성에 오신 것을 환영합니다",
+        "secTheme": {
+            "placeholder": "너는 좋아할지도 모른다"
+        },
+        "more": "더",
+        "time": {
+            "title": "사천 풍경"
+        },
+        "story": {
+            "title": "문화와 예술"
+        },
+        "night": {
+            "title": "사진과 동영상"
+        }
+    },
+    "video": "동영상",
+    "gallery": "사진첩",
+    "travel": {
+        "type": "type",
+        "address": "address"
+    },
+    "hotel": {
+        "phone": "phone",
+        "address": "address"
+    },
+    "copy": "Copyright &copy;2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
+    "loading": "Chargement"
+}

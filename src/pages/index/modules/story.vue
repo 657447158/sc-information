@@ -6,7 +6,7 @@
     <ul class="story-list">
       <li>
         <img src="@/assets/images/index-story-pic.png" />
-         <a class="theme-box-more" href="list-menu.html?code=jxgsh">{{$t('index.more')}}</a>
+         <a class="theme-box-more" href="list-menu.html?code=scwhhys">{{$t('index.more')}}</a>
       </li>
       <li>
         <a 
@@ -40,7 +40,7 @@ export default {
   methods: {
     getNewsList () {
       Ajax.getNewsList({
-        channelCode: 'jxgsh',
+        channelCode: 'scwhhys',
         limitPage: 4,
         recommend: 0
       }).then(res => {
@@ -68,21 +68,6 @@ export default {
         top: 0;
         left: -280px;
       }
-      // &:nth-child(2) {
-      //   position: absolute;
-      //   top: 0;
-      //   right: 0;
-      //   padding: 40px 40px 0;
-      //   width: 520px;
-      //   height: 270px;
-      //   color: #fff;
-      //   background: #d3a180;
-      // }
-      // &:nth-child(3) {
-      //   display: flex;
-      //   align-items: flex-end;
-      //   width: 1080px;
-      // }
       img {
         display: block;
         width: 100%;
@@ -97,6 +82,7 @@ export default {
     }
     &-item {
       position: relative;
+      display: block;
       &:hover .modal-box { opacity: 1; }
       &:nth-child(1) {
         width: 540px;
