@@ -215,8 +215,12 @@ export default {
     width: 100%;
     height: 100%;
   }
-  .swiper-pagination {
-    bottom: 40px;
+  /deep/ .swiper-button-prev {
+    left: 30px!important;
+    width: 31px!important;
+    height: 69px!important;
+    background-image: url('../../assets/images/index-video-left.png')!important;
+    background-size: 100% 100%!important;
   }
   /deep/ .swiper-button-prev {
     left: 30px!important;

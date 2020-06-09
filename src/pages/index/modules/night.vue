@@ -7,7 +7,7 @@
       <div class="night-box">
         <ul>
           <li
-            v-for="(item, index) in picList"
+            v-for="(item, index) in fPicList"
             :key="item.id"
             @click="picShowHandle(item, index)"
           >
@@ -58,7 +58,7 @@
       <div class="media-hd media-close" @click="closePic">
         <a></a>
       </div>
-      <div class="dialog-bd">
+      <div class="dialog-bd" @click="goToPicList">
         <img :src="picUrl" />
         <p>{{picTitle}}</p>
       </div>
@@ -89,6 +89,11 @@ export default {
       }
     }
   },
+  computed: {
+    fPicList () {
+      return this.picList.filter((item, index) => index < 2)
+    } 
+  },
   mounted () {
     this.getVideoList()
     this.getPicList()
@@ -113,6 +118,9 @@ export default {
       let video = document.getElementById("currVideo");
       video.pause();
       this.isShow = !this.isShow;
+    },
+    goToPicList () {
+      window.location.href = 'media-list.html?code=picture'
     },
     chooseTab (index) {
       if (this.index === index) return
@@ -150,7 +158,7 @@ export default {
     },
     getPicList () {
       Ajax.getPicList({
-        limitPage: 2,
+        limitPage: 6,
         datatype: 'sourceType_1'
       }).then(res => {
         if (res.code === 0 && res.datas.length) {
@@ -335,6 +343,7 @@ export default {
   transition: all .3s ease;
   transform: translate(-50%, -50%);
   background: #fff;
+  cursor: pointer;
   img {
     display: block;
     max-width: 100%;
