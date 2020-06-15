@@ -5,6 +5,18 @@ switch (process.env.NODE_ENV) {
 	case 'fr':
 		siteCode = 'scsfr'
 		break
+	case 'ko':
+		siteCode = 'scsko'
+		break
+	case 'deyu':
+		siteCode = 'scsdy'
+		break
+	case 'ja':
+		siteCode = 'scsja'
+		break
+	case 'xibanyayu':
+		siteCode = 'scsxby'
+		break
 }
 let defaultParams = {
 	siteCode,

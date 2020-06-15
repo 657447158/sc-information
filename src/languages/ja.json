@@ -1,0 +1,35 @@
+{
+    "webTit": "Sichuan Tourism",
+    "header": {
+        "nav": ["四川省の紹介", "四川を探索する", "実用な情報", "Search"]
+    },
+    "noMore": "No more",
+    "index": {
+        "pageTit": "四川へようこそ",
+        "secTheme": {
+            "placeholder": "好きかもしれません"
+        },
+        "more": "詳細",
+        "time": {
+            "title": "四川の風景"
+        },
+        "story": {
+            "title": "四川文化と芸術"
+        },
+        "night": {
+            "title": "四川の画像"
+        }
+    },
+    "video": "動画",
+    "gallery": "写真撮影",
+    "travel": {
+        "type": "type",
+        "address": "address"
+    },
+    "hotel": {
+        "phone": "phone",
+        "address": "address"
+    },
+    "copy": "Copyright &copy;2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
+    "loading": "Chargement"
+}

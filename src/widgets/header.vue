@@ -93,7 +93,7 @@
 										<span>France - Français</span>
 									</a>
 								</li>
-								<!-- <li>
+								<li>
 									<a href="">
 										<img src="@/assets/images/nav-lang-coutry-germany.jpg" />
 										<span>Germany - Deutsch</span>
@@ -104,7 +104,7 @@
 										<img src="@/assets/images/nav-lang-coutry-spain.jpg" />
 										<span>Spain - Español</span>
 									</a>
-								</li> -->
+								</li>
 							</ul>
 							<ul class="nav-down-lang-list">
 								<li>
@@ -113,7 +113,7 @@
 										<span>China - 简体中文</span>
 									</a>
 								</li>
-								<!-- <li>
+								<li>
 									<a href="">
 										<img src="@/assets/images/nav-lang-coutry-japan.jpg" />
 										<span>Japan - 日本語</span>
@@ -124,7 +124,7 @@
 										<img src="@/assets/images/nav-lang-coutry-korea.jpg" />
 										<span>South Korea - 대한민국</span>
 									</a>
-								</li> -->
+								</li>
 							</ul>
 							<ul class="nav-down-lang-list">
 								<li>

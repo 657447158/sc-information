@@ -5,8 +5,14 @@
   "scripts": {
     "serve:fr": "vue-cli-service serve --mode fr",
     "serve:ko": "vue-cli-service serve --mode ko",
+    "serve:dy": "vue-cli-service serve --mode deyu",
+    "serve:ja": "vue-cli-service serve --mode ja",
+    "serve:xby": "vue-cli-service serve --mode xibanyayu",
     "build:fr": "vue-cli-service build --mode fr",
     "build:ko": "vue-cli-service build --mode ko",
+    "build:dy": "vue-cli-service build --mode deyu",
+    "build:ja": "vue-cli-service build --mode ja",
+    "build:xby": "vue-cli-service build --mode xibanyayu",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
