@@ -10,7 +10,7 @@
         </div>
         <div class="drop-down" :class="{active: showDropDown}">
           <a href="list-menu.html?code=yxhgj">{{$t('index.time.title')}}</a>
-          <a href="list-menu.html?code=jxgsh">{{$t('index.story.title')}}</a>
+          <a href="list-menu.html?code=scwhhys">{{$t('index.story.title')}}</a>
           <a href="list-menu.html?code=hsysh">{{$t('index.night.title')}}</a>
         </div>
       </li>

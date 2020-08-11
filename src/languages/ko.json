@@ -1,7 +1,7 @@
 {
-    "webTit": "Sichuan Tourism",
+    "webTit": "사천 문화 관광 정보 네트워크",
     "header": {
-        "nav": ["사천 소개", "쓰촨을 이해하다", "실 용 정보", "Search"]
+        "nav": ["사천 소개", "쓰촨을 이해하다", "실 용 정보", "찾기"]
     },
     "noMore": "No more",
     "index": {
@@ -23,13 +23,13 @@
     "video": "동영상",
     "gallery": "사진첩",
     "travel": {
-        "type": "type",
-        "address": "address"
+        "type": "유형",
+        "address": "주소"
     },
     "hotel": {
-        "phone": "phone",
-        "address": "address"
+        "phone": "전화",
+        "address": "주소"
     },
-    "copy": "Copyright &copy;2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
-    "loading": "Chargement"
+    "copy": "Copyright ©2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
+    "loading": "로딩"
 }

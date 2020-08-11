@@ -1,7 +1,7 @@
 {
-    "webTit": "Sichuan Tourism",
+    "webTit": "China Sichuan Kultur- und Tourismus information snetz",
     "header": {
-        "nav": ["Über Sichuan", "Erkunden Sie Sichuan", "Nützliche Informationen", "Search"]
+        "nav": ["Über Sichuan", "Erkunden Sie Sichuan", "Nützliche Informationen", "Suche"]
     },
     "noMore": "No more",
     "index": {
@@ -23,13 +23,13 @@
     "video": "Video",
     "gallery": "Foto",
     "travel": {
-        "type": "type",
-        "address": "address"
+        "type": "Arten von",
+        "address": "Adresse"
     },
     "hotel": {
-        "phone": "phone",
-        "address": "address"
+        "phone": "Telefon",
+        "address": "Adresse"
     },
-    "copy": "Copyright &copy;2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
-    "loading": "Chargement"
+    "copy": "Copyright ©2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
+    "loading": "Wird geladen"
 }

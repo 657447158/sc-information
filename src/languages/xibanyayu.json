@@ -1,7 +1,7 @@
 {
-    "webTit": "Sichuan Tourism",
+    "webTit": "Red de Información de Cultura y Turismo de Sichuan",
     "header": {
-        "nav": ["INFORMACIÓN PRÁCTICA", "Explorar sichuan", "Información útil", "Search"]
+        "nav": ["Información Práctica", "Explorar sichuan", "Información útil", "Buscar"]
     },
     "noMore": "No more",
     "index": {
@@ -23,13 +23,13 @@
     "video": "Vídeo",
     "gallery": "Album de fotos",
     "travel": {
-        "type": "type",
-        "address": "address"
+        "type": "Tipos de",
+        "address": "Habla a"
     },
     "hotel": {
-        "phone": "phone",
-        "address": "address"
+        "phone": "Teléfono",
+        "address": "Habla a"
     },
-    "copy": "Copyright &copy;2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
-    "loading": "Chargement"
+    "copy": "Copyright ©2019 Sichuan Culture and Tourism Information Center All Rights Reserved",
+    "loading": "Cargando"
 }

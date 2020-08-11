@@ -1,144 +1,157 @@
 <template>
   <div class="nav daq-nav" :class="scrollFlag && 'active'">
-		<div class="main">
-			<a href="index.html">
+    <div class="main">
+      <a href="index.html">
         <img class="nav-logo" src="@/assets/images/logo.png" alt="四川省文化和旅游局" />
       </a>
-			<ul class="nav-list">
+      <ul class="nav-list">
         <!-- 四川简介 -->
-				<li :class="code === 'scjj' && 'active'">
-					<a href="sub-menu.html?code=scjj">{{$t('header.nav[0]')}}</a>
-				</li>
+        <li :class="code === 'scjj' && 'active'">
+          <a href="sub-menu.html?code=scjj">{{$t('header.nav[0]')}}</a>
+        </li>
         <!-- 发现四川 -->
-				<li :class="code === 'recommend' && 'active'">
-					<a href="javascript:;">
+        <li :class="code === 'recommend' && 'active'">
+          <a href="javascript:;">
             <span>{{$t('header.nav[1]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
-					<div class="nav-down">
-						<div class="main">
-							<ul class="nav-down-theme">
-                <li
-                  class="nav-down-theme-item"
-                  v-for="item in themeTravelList"
-                  :key="item.id"
-                >
+          <div class="nav-down">
+            <div class="main">
+              <ul class="nav-down-theme">
+                <li class="nav-down-theme-item" v-for="item in themeTravelList" :key="item.id">
                   <a :href="`list-menu.html?code=${item.channelCode}`">
                     <!-- <span class="img-box">
                       <img :src="item.channelImage" />
-                    </span> -->
+                    </span>-->
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <p>{{item.name}}</p>
                   </a>
                 </li>
               </ul>
-						</div>
-					</div>
-				</li>
+            </div>
+          </div>
+        </li>
         <!-- 适用信息 -->
-				<li :class="code === 'info' && 'active'">
-					<a href="javascript:;">
+        <li :class="code === 'info' && 'active'">
+          <a href="javascript:;">
             <span>{{$t('header.nav[2]')}}</span>
             <span class="daq-icon">&#xe6af;</span>
           </a>
-					<div class="nav-down">
-						<div class="main">
-							<ul class="nav-down-info">
-                <li 
-                  class="nav-down-info-item"
-                  v-for="item in informationList"
-                  :key="item.id"
-                >
-                  <a :href="`sub-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'zgyxx'">
+          <div class="nav-down">
+            <div class="main">
+              <ul class="nav-down-info">
+                <li class="nav-down-info-item" v-for="item in informationList" :key="item.id">
+                  <a
+                    :href="`sub-menu.html?code=${item.channelCode}`"
+                    v-if="item.channelCode === 'zgyxx'"
+                  >
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
-                  <a :href="`hotel-list.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'jdzs'">
+                  <a
+                    :href="`hotel-list.html?code=${item.channelCode}`"
+                    v-else-if="item.channelCode === 'jdzs'"
+                  >
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
-                  <a :href="`list-menu.html?code=${item.channelCode}`" v-else-if="item.channelCode ==='jkhrsaq'">
+                  <a
+                    :href="`list-menu.html?code=${item.channelCode}`"
+                    v-else-if="item.channelCode ==='jkhrsaq'"
+                  >
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
-                  <a :href="`travel-agency.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'lxs'">
+                  <!-- <a
+                    :href="`travel-agency.html?code=${item.channelCode}`"
+                    v-else-if="item.channelCode === 'lxs'"
+                  >
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
-                  </a>
-                  <a :href="`channel-detail.html?code=${item.channelCode}`" v-else>
+                  </a> -->
+                  <!-- <a :href="`channel-detail.html?code=${item.channelCode}`" v-else>
+                    <span class="daq-icon" v-html="item.metaDescription"></span>
+                    <span>{{item.name}}</span>
+                  </a> -->
+                  <a :href="`channel-detail.html?code=${item.channelCode}`" v-else-if="item.channelCode !== 'lxs'">
                     <span class="daq-icon" v-html="item.metaDescription"></span>
                     <span>{{item.name}}</span>
                   </a>
                 </li>
               </ul>
-						</div>
-					</div>
-				</li>
-				<!-- 搜索 -->
-				<li class="nav-search">
+            </div>
+          </div>
+        </li>
+        <!-- 搜索 -->
+        <li class="nav-search">
           <div class="nav-search-box">
-            <input type="text" :placeholder="$t('header.nav[3]')" v-model="keywords" @keyup.enter="search">
+            <input
+              type="text"
+              :placeholder="$t('header.nav[3]')"
+              v-model="keywords"
+              @keyup.enter="search"
+            />
             <a class="daq-icon" :href="`search.html?keywords=${keywords}`">&#xe673;</a>
           </div>
         </li>
-				<!-- 语言选择 -->
-				<li class="nav-lang">
-					<span class="daq-icon">&#xe677;</span>
-					<div class="nav-down">
-						<div class="main">
-							<ul class="nav-down-lang-list">
-								<li>
-									<a href="">
-										<img src="@/assets/images/nav-lang-coutry-france.jpg" />
-										<span>France - Français</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
+        <!-- 语言选择 -->
+        <li class="nav-lang">
+          <span class="daq-icon">&#xe677;</span>
+          <div class="nav-down">
+            <div class="main">
+              <ul class="nav-down-lang-list">
+                <li>
+                  <a href="http://www.tsichuan.com/fr/" target="_blank">
+                    <img src="@/assets/images/nav-lang-coutry-france.jpg" />
+                    <span>France - Français</span>
+                  </a>
+                </li>
+                <li>
+									<a href="http://www.tsichuan.com/de/" target="_blank">
 										<img src="@/assets/images/nav-lang-coutry-germany.jpg" />
 										<span>Germany - Deutsch</span>
 									</a>
 								</li>
 								<li>
-									<a href="">
+									<a href="http://www.tsichuan.com/es/" target="_blank">
 										<img src="@/assets/images/nav-lang-coutry-spain.jpg" />
 										<span>Spain - Español</span>
 									</a>
-								</li>
-							</ul>
-							<ul class="nav-down-lang-list">
-								<li>
-									<a href="http://www.tsichuan.com/" target="_blank">
-										<img src="@/assets/images/nav-lang-coutry-china.jpg" />
-										<span>China - 简体中文</span>
-									</a>
-								</li>
-								<li>
-									<a href="">
+                </li>
+              </ul>
+              <ul class="nav-down-lang-list">
+                <li>
+                  <a href="http://www.tsichuan.com/" target="_blank">
+                    <img src="@/assets/images/nav-lang-coutry-china.jpg" />
+                    <span>China - 简体中文</span>
+                  </a>
+                </li>
+                <li>
+									<a href="http://www.tsichuan.com/ja/" target="_blank">
 										<img src="@/assets/images/nav-lang-coutry-japan.jpg" />
 										<span>Japan - 日本語</span>
 									</a>
-							</li>
+                </li>
 								<li>
-									<a href="">
+									<a href="http://www.tsichuan.com/ko/" target="_blank">
 										<img src="@/assets/images/nav-lang-coutry-korea.jpg" />
 										<span>South Korea - 대한민국</span>
 									</a>
-								</li>
-							</ul>
-							<ul class="nav-down-lang-list">
-								<li>
-									<a href="">
-										<img src="@/assets/images/nav-lang-coutry-en.jpg" />
-										<span>Global - English</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
+                </li>
+              </ul>
+              <ul class="nav-down-lang-list">
+                <li>
+                  <a href="http://www.tsichuan.com/en/" target="_blank">
+                    <img src="@/assets/images/nav-lang-coutry-en.jpg" />
+                    <span>Global - English</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
     <!-- 第一次进入加载动画 -->
     <transition name="fade">
       <div class="page-load" v-if="initPage">
@@ -152,117 +165,134 @@
       <!-- <a href="media-list.html?code=picture" class="video-btn daq-icon">&#xe681;</a> -->
       <div class="go-top" @click="goTop"></div>
     </div>
-	</div>
+  </div>
 </template>
 <script>
-  import Ajax from '@/service'
-  export default {
-    data () {
-      return {
-        initPage: sessionStorage.getItem('scInit') ? false : true,
-        code: '',
-        scrollFlag: false,
-        ticking: false,
-        showTopBtn: false,
-        themeTravelList: [],
-        informationList: [],
-        keywords: ''
-      }
-    },
-    created () {
-      if (this.initPage) {
-        setTimeout(() => {
-          this.initPage = false
-          sessionStorage.setItem('scInit', 'false')
-        }, 5000)
-      }
-    },
-    mounted () {
-       this.keywords =" "
+import Ajax from "@/service";
+export default {
+  data() {
+    return {
+      initPage: sessionStorage.getItem("scInit") ? false : true,
+      code: "",
+      scrollFlag: false,
+      ticking: false,
+      showTopBtn: false,
+      themeTravelList: [],
+      informationList: [],
+      keywords: ""
+    };
+  },
+  created() {
+    if (this.initPage) {
       setTimeout(() => {
-        this.keywords =""
-      }, 1000);
-      if (!sessionStorage.getItem('themeTravelList')) {
-        this.getChannelCodeByThemeTravel()
-      } else {
-        this.themeTravelList = JSON.parse(sessionStorage.getItem('themeTravelList'))
+        this.initPage = false;
+        sessionStorage.setItem("scInit", "false");
+      }, 5000);
+    }
+  },
+  mounted() {
+    this.keywords = " ";
+    setTimeout(() => {
+      this.keywords = "";
+    }, 1000);
+    if (!sessionStorage.getItem("themeTravelList")) {
+      this.getChannelCodeByThemeTravel();
+    } else {
+      this.themeTravelList = JSON.parse(
+        sessionStorage.getItem("themeTravelList")
+      );
+    }
+    if (!sessionStorage.getItem("informationList")) {
+      this.getChannelCodeByInformation();
+    } else {
+      this.informationList = JSON.parse(
+        sessionStorage.getItem("informationList")
+      );
+    }
+    // 低于1366 跳转移动端
+    if (screen.width <= 1366) {
+      let lang = ''
+      switch (process.env.NODE_ENV) {
+        case 'deyu':
+          lang = 'de'
+          break
+        case 'xibanyayu':
+          lang = 'es'
+          break
+        default:
+          lang = process.env.NODE_ENV
+          break
       }
-      if (!sessionStorage.getItem('informationList')) {
-        this.getChannelCodeByInformation()
-      } else {
-        this.informationList = JSON.parse(sessionStorage.getItem('informationList'))
+      window.location.href = `http://www.tsichuan.com/mobile-${lang}/#/index`;
+    }
+    window.addEventListener("scroll", this.onScroll, false);
+    let params = window.location.search;
+    let arr = params ? params.slice(1).split("&") : [];
+    arr.map(item => {
+      let p = item.split("=")[0];
+      let v = item.split("=")[1];
+      if (p === "code") {
+        this.code = v;
       }
-      // 低于1366 跳转移动端
-      if (screen.width <= 1366) {
-        window.location.href = 'http://test.tsichuan.com/zxw/mobile-en/#/index'
-      }
-      window.addEventListener('scroll', this.onScroll, false)
-      let params = window.location.search
-      let arr = params ? params.slice(1).split('&') : []
-      arr.map(item => {
-        let p = item.split('=')[0]
-        let v = item.split('=')[1]
-        if (p === 'code') {
-          this.code = v
+    });
+  },
+  methods: {
+    // 获取主题旅游栏目下的子栏目
+    getChannelCodeByThemeTravel() {
+      Ajax.getChannelList({
+        channelCode: "fxsc"
+      }).then(res => {
+        if (res.code === 0) {
+          this.themeTravelList = res.datas;
+          sessionStorage.setItem("themeTravelList", JSON.stringify(res.datas));
         }
-      })
+      });
     },
-    methods: {
-      // 获取主题旅游栏目下的子栏目
-      getChannelCodeByThemeTravel () {
-        Ajax.getChannelList({
-          channelCode: 'fxsc'
-        }).then(res => {
-          if (res.code === 0) {
-            this.themeTravelList = res.datas
-            sessionStorage.setItem('themeTravelList', JSON.stringify(res.datas))
-          }
-        })
-      },
-      // 获取实用信息下的子栏目
-      getChannelCodeByInformation () {
-        Ajax.getChannelList({
-          channelCode: 'syxx'
-        }).then(res => {
-          if (res.code === 0) {
-            this.informationList = res.datas
-            sessionStorage.setItem('informationList', JSON.stringify(res.datas))
-          }
-        })
-      },
-      onScroll () {
-        if(!this.ticking) {
-          requestAnimationFrame(this.scrollHandle)
-          this.ticking = true
+    // 获取实用信息下的子栏目
+    getChannelCodeByInformation() {
+      Ajax.getChannelList({
+        channelCode: "syxx"
+      }).then(res => {
+        if (res.code === 0) {
+          this.informationList = res.datas;
+          sessionStorage.setItem("informationList", JSON.stringify(res.datas));
         }
-      },
-      scrollHandle () {
-        const scrollTop = document.documentElement.scrollTop
-        if (scrollTop > 100) {
-          this.scrollFlag = true
-          this.showTopBtn = true
-        } else {
-          this.scrollFlag = false
-          this.showTopBtn = false
-        }
-        this.ticking = false
-      },
-      step () {
-        const distance = document.body.scrollTop || document.documentElement.scrollTop
-        const v = distance / 10
-        document.documentElement.scrollTop = distance - v
-        if (distance > 0) {
-          window.requestAnimationFrame(this.step)
-        }
-      },
-      goTop () {
-        window.requestAnimationFrame(this.step)
-      },
-      search () {
-        window.location.href = `search.html?keyword=${encodeURI(this.keywords)}`
+      });
+    },
+    onScroll() {
+      if (!this.ticking) {
+        requestAnimationFrame(this.scrollHandle);
+        this.ticking = true;
       }
+    },
+    scrollHandle() {
+      const scrollTop = document.documentElement.scrollTop;
+      if (scrollTop > 100) {
+        this.scrollFlag = true;
+        this.showTopBtn = true;
+      } else {
+        this.scrollFlag = false;
+        this.showTopBtn = false;
+      }
+      this.ticking = false;
+    },
+    step() {
+      const distance =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const v = distance / 10;
+      document.documentElement.scrollTop = distance - v;
+      if (distance > 0) {
+        window.requestAnimationFrame(this.step);
+      }
+    },
+    goTop() {
+      window.requestAnimationFrame(this.step);
+    },
+    search() {
+      window.location.href = `search.html?keyword=${encodeURI(this.keywords)}`;
     }
   }
+};
 </script>
 <style lang="scss" scoped>
 .side-bar {
@@ -270,7 +300,7 @@
   bottom: 60px;
   right: -52px;
   z-index: 99;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
   &.active {
     right: 60px;
   }
@@ -293,10 +323,10 @@
 .go-top {
   width: 50px;
   height: 50px;
-  background: #b2b2b2 url('../assets/images/go-top-btn.png') no-repeat center;
+  background: #b2b2b2 url("../assets/images/go-top-btn.png") no-repeat center;
   cursor: pointer;
   &:hover {
-    background: #f77800 url('../assets/images/go-top-btn.png') no-repeat center;
+    background: #f77800 url("../assets/images/go-top-btn.png") no-repeat center;
   }
 }
 .page-load {
@@ -330,13 +360,13 @@
   width: 100%;
   height: 100px;
   background: #fff;
-  transition: all .5s linear;
-  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+  transition: all 0.5s linear;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 .nav-logo {
   margin-top: 20px;
   float: left;
-  transition: all .5s linear;
+  transition: all 0.5s linear;
   transform-origin: 0 0;
 }
 .daq-nav .main {
@@ -349,35 +379,34 @@
   align-items: center;
   height: 100%;
   overflow: hidden;
-  transition: all .5s linear;
+  transition: all 0.5s linear;
   .daq-icon {
     margin-left: 12px;
     font-size: 12px;
-    transition: all .3s linear;
+    transition: all 0.3s linear;
   }
 }
-.nav-list>li {
+.nav-list > li {
   padding: 0 30px;
   height: 100%;
   float: left;
   font-size: 22px;
 }
-.nav-list>li a {
+.nav-list > li a {
   margin-top: 4px;
   display: flex;
   align-items: center;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
-.nav-list>li:hover>a,
-.nav-list>li.active>a
-{
+.nav-list > li:hover > a,
+.nav-list > li.active > a {
   color: $themeColor;
   .daq-icon {
     color: $themeColor;
     transform: rotate(180deg);
   }
 }
-.nav-list>li:hover .nav-down {
+.nav-list > li:hover .nav-down {
   transform: rotateX(0);
   opacity: 1;
   visibility: visible;
@@ -400,7 +429,7 @@
     outline: none;
     font-size: 16px;
     line-height: 20px;
-    transition: all .2s linear;
+    transition: all 0.2s linear;
     &:hover {
       width: 200px;
     }
@@ -413,7 +442,7 @@
   font-size: 24px;
   color: #333;
   cursor: pointer;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
 .nav-list .nav-lang {
   margin: 10px 0 0 50px;
@@ -423,13 +452,12 @@
   display: block;
   font-size: 30px;
   line-height: 24px;
-  color:#333;
+  color: #333;
   cursor: pointer;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
 .nav-list .nav-lang:hover .daq-icon,
-.nav-list .nav-search:hover .daq-icon
-{
+.nav-list .nav-search:hover .daq-icon {
   color: $themeColor;
 }
 .nav-down {
@@ -438,12 +466,12 @@
   top: 100px;
   width: 100%;
   height: 280px;
-  background: rgba(255, 255, 255, .96);
-  transition: all .5s linear;
+  background: rgba(255, 255, 255, 0.96);
+  transition: all 0.5s linear;
   overflow: hidden;
   visibility: hidden;
   opacity: 0;
-  transition: all .6s linear;
+  transition: all 0.6s linear;
   transform: rotateX(90deg);
   transform-origin: 50% 0;
 }
@@ -487,7 +515,7 @@
 }
 .daq-nav.active .nav-logo {
   margin-top: 9px;
-  transform: scale(.6);
+  transform: scale(0.6);
 }
 .daq-nav.active .nav-list {
   padding-top: 14px;

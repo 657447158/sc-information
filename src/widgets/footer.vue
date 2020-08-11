@@ -10,6 +10,31 @@
     </div>
 	</div>
 </template>
+<script>
+  var _hmt = _hmt || [];
+  if (process.env.NODE_ENV === 'fr') {
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3ebd91b2405f38fee64f7c6ec2f51311";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  } else if (process.env.NODE_ENV === 'deyu') {
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a3f70717c32995908f9906988275639b";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  } else if (process.env.NODE_ENV === 'xibanyayu') {
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0f0a1adffdab3fd0acdd493a8b26b118";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  }
+</script>
 <style lang="scss" scoped>
 .footer {
   padding: 65px 0;

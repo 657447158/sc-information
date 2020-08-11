@@ -2,7 +2,7 @@
   <div>
     <Header />
     <!-- 栏目banner -->
-    <PageBanner channelCode="zs" />
+    <PageBanner channelCode="jdzs" />
     <div class="daq-list-wrap">
       <div class="main">
         <scroll-load requestName="getHotelList" :limit="9" :params="params" @list="getList">

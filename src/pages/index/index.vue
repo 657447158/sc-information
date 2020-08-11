@@ -50,19 +50,23 @@
           v-for="item in informationList"
           :key="item.id"
         >
-          <a :href="`sub-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'qz'">
+          <a :href="`sub-menu.html?code=${item.channelCode}`" v-if="item.channelCode === 'qz' || item.channelCode === 'zgyxx'">
             <span class="daq-icon" v-html="item.metaDescription"></span>
             <span>{{item.name}}</span>
           </a>
-          <a :href="`list-menu.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'zs' || item.channelCode ==='jkhrsaq'">
+          <a :href="`hotel-list.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'jdzs'">
             <span class="daq-icon" v-html="item.metaDescription"></span>
             <span>{{item.name}}</span>
           </a>
-          <a :href="`travel-agency.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'lxs'">
+          <!-- <a :href="`travel-agency.html?code=${item.channelCode}`" v-else-if="item.channelCode === 'lxs'">
             <span class="daq-icon" v-html="item.metaDescription"></span>
             <span>{{item.name}}</span>
           </a>
           <a :href="`channel-detail.html?code=${item.channelCode}`" v-else>
+            <span class="daq-icon" v-html="item.metaDescription"></span>
+            <span>{{item.name}}</span>
+          </a> -->
+          <a :href="`channel-detail.html?code=${item.channelCode}`" v-else-if="item.channelCode !== 'lxs'">
             <span class="daq-icon" v-html="item.metaDescription"></span>
             <span>{{item.name}}</span>
           </a>
